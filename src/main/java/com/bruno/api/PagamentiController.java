@@ -20,6 +20,7 @@ public class PagamentiController {
     private PagamentoService pagamentoService;
 
 
+
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     List<Pagamento> getPagamenti() {
