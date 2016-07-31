@@ -24,4 +24,11 @@ public class Pagamento {
     public String getCig() {
         return cig;
     }
+
+
+    public String toFileLine() {
+        StringBuilder builder = new StringBuilder(id).append(",").append(descrizione).append(",").append(cig);
+        return builder.toString();
+    }
+
 }

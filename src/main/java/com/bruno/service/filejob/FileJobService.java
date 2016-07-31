@@ -13,7 +13,7 @@ import java.util.UUID;
 public class FileJobService {
 
     public FileJob creteJob(FilePagamentiFiltri pagamentiFiltri) {
-        //save into db
+        //save into db if not already existing
        return new FileJob(UUID.randomUUID().toString(),Pagamento.class.toString(),pagamentiFiltri.toJson(), "in-progress");
     }
 

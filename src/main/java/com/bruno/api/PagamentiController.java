@@ -5,7 +5,7 @@ import com.bruno.model.FilePagamentiFiltri;
 import com.bruno.model.Pagamento;
 import com.bruno.service.PagamentoService;
 import com.bruno.service.filejob.*;
-import com.bruno.utils.FileResourceLoader;
+import com.bruno.utils.FileResourceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class PagamentiController {
     private FileJobPagamentiConsumer consumer;
 
     @Autowired
-    private FileResourceLoader fileResourceLoader;
+    private FileResourceUtil fileResourceUtil;
 
 
     @Autowired
@@ -60,8 +60,8 @@ public class PagamentiController {
 
         String directoryurl = fileLocation
                 + "/";
-        this.fileResourceLoader.download(
-                "PAGAMENTI-43de446e-52b8-43ab-b368-e64c19f721ac.csv", resp, directoryurl);
+        this.fileResourceUtil.download(
+                "PAGAMENTI-"+fileId+".csv", resp, directoryurl);
 
         return  null;
     }
@@ -70,9 +70,9 @@ public class PagamentiController {
 
     @RequestMapping(value = "/file",method = RequestMethod.POST)
     public @ResponseBody
-    FileJob generateFile(@RequestBody FilePagamentiFiltri pagamenti) {
+    FileJob generateFile(@RequestBody FilePagamentiFiltri paramsRicercaPagamenti) {
 
-        FileJob fileJob = fileJobService.creteJob(pagamenti);
+        FileJob fileJob = fileJobService.creteJob(paramsRicercaPagamenti);
         FileJobMessage message = new FileJobMessage(fileJob);
 
         consumer.startConsumer();

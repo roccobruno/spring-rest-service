@@ -1,5 +1,7 @@
 package com.bruno.utils;
 
+import com.bruno.model.Pagamento;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ResourceLoaderAware;
@@ -14,14 +16,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ValidationException;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
 @Component
-public class FileResourceLoader implements ResourceLoaderAware {
+public class FileResourceUtil implements ResourceLoaderAware {
 	private ResourceLoader resourceLoader;
 
 	@Bean
@@ -30,7 +31,7 @@ public class FileResourceLoader implements ResourceLoaderAware {
 	}
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(FileResourceLoader.class);
+			.getLogger(FileResourceUtil.class);
 
 	@Override
 	public void setResourceLoader(ResourceLoader resourceLoader) {
@@ -44,6 +45,26 @@ public class FileResourceLoader implements ResourceLoaderAware {
 		boolean extis = resource.exists();
 		logger.debug(fileLocation + fileName + " exits: " + extis);
 		return resource.getFile();
+	}
+
+	public void createFile(List<String> fileLines,String fileName, String dir) {
+		try {
+			File directory = new File(dir);
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
+
+			File convFile = new File(dir + "/"
+					+ fileName);
+			if (!convFile.exists()) {
+				convFile.createNewFile();
+			}
+
+			FileUtils.writeLines(convFile,fileLines,true);
+		} catch (IOException e) {
+			logger.error("ERROR in writing in file = "+dir+"/"+fileName);
+			logger.error("ERROR "+e.getMessage());
+		}
 	}
 
 	public ResponseEntity<byte[]> download(String fileName,
