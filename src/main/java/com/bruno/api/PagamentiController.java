@@ -3,6 +3,7 @@ package com.bruno.api;
 
 import com.bruno.model.FilePagamentiFiltri;
 import com.bruno.model.Pagamento;
+import com.bruno.service.PagamentoRisultatiRicerca;
 import com.bruno.service.PagamentoService;
 import com.bruno.service.filejob.*;
 import com.bruno.utils.FileResourceUtil;
@@ -45,6 +46,15 @@ public class PagamentiController {
     public @ResponseBody
     List<Pagamento> getPagamenti() {
        return  pagamentoService.getPagamento();
+    }
+
+    @RequestMapping(value = "/search" ,method = RequestMethod.GET)
+    public @ResponseBody
+    PagamentoRisultatiRicerca cercaPagamenti(@RequestParam(value = "cig", required = false) String cig,
+                                             @RequestParam(value = "pageSize", required = true) Integer pageSize,
+                                             @RequestParam(value = "pageNumber", required = true) Integer pageNumber) {
+        System.out.print("cig -"+cig);
+        return  pagamentoService.cercaPagamenti(cig,pageSize,pageNumber);
     }
 
 

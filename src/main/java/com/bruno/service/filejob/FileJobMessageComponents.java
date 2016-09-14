@@ -1,5 +1,6 @@
 package com.bruno.service.filejob;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.BlockingDeque;
@@ -16,8 +17,9 @@ public class FileJobMessageComponents {
     private final BlockingDeque<FileJobMessage> fileJobMessageBlockingDeque;
     private final ExecutorService executor;
 
-    public FileJobMessageComponents() {
-        this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());;
+    public FileJobMessageComponents(@Value("${number.thread}")
+                                    Integer numOfThread) {
+        this.executor = Executors.newFixedThreadPool(numOfThread);
         this.fileJobMessageBlockingDeque = new LinkedBlockingDeque<FileJobMessage>();
     }
 

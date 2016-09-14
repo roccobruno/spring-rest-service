@@ -34,23 +34,25 @@ public class FileJobPagamentiConsumer {
     @Autowired
     private PagamentoService pagamentoService;
 
-    private void consumeMessage(FileJobMessage message) {
-        logger.info("receiving message " + message);
-        //create file
+    private void consumeMessage(final FileJobMessage message) throws InterruptedException {
+        components.getExecutor().submit(new Runnable() {
+            @Override
+            public void run() {
+                logger.info("receiving message " + message);
+                //fai la query in base a cio' che e' contenuto nel message
+                //leggi i record a gruppi di 1000 or 10000
+                List<Pagamento> pagamenti = pagamentoService.getPagamento();
+                List<String> fileContent = new ArrayList<String>();
+                for (int i = 0; i < pagamenti.size(); i++) {
+                    fileContent.add(pagamenti.get(i).toFileLine());
+                }
 
-        //fai la query in base a cio' che e' contenuto nel message
-        //leggi i record a gruppi di 1000 or 10000
-        List<Pagamento>  pagamenti = pagamentoService.getPagamento();
-        List<String> fileContent = new ArrayList<String>();
-        for (int i = 0; i < pagamenti.size(); i++) {
-            fileContent.add(pagamenti.get(i).toFileLine());
-        }
+                //scrivi file
+                fileResourceUtil.createFile(fileContent, "PAGAMENTI-" + message.getFileJob().getId() + ".csv", fileLocation);
 
-        //scrivi file
-        fileResourceUtil.createFile(fileContent,"PAGAMENTI-"+message.getFileJob().getId()+".csv",fileLocation);
-
-        //aggiorna il record di tipo FileJob , setta lo stato a 'fatto'
-
+                //aggiorna il record di tipo FileJob , setta lo stato a 'fatto'
+            }
+        });
     }
 
     public void startConsumer() {
@@ -61,7 +63,7 @@ public class FileJobPagamentiConsumer {
 
                     try {
                         while (true) {
-                            Thread.sleep(10000);//solo per testare
+//                            Thread.sleep(10000);//solo per testare
                             consumeMessage(components.getFileJobMessageBlockingDeque().take());
                         }
                     } catch (InterruptedException e) {
