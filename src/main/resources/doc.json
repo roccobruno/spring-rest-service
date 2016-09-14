@@ -1,0 +1,306 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Some custom description of API.",
+    "version": "API TOS",
+    "title": "My REST API",
+    "termsOfService": "Terms of service",
+    "contact": {
+      "name": "myeaddress@company.com"
+    },
+    "license": {
+      "name": "License of API",
+      "url": "API license URL"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/spring-rest-service",
+  "tags": [
+    {
+      "name": "pagamenti-controller",
+      "description": "Pagamenti Controller"
+    }
+  ],
+  "paths": {
+    "/pagamenti": {
+      "get": {
+        "tags": [
+          "pagamenti-controller"
+        ],
+        "summary": "getPagamenti",
+        "operationId": "getPagamentiUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pagamento"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pagamenti/file": {
+      "post": {
+        "tags": [
+          "pagamenti-controller"
+        ],
+        "summary": "generateFile",
+        "operationId": "generateFileUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "paramsRicercaPagamenti",
+            "description": "paramsRicercaPagamenti",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FilePagamentiFiltri"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FileJob"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pagamenti/file/job/{id}": {
+      "get": {
+        "tags": [
+          "pagamenti-controller"
+        ],
+        "summary": "getFileJob",
+        "operationId": "getFileJobUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FileJob"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pagamenti/file/{id}": {
+      "get": {
+        "tags": [
+          "pagamenti-controller"
+        ],
+        "summary": "getFile",
+        "operationId": "getFileUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "byte"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pagamenti/search": {
+      "get": {
+        "tags": [
+          "pagamenti-controller"
+        ],
+        "summary": "cercaPagamenti",
+        "operationId": "cercaPagamentiUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "cig",
+            "in": "query",
+            "description": "cig",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "pageNumber",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PagamentoRisultatiRicerca"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FileJob": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "PagamentoRisultatiRicerca": {
+      "type": "object",
+      "properties": {
+        "nextPageLink": {
+          "type": "string"
+        },
+        "previousPageLink": {
+          "type": "string"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pagamento"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Pagamento": {
+      "type": "object",
+      "properties": {
+        "cig": {
+          "type": "string"
+        },
+        "descrizione": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "FilePagamentiFiltri": {
+      "type": "object",
+      "properties": {
+        "cig": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
