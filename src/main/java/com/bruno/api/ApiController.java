@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bruno.db.manager.IManagerDb;
 import com.bruno.exception.GestioneException;
 import com.bruno.model.FilePagamentiFiltri;
-import com.bruno.model.SwPagamenti;
-import com.bruno.model.json.PagamentoJson;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.service.PagamentoRisultatiRicerca;
 import com.bruno.service.PagamentoService;
@@ -87,18 +85,16 @@ public class ApiController {
 //    }
     
     @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET)
-    public @ResponseBody List<Object> getPagamenti(@PathVariable("resourse") String resourse) {
+    public @ResponseBody Object getPagamenti(@PathVariable("resourse") String resourse) {
     	
-    	List<Object> pagamentiList = null;
-    	List<Object> pagamentiJsonList = null;
+    	Object risorsaList = null;
     	
     	try{
-    		pagamentiList = managerDb.getPagamenti();        	
-//        	pagamentiJsonList = wrapperToJson.pagamenti(pagamentiList);
+    		risorsaList = managerDb.getRisorsaList(resourse);       	
     	}catch(Exception e){
     		gestioneException.gestisciException(e);
     	}    	
-    	return pagamentiList;
+    	return risorsaList;
     }
 
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
