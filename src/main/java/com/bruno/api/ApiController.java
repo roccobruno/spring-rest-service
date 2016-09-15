@@ -2,6 +2,8 @@ package com.bruno.api;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -99,7 +101,8 @@ public class ApiController {
     
     @RequestMapping(value = "/{resourse}/{id}" ,method = RequestMethod.GET)
     public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
-    										 @PathVariable("id") String id) {
+    										 @PathVariable("id") String id,
+    										 @RequestParam Map<String,String> allRequestParams) {
     	
     	Object risorsa = null;
     	
