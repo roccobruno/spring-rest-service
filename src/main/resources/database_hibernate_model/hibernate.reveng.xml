@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ACCESSIMOP"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ANAGPROCAGGIUDIC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ANAGRAFICACIGANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ANAGRAFICACONTRATTIANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ANAGRAFICASOGGETTICORRELATI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ASSOCIATIVACLPCIG"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ASSOCIAZIONECUPCIGANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_COLLAUDOGARAANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_CUPS"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_CUPSINFOGEN"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_DETTAGLIOESITIINVIBATCHMOP"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ECONOMIE"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ESITIINVIIBATCHMOP"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_FINANZIAMENTI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_FINANZIAMENTIANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_GARAAPPALTOANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_IMPEGNI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_INDICATORI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ITERPROCAGGIUDIC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ITERPROCEDURALE"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_ITERPROCEDURALEANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_LOCALIZZAZIONI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_PAGAMENTI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_PAGAMENTIANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_PAGAMENTISIOPEMOVIMENTI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_PAGAMENTISIOPEORDINI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_PIANOCOSTI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_PROCEDURAAGGIUDICAZIONEANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_QUADROECONOMICO"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_REVOCHERINUNCE"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_RIBASSIASTA"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_SAL"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_SALANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_SOGGETTICORRELATIANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_SOGGETTIINVESTIMENTIPUBB"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_SOSPENSIONI"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_SOSPENSIONIANAC"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_STEPFASICIG"/>
+  <table-filter match-schema="U_BDAP_MWEB_WKA_SVL" match-name="SW_VARIANTICONTRATTOANAC"/>
+</hibernate-reverse-engineering>

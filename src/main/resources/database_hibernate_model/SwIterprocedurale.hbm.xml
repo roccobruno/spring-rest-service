@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwIterprocedurale" table="SW_ITERPROCEDURALE">
+        <comment>A21 ITER PROCEDURALE DEL PROGETTO: Restituisce una lista di iter procedurali relativi ai cup</comment>
+        <id name="sequSwIterprocedurale" type="long">
+            <column name="SEQU_SW_ITERPROCEDURALE" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="descDimensione" type="string">
+            <column name="DESC_DIMENSIONE" length="50" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="codiKurpUrpiCodLocProg" type="string">
+            <column name="CODI_KURP_URPI_COD_LOC_PROG" length="68" />
+        </property>
+        <property name="codiKfapFareCodFase" type="string">
+            <column name="CODI_KFAP_FARE_COD_FASE" length="3" />
+        </property>
+        <property name="descKfapFareDescFase" type="string">
+            <column name="DESC_KFAP_FARE_DESC_FASE" length="80" />
+        </property>
+        <property name="dataFmrpDataIniFasePrev" type="date">
+            <column name="DATA_FMRP_DATA_INI_FASE_PREV" length="7" />
+        </property>
+        <property name="dataFmrpDataIniFaseEffe" type="date">
+            <column name="DATA_FMRP_DATA_INI_FASE_EFFE" length="7" />
+        </property>
+        <property name="dataFmrpDataFinFasePrev" type="date">
+            <column name="DATA_FMRP_DATA_FIN_FASE_PREV" length="7" />
+        </property>
+        <property name="dataFmrpDataFinFaseEffe" type="date">
+            <column name="DATA_FMRP_DATA_FIN_FASE_EFFE" length="7" />
+        </property>
+        <property name="textFmrpSoggettoCompet" type="string">
+            <column name="TEXT_FMRP_SOGGETTO_COMPET" length="100" />
+        </property>
+        <property name="codiKmscMoscCodMotivo" type="string">
+            <column name="CODI_KMSC_MOSC_COD_MOTIVO" length="2" />
+        </property>
+        <property name="descKmscMoscDescMot" type="string">
+            <column name="DESC_KMSC_MOSC_DESC_MOT" length="200" />
+        </property>
+        <property name="textFmrpNote" type="string">
+            <column name="TEXT_FMRP_NOTE" length="2000" />
+        </property>
+    </class>
+</hibernate-mapping>

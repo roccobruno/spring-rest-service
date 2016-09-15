@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwIterprocaggiudic" table="SW_ITERPROCAGGIUDIC">
+        <comment>A29 &#191; ITER PROCEDURE DI AGGIUDICAZIONE: Restituisce una lista di &#191;iter procedure di aggiudicazione&#191; relative ai cup</comment>
+        <id name="sequSwIterprocaggiudic" type="long">
+            <column name="SEQU_SW_ITERPROCAGGIUDIC" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="textKsteStppCodStep" type="java.lang.Short">
+            <column name="TEXT_KSTE_STPP_COD_STEP" precision="3" scale="0" />
+        </property>
+        <property name="descKsteStppDescrizione" type="string">
+            <column name="DESC_KSTE_STPP_DESCRIZIONE" length="200" />
+        </property>
+        <property name="dataFstaDataPrevConcl" type="date">
+            <column name="DATA_FSTA_DATA_PREV_CONCL" length="7" />
+        </property>
+        <property name="dataFstaDataEffetConcl" type="date">
+            <column name="DATA_FSTA_DATA_EFFET_CONCL" length="7" />
+        </property>
+        <property name="textFstaDenomSoggComp" type="string">
+            <column name="TEXT_FSTA_DENOM_SOGG_COMP" length="60" />
+        </property>
+        <property name="impoFstaImportoStepAgg" type="big_decimal">
+            <column name="IMPO_FSTA_IMPORTO_STEP_AGG" precision="13" />
+        </property>
+        <property name="codiKmscMoscCodMotivo" type="string">
+            <column name="CODI_KMSC_MOSC_COD_MOTIVO" length="2" />
+        </property>
+        <property name="descKmscMoscDescMot" type="string">
+            <column name="DESC_KMSC_MOSC_DESC_MOT" length="200" />
+        </property>
+        <property name="descFstaNoteStep" type="string">
+            <column name="DESC_FSTA_NOTE_STEP" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

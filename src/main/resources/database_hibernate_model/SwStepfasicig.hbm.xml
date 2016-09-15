@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwStepfasicig" table="SW_STEPFASICIG">
+        <comment>STEP FASI CIG - ANAC:Restituisce una lista di record con i dati dei vari step delle fasi relative ai cig</comment>
+        <id name="sequSwStepfasicig" type="long">
+            <column name="SEQU_SW_STEPFASICIG" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSogCfiscaleStApp" type="string">
+            <column name="TEXT_KSOG_SOG_CFISCALE_ST_APP" length="16" />
+        </property>
+        <property name="textKsogSogDenStApp" type="string">
+            <column name="TEXT_KSOG_SOG_DEN_ST_APP" length="2000" />
+        </property>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogSoggDenominazione" type="string">
+            <column name="TEXT_KSOG_SOGG_DENOMINAZIONE" length="2000" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textKurpCipiCodCatInv" type="string">
+            <column name="TEXT_KURP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descKurpCipiDescCatCup" type="string">
+            <column name="DESC_KURP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="textKurpSspiCodSsetInv" type="string">
+            <column name="TEXT_KURP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descKurpSspiDescSsetCup" type="string">
+            <column name="DESC_KURP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textKurpSipiCodSetInv" type="string">
+            <column name="TEXT_KURP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descKurpSipiDescSetCup" type="string">
+            <column name="DESC_KURP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textKcigKregCodRegione" type="string">
+            <column name="TEXT_KCIG_KREG_COD_REGIONE" length="2" />
+        </property>
+        <property name="descKcigKregDescRegione" type="string">
+            <column name="DESC_KCIG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" length="8" />
+        </property>
+        <property name="textKfasStepCodStep" type="string">
+            <column name="TEXT_KFAS_STEP_COD_STEP" length="5" />
+        </property>
+        <property name="descKfasStepDescStep" type="string">
+            <column name="DESC_KFAS_STEP_DESC_STEP" length="100" />
+        </property>
+        <property name="impoFmpgImpDocumStep" type="big_decimal">
+            <column name="IMPO_FMPG_IMP_DOCUM_STEP" precision="18" scale="4" />
+        </property>
+    </class>
+</hibernate-mapping>

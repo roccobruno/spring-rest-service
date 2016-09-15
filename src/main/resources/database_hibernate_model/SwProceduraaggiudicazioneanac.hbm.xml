@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwProceduraaggiudicazioneanac" table="SW_PROCEDURAAGGIUDICAZIONEANAC">
+        <comment>PROCEDURA DI AGGIUDICAZIONE - ANAC: Restituisce una lista di record con i dati delle Procedure di aggiudicazione inviati dall'ANAC relativi ai CIG</comment>
+        <id name="sequSwProceduraaggiudanac" type="long">
+            <column name="SEQU_SW_PROCEDURAAGGIUDANAC" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSogCfiscaleStApp" type="string">
+            <column name="TEXT_KSOG_SOG_CFISCALE_ST_APP" length="16" />
+        </property>
+        <property name="textKsogSogDenStApp" type="string">
+            <column name="TEXT_KSOG_SOG_DEN_ST_APP" length="2000" />
+        </property>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogSoggDenominazione" type="string">
+            <column name="TEXT_KSOG_SOGG_DENOMINAZIONE" length="2000" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="descCcupCcupDescInt" type="string">
+            <column name="DESC_CCUP_CCUP_DESC_INT" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textKcigKregCodRegione" type="string">
+            <column name="TEXT_KCIG_KREG_COD_REGIONE" length="2" />
+        </property>
+        <property name="descKcigKregDescRegione" type="string">
+            <column name="DESC_KCIG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" length="8" />
+        </property>
+        <property name="impoFmpgDataOfferta" type="date">
+            <column name="IMPO_FMPG_DATA_OFFERTA" length="7" />
+        </property>
+        <property name="impoFmpgDataAggiudic" type="date">
+            <column name="IMPO_FMPG_DATA_AGGIUDIC" length="7" />
+        </property>
+        <property name="impoFmpgImpBaseAsta" type="big_decimal">
+            <column name="IMPO_FMPG_IMP_BASE_ASTA" scale="4" />
+        </property>
+        <property name="impoFmpgImportoAggiud" type="big_decimal">
+            <column name="IMPO_FMPG_IMPORTO_AGGIUD" scale="4" />
+        </property>
+        <property name="percFmpgPercentualeOff" type="big_decimal">
+            <column name="PERC_FMPG_PERCENTUALE_OFF" precision="8" scale="5" />
+        </property>
+    </class>
+</hibernate-mapping>

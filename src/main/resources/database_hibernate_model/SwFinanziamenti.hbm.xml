@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwFinanziamenti" table="SW_FINANZIAMENTI">
+        <comment>Restituisce una lista di finanziamenti relativi ai cup</comment>
+        <id name="sequSwFinanziamenti" type="long">
+            <column name="SEQU_SW_FINANZIAMENTI" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="descDimensione" type="string">
+            <column name="DESC_DIMENSIONE" length="50" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="codiKurpUrpiCodLocProg" type="string">
+            <column name="CODI_KURP_URPI_COD_LOC_PROG" length="68" />
+        </property>
+        <property name="codiKffpFfpiCodFonteFina" type="string">
+            <column name="CODI_KFFP_FFPI_COD_FONTE_FINA" length="3" />
+        </property>
+        <property name="descKffpFfpiDescrizFonte" type="string">
+            <column name="DESC_KFFP_FFPI_DESCRIZ_FONTE" length="250" />
+        </property>
+        <property name="impoFmfpFonteFinanz" type="big_decimal">
+            <column name="IMPO_FMFP_FONTE_FINANZ" precision="17" />
+        </property>
+        <property name="annoPlauPlauAnno" type="java.lang.Short">
+            <column name="ANNO_PLAU_PLAU_ANNO" precision="4" scale="0" />
+        </property>
+        <property name="numePlauPlauNumeTipo" type="java.lang.Byte">
+            <column name="NUME_PLAU_PLAU_NUME_TIPO" precision="2" scale="0" />
+        </property>
+        <property name="numePlauPlauNume" type="java.lang.Integer">
+            <column name="NUME_PLAU_PLAU_NUME" precision="6" scale="0" />
+        </property>
+        <property name="descFmfpEstrProvv" type="string">
+            <column name="DESC_FMFP_ESTR_PROVV" length="200" />
+        </property>
+        <property name="textFmfpEstrDelibCipe" type="string">
+            <column name="TEXT_FMFP_ESTR_DELIB_CIPE" length="14" />
+        </property>
+        <property name="annoFmfpDelibCipe" type="java.lang.Short">
+            <column name="ANNO_FMFP_DELIB_CIPE" precision="4" scale="0" />
+        </property>
+        <property name="codiKprvKprvCodProvincia" type="string">
+            <column name="CODI_KPRV_KPRV_COD_PROVINCIA" length="3" />
+        </property>
+        <property name="textKprvKprvDescProvincia" type="string">
+            <column name="TEXT_KPRV_KPRV_DESC_PROVINCIA" />
+        </property>
+        <property name="codiKcomKcomId" type="string">
+            <column name="CODI_KCOM_KCOM_ID" length="6" />
+        </property>
+        <property name="textKcomKcomDescComune" type="string">
+            <column name="TEXT_KCOM_KCOM_DESC_COMUNE" />
+        </property>
+        <property name="descFmfpContrFinanz" type="string">
+            <column name="DESC_FMFP_CONTR_FINANZ" length="2000" />
+        </property>
+        <property name="textFmfpCfContrFinanz" type="string">
+            <column name="TEXT_FMFP_CF_CONTR_FINANZ" length="16" />
+        </property>
+        <property name="flagFmfpEconDeriv" type="string">
+            <column name="FLAG_FMFP_ECON_DERIV" length="1" />
+        </property>
+        <property name="textFmfpNote" type="string">
+            <column name="TEXT_FMFP_NOTE" length="400" />
+        </property>
+    </class>
+</hibernate-mapping>

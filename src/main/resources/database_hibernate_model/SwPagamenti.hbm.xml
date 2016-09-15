@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwPagamenti" table="SW_PAGAMENTI">
+        <comment>A15 &#191; PAGAMENTI: Restituisce una lista di pagamenti relativi ai cup</comment>
+        <id name="sequSwPagamento" type="long">
+            <column name="SEQU_SW_PAGAMENTO" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="descDimensione" type="string">
+            <column name="DESC_DIMENSIONE" length="50" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="CodLocProg" type="string">
+            <column name="CODI_KURP_URPI_COD_LOC_PROG" length="68" />
+        </property>
+        <property name="dataPagamento" type="date">
+            <column name="DATA_PAGAMENTO" length="7" />
+        </property>
+        <property name="codicePagamento" type="string">
+            <column name="TEXT_FAPP_COD_PAG" length="20" />
+        </property>
+        <property name="tipologiaPagamento" type="string">
+            <column name="FLG_TIPOLOGIA_PAGAMENTO" length="50" />
+        </property>
+        <property name="importo" type="big_decimal">
+            <column name="IMPORTO" precision="17" />
+        </property>
+        <property name="codiceCausale" type="string">
+            <column name="CODI_KCPA_CAPA_COD_CAUSALE_PAG" length="1" />
+        </property>
+        <property name="descrizioneCausale" type="string">
+            <column name="DESC_KCPA_CAPA_DESC_CAUSA_PAG" length="60" />
+        </property>
+        <property name="codiceGestionale" type="string">
+            <column name="CODI_CGES_CGES_ANAG_CGES" length="11" />
+        </property>
+        <property name="descCodiceGestionale" type="string">
+            <column name="DESC_CGES_CGES_DESC" length="60" />
+        </property>
+        <property name="codiCgelCgelId" type="string">
+            <column name="CODI_CGEL_CGEL_ID" length="24" />
+        </property>
+        <property name="descCgelCgelDescGest" type="string">
+            <column name="DESC_CGEL_CGEL_DESC_GEST" />
+        </property>
+        <property name="note" type="string">
+            <column name="TEXT_FAPP_NOTE_PAG" length="1000" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwAnagraficasoggetticorrelati" table="SW_ANAGRAFICASOGGETTICORRELATI">
+        <comment>A26 &#191; ANAGRAFICA SOGGETTI CORRELATI: Restituisce una lista di &#191;anagrafiche dei soggetti correlati&#191; relative ai cup</comment>
+        <id name="sequSwAnagraficasoggcorr" type="long">
+            <column name="SEQU_SW_ANAGRAFICASOGGCORR" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="descDimensione" type="string">
+            <column name="DESC_DIMENSIONE" length="50" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="codiKurpUrpiCodLocProg" type="string">
+            <column name="CODI_KURP_URPI_COD_LOC_PROG" length="68" />
+        </property>
+        <property name="numeKscpRusoCodRuoSogg" type="java.lang.Boolean">
+            <column name="NUME_KSCP_RUSO_COD_RUO_SOGG" precision="1" scale="0" />
+        </property>
+        <property name="descKscpRusoDescRuoSogg" type="string">
+            <column name="DESC_KSCP_RUSO_DESC_RUO_SOGG" length="200" />
+        </property>
+        <property name="textKscpSoggCfiscSoggCorr" type="string">
+            <column name="TEXT_KSCP_SOGG_CFISC_SOGG_CORR" length="16" />
+        </property>
+        <property name="textKscpSoggDenomSoggCorr" type="string">
+            <column name="TEXT_KSCP_SOGG_DENOM_SOGG_CORR" length="2000" />
+        </property>
+        <property name="textKscpKfogCodFormaGiur" type="string">
+            <column name="TEXT_KSCP_KFOG_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="textKscpKfogDescFormaGiu" type="string">
+            <column name="TEXT_KSCP_KFOG_DESC_FORMA_GIU" />
+        </property>
+        <property name="textKscpSae1CodAtecoLiv1" type="string">
+            <column name="TEXT_KSCP_SAE1_COD_ATECO_LIV1" length="1" />
+        </property>
+        <property name="textKscpSae1DescSettLiv1" type="string">
+            <column name="TEXT_KSCP_SAE1_DESC_SETT_LIV1" />
+        </property>
+        <property name="codiKprvKprvCodProvincia" type="string">
+            <column name="CODI_KPRV_KPRV_COD_PROVINCIA" length="3" />
+        </property>
+        <property name="textKprvKprvDescProvincia" type="string">
+            <column name="TEXT_KPRV_KPRV_DESC_PROVINCIA" />
+        </property>
+        <property name="codiKcomKcomId" type="string">
+            <column name="CODI_KCOM_KCOM_ID" length="6" />
+        </property>
+        <property name="textKcomKcomDescComune" type="string">
+            <column name="TEXT_KCOM_KCOM_DESC_COMUNE" />
+        </property>
+        <property name="textKscpScpiDenomRappLeg" type="string">
+            <column name="TEXT_KSCP_SCPI_DENOM_RAPP_LEG" length="200" />
+        </property>
+        <property name="numeKscpDiimCodDimImpr" type="java.lang.Boolean">
+            <column name="NUME_KSCP_DIIM_COD_DIM_IMPR" precision="1" scale="0" />
+        </property>
+        <property name="descKscpDiimDescDimImpr" type="string">
+            <column name="DESC_KSCP_DIIM_DESC_DIM_IMPR" length="20" />
+        </property>
+        <property name="textKscpCladCodClasAdd" type="string">
+            <column name="TEXT_KSCP_CLAD_COD_CLAS_ADD" length="1" />
+        </property>
+        <property name="descKscpCladDescClasAdd" type="string">
+            <column name="DESC_KSCP_CLAD_DESC_CLAS_ADD" length="20" />
+        </property>
+        <property name="textKscpScpiIndirizzo" type="string">
+            <column name="TEXT_KSCP_SCPI_INDIRIZZO" length="1000" />
+        </property>
+        <property name="numeKscpScpiCap" type="string">
+            <column name="NUME_KSCP_SCPI_CAP" length="5" />
+        </property>
+    </class>
+</hibernate-mapping>

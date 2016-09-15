@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwSoggetticorrelatianac" table="SW_SOGGETTICORRELATIANAC">
+        <comment>SOGGETTI CORRELATI CIG - ANAC: Restituisce una lista di record con i dati dei Soggetti Correlati inviati dall&#191;ANAC relativi ai CIG</comment>
+        <id name="sequSwSoggetticorrelatianac" type="long">
+            <column name="SEQU_SW_SOGGETTICORRELATIANAC" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSogCfiscaleStApp" type="string">
+            <column name="TEXT_KSOG_SOG_CFISCALE_ST_APP" length="16" />
+        </property>
+        <property name="textKsogSogDenStApp" type="string">
+            <column name="TEXT_KSOG_SOG_DEN_ST_APP" length="2000" />
+        </property>
+        <property name="codiKsogSoggCodSoggetto" type="java.lang.Integer">
+            <column name="CODI_KSOG_SOGG_COD_SOGGETTO" precision="9" scale="0" />
+        </property>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogSoggDenominazione" type="string">
+            <column name="TEXT_KSOG_SOGG_DENOMINAZIONE" length="2000" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textKcigKregCodRegione" type="string">
+            <column name="TEXT_KCIG_KREG_COD_REGIONE" length="2" />
+        </property>
+        <property name="descKcigKregDescRegione" type="string">
+            <column name="DESC_KCIG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" length="8" />
+        </property>
+        <property name="codiKrugRuavCodRuolo" type="string">
+            <column name="CODI_KRUG_RUAV_COD_RUOLO" length="10" />
+        </property>
+        <property name="descKrugRuavDescRuolo" type="string">
+            <column name="DESC_KRUG_RUAV_DESC_RUOLO" length="200" />
+        </property>
+        <property name="textKcigKprvCodProvincia" type="string">
+            <column name="TEXT_KCIG_KPRV_COD_PROVINCIA" length="3" />
+        </property>
+        <property name="descKcigKprvDescProvincia" type="string">
+            <column name="DESC_KCIG_KPRV_DESC_PROVINCIA" />
+        </property>
+        <property name="codiEsteEsteCodStato" type="string">
+            <column name="CODI_ESTE_ESTE_COD_STATO" length="6" />
+        </property>
+        <property name="descEsteEsteDescrStato" type="string">
+            <column name="DESC_ESTE_ESTE_DESCR_STATO" length="120" />
+        </property>
+        <property name="codiKsaeSae0CodSettore" type="string">
+            <column name="CODI_KSAE_SAE0_COD_SETTORE" length="11" />
+        </property>
+        <property name="descKsaeSae1DescSettore" type="string">
+            <column name="DESC_KSAE_SAE1_DESC_SETTORE" />
+        </property>
+        <property name="dataBtcgDataInizioAss" type="date">
+            <column name="DATA_BTCG_DATA_INIZIO_ASS" length="7" />
+        </property>
+        <property name="dataBtcgDataFineAss" type="date">
+            <column name="DATA_BTCG_DATA_FINE_ASS" length="7" />
+        </property>
+        <property name="textBtcgCfRapprLeg" type="string">
+            <column name="TEXT_BTCG_CF_RAPPR_LEG" length="20" />
+        </property>
+        <property name="textBtcgDenomRapprLeg" type="string">
+            <column name="TEXT_BTCG_DENOM_RAPPR_LEG" length="100" />
+        </property>
+        <property name="textBtcgIndirizzo" type="string">
+            <column name="TEXT_BTCG_INDIRIZZO" length="80" />
+        </property>
+        <property name="textBtcgCap" type="string">
+            <column name="TEXT_BTCG_CAP" length="5" />
+        </property>
+        <property name="descBtcgDescrSede" type="string">
+            <column name="DESC_BTCG_DESCR_SEDE" length="80" />
+        </property>
+        <property name="textBtcgCodiceAusa" type="string">
+            <column name="TEXT_BTCG_CODICE_AUSA" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

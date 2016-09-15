@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwAnagraficaciganac" table="SW_ANAGRAFICACIGANAC">
+        <comment>ANAGRAFICA DEI CIG - ANAC: Restituisce una lista con i dati delle anagrafiche dei CIG inviate dall&#191;anac</comment>
+        <id name="sequSwAnagraficaciganac" type="long">
+            <column name="SEQU_SW_ANAGRAFICACIGANAC" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSogCfiscaleStApp" type="string">
+            <column name="TEXT_KSOG_SOG_CFISCALE_ST_APP" length="16" />
+        </property>
+        <property name="textKsogSogDenStApp" type="string">
+            <column name="TEXT_KSOG_SOG_DEN_ST_APP" length="2000" />
+        </property>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogSoggDenominazione" type="string">
+            <column name="TEXT_KSOG_SOGG_DENOMINAZIONE" length="2000" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="descKcigCgapOggettoGara" type="string">
+            <column name="DESC_KCIG_CGAP_OGGETTO_GARA" length="1024" />
+        </property>
+        <property name="textKcigTipcCodTipoScelta" type="string">
+            <column name="TEXT_KCIG_TIPC_COD_TIPO_SCELTA" length="10" />
+        </property>
+        <property name="descKcigTipcTipoSceltaCon" type="string">
+            <column name="DESC_KCIG_TIPC_TIPO_SCELTA_CON" length="180" />
+        </property>
+        <property name="textKcigCgapCodGara" type="string">
+            <column name="TEXT_KCIG_CGAP_COD_GARA" length="100" />
+        </property>
+        <property name="textKcigTicoCodTipoContra" type="string">
+            <column name="TEXT_KCIG_TICO_COD_TIPO_CONTRA" length="10" />
+        </property>
+        <property name="descKcigTicoTipoContratto" type="string">
+            <column name="DESC_KCIG_TICO_TIPO_CONTRATTO" length="80" />
+        </property>
+        <property name="textKcigKcomCodComune" type="string">
+            <column name="TEXT_KCIG_KCOM_COD_COMUNE" length="3" />
+        </property>
+        <property name="descKcigKcomDescComune" type="string">
+            <column name="DESC_KCIG_KCOM_DESC_COMUNE" />
+        </property>
+        <property name="textKcigKprvCodProvincia" type="string">
+            <column name="TEXT_KCIG_KPRV_COD_PROVINCIA" length="3" />
+        </property>
+        <property name="descKcigKprvDescProvincia" type="string">
+            <column name="DESC_KCIG_KPRV_DESC_PROVINCIA" />
+        </property>
+        <property name="textKcigKzonCodZona" type="string">
+            <column name="TEXT_KCIG_KZON_COD_ZONA" length="1" />
+        </property>
+        <property name="descKcigKzonDescZona" type="string">
+            <column name="DESC_KCIG_KZON_DESC_ZONA" />
+        </property>
+        <property name="impoFmpgImpBaseAsta" type="big_decimal">
+            <column name="IMPO_FMPG_IMP_BASE_ASTA" scale="4" />
+        </property>
+        <property name="dataKcigCcigDataScadOffer" type="date">
+            <column name="DATA_KCIG_CCIG_DATA_SCAD_OFFER" length="7" />
+        </property>
+        <property name="descKcigCcigOggettoLotto" type="string">
+            <column name="DESC_KCIG_CCIG_OGGETTO_LOTTO" length="1024" />
+        </property>
+        <property name="flagKcigCcigIndSubappalto" type="string">
+            <column name="FLAG_KCIG_CCIG_IND_SUBAPPALTO" length="2" />
+        </property>
+        <property name="textKcigCcigTipoAppalto" type="string">
+            <column name="TEXT_KCIG_CCIG_TIPO_APPALTO" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

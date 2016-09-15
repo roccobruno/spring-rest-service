@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwDettaglioesitiinvibatchmop" table="SW_DETTAGLIOESITIINVIBATCHMOP">
+        <comment>Restituisce una lista di record con i dati relativi al dettaglio degli esiti degli invii dei dati di monitoraggio tramite Batch Mop</comment>
+        <id name="sequSwDettesitiinvibatchmop" type="long">
+            <column name="SEQU_SW_DETTESITIINVIBATCHMOP" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="codiKanfAnfbCodiceFile" type="string">
+            <column name="CODI_KANF_ANFB_CODICE_FILE" length="250" />
+        </property>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogSoggDenominazione" type="string">
+            <column name="TEXT_KSOG_SOGG_DENOMINAZIONE" length="2000" />
+        </property>
+        <property name="dttmKanfAnfbDataRif" type="date">
+            <column name="DTTM_KANF_ANFB_DATA_RIF" length="7" />
+        </property>
+        <property name="dataFeefInvio" type="date">
+            <column name="DATA_FEEF_INVIO" length="7" />
+        </property>
+        <property name="descKtefEsitoFile" type="string">
+            <column name="DESC_KTEF_ESITO_FILE" length="250" />
+        </property>
+        <property name="textFeefTipoControllo" type="string">
+            <column name="TEXT_FEEF_TIPO_CONTROLLO" length="1" />
+        </property>
+        <property name="descKtefTefbDescTipoEsito" type="string">
+            <column name="DESC_KTEF_TEFB_DESC_TIPO_ESITO" length="250" />
+        </property>
+        <property name="textFeefDescrRigaElab" type="string">
+            <column name="TEXT_FEEF_DESCR_RIGA_ELAB" length="4000" />
+        </property>
+        <property name="descKtrfTrfbDescrTipoRec" type="string">
+            <column name="DESC_KTRF_TRFB_DESCR_TIPO_REC" length="250" />
+        </property>
+        <property name="descKtrfTsfbDescrSezione" type="string">
+            <column name="DESC_KTRF_TSFB_DESCR_SEZIONE" length="250" />
+        </property>
+    </class>
+</hibernate-mapping>

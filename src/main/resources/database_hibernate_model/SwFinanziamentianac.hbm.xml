@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwFinanziamentianac" table="SW_FINANZIAMENTIANAC">
+        <comment>FINANZIAMENTI - ANAC: Restituisce una lista di record con i dati dei Finanziamenti inviati dall'ANAC relativi ai CIG</comment>
+        <id name="sequSwFinanziamentianac" type="long">
+            <column name="SEQU_SW_FINANZIAMENTIANAC" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSogCfiscaleStApp" type="string">
+            <column name="TEXT_KSOG_SOG_CFISCALE_ST_APP" length="16" />
+        </property>
+        <property name="textKsogSogDenStApp" type="string">
+            <column name="TEXT_KSOG_SOG_DEN_ST_APP" length="2000" />
+        </property>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogSoggDenominazione" type="string">
+            <column name="TEXT_KSOG_SOGG_DENOMINAZIONE" length="2000" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCodFonte" type="string">
+            <column name="TEXT_COD_FONTE" length="10" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="codiFfinCodFinanziamento" type="big_decimal">
+            <column name="CODI_FFIN_COD_FINANZIAMENTO" precision="38" scale="0" />
+        </property>
+        <property name="impoFfinImpFinanziatoCig" type="big_decimal">
+            <column name="IMPO_FFIN_IMP_FINANZIATO_CIG" precision="18" scale="4" />
+        </property>
+        <property name="codiKtfiTpfiCodTipoFina" type="string">
+            <column name="CODI_KTFI_TPFI_COD_TIPO_FINA" length="10" />
+        </property>
+        <property name="descKtfiTpfiDescrTipoFin" type="string">
+            <column name="DESC_KTFI_TPFI_DESCR_TIPO_FIN" length="80" />
+        </property>
+    </class>
+</hibernate-mapping>

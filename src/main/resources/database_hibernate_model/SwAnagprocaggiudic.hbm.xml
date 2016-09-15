@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bruno.model.SwAnagprocaggiudic" table="SW_ANAGPROCAGGIUDIC">
+        <comment>A28 &#191; ANAGRAFICA PROCEDURE DI AGGIUDICAZIONE: Restituisce una lista di &#191;anagrafiche procedure di aggiudicazione&#191; relative ai cup</comment>
+        <id name="sequSwAnagprocaggiudic" type="long">
+            <column name="SEQU_SW_ANAGPROCAGGIUDIC" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="textKsogSoggCfiscale" type="string">
+            <column name="TEXT_KSOG_SOGG_CFISCALE" length="16" />
+        </property>
+        <property name="textKsogFogiCodFormaGiur" type="string">
+            <column name="TEXT_KSOG_FOGI_COD_FORMA_GIUR" length="4" />
+        </property>
+        <property name="descKsogFogiDescFormaGiu" type="string">
+            <column name="DESC_KSOG_FOGI_DESC_FORMA_GIU" />
+        </property>
+        <property name="codiCcupCcupAnagCcup" type="string">
+            <column name="CODI_CCUP_CCUP_ANAG_CCUP" length="15" />
+        </property>
+        <property name="textCcupSipiCodSetInv" type="string">
+            <column name="TEXT_CCUP_SIPI_COD_SET_INV" length="2" />
+        </property>
+        <property name="descCcupSipiDescSetCup" type="string">
+            <column name="DESC_CCUP_SIPI_DESC_SET_CUP" length="100" />
+        </property>
+        <property name="textCcupSspiCodSsetInv" type="string">
+            <column name="TEXT_CCUP_SSPI_COD_SSET_INV" length="6" />
+        </property>
+        <property name="descCcupSspiDescSsetCup" type="string">
+            <column name="DESC_CCUP_SSPI_DESC_SSET_CUP" length="100" />
+        </property>
+        <property name="textCcupCipiCodCatInv" type="string">
+            <column name="TEXT_CCUP_CIPI_COD_CAT_INV" length="10" />
+        </property>
+        <property name="descCcupCipiDescCatCup" type="string">
+            <column name="DESC_CCUP_CIPI_DESC_CAT_CUP" />
+        </property>
+        <property name="codiKregKregId" type="string">
+            <column name="CODI_KREG_KREG_ID" length="2" />
+        </property>
+        <property name="descKregKregDescRegione" type="string">
+            <column name="DESC_KREG_KREG_DESC_REGIONE" />
+        </property>
+        <property name="textCcupTipiCodTipInv" type="string">
+            <column name="TEXT_CCUP_TIPI_COD_TIP_INV" />
+        </property>
+        <property name="codiKcigCcigCodCig" type="string">
+            <column name="CODI_KCIG_CCIG_COD_CIG" length="110" />
+        </property>
+        <property name="descFagsDescrProcAgg" type="string">
+            <column name="DESC_FAGS_DESCR_PROC_AGG" length="200" />
+        </property>
+        <property name="codiKpraPragCodTipoProc" type="short">
+            <column name="CODI_KPRA_PRAG_COD_TIPO_PROC" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="descKpraPragDescrTipoProc" type="string">
+            <column name="DESC_KPRA_PRAG_DESCR_TIPO_PROC" length="200" not-null="true" />
+        </property>
+        <property name="impoFagsImpBaseAsta" type="big_decimal">
+            <column name="IMPO_FAGS_IMP_BASE_ASTA" precision="13" />
+        </property>
+        <property name="descFagsNoteProcAgg" type="string">
+            <column name="DESC_FAGS_NOTE_PROC_AGG" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>
