@@ -3,6 +3,9 @@ package com.bruno.api;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +32,10 @@ import com.bruno.service.filejob.FileJobService;
 import com.bruno.utils.FileResourceUtil;
 
 @Controller
-@RequestMapping("/pagamenti")
-public class PagamentiController {
+@RequestMapping("/api/v1.0")
+public class ApiController {
+	
+	private static final Logger log = LoggerFactory.getLogger(ApiController.class);
 
     @Autowired
     private PagamentoService pagamentoService;
@@ -69,17 +74,32 @@ public class PagamentiController {
 //    @RequestMapping(method = RequestMethod.GET)
 //    public @ResponseBody List<PagamentoJson> getPagamenti() {
 //    	
-//    	List<Object> pagamentiList = null;
-//    	List<Object> pagamentiJsonList = null;
+//    	List<SwPagamenti> pagamentiList = null;
+//    	List<PagamentoJson> pagamentiJsonList = null;
 //    	
 //    	try{
 //    		pagamentiList = managerDb.getPagamenti();        	
-////        	pagamentiJsonList = wrapperToJson.pagamenti(pagamentiList);
+//        	pagamentiJsonList = wrapperToJson.pagamenti(pagamentiList);
 //    	}catch(Exception e){
 //    		gestioneException.gestisciException(e);
 //    	}    	
 //    	return pagamentiJsonList;
 //    }
+    
+    @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET)
+    public @ResponseBody List<Object> getPagamenti(@PathVariable("resourse") String resourse) {
+    	
+    	List<Object> pagamentiList = null;
+    	List<Object> pagamentiJsonList = null;
+    	
+    	try{
+    		pagamentiList = managerDb.getPagamenti();        	
+//        	pagamentiJsonList = wrapperToJson.pagamenti(pagamentiList);
+    	}catch(Exception e){
+    		gestioneException.gestisciException(e);
+    	}    	
+    	return pagamentiList;
+    }
 
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
     public @ResponseBody

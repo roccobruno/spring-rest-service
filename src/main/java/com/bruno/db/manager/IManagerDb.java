@@ -7,5 +7,5 @@ import com.bruno.model.SwPagamenti;
 
 public interface IManagerDb {
     
-	 public List<SwPagamenti> getPagamenti();
+	 public List<Object> getPagamenti();
 }

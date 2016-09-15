@@ -17,9 +17,9 @@ public class ManagerDbImpl implements IManagerDb {
     IDBDaoService iDBDaoService;
     
     @Override
-    public List<SwPagamenti> getPagamenti() {
+    public List<Object> getPagamenti() {
         
-        List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
+        List<Object> pagamentiList = (List<Object>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
 
         return pagamentiList;
     }
