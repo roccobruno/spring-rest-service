@@ -1,5 +1,8 @@
 package com.bruno.model;
 
+import com.bruno.model.json.ImpegniJson;
+import com.bruno.model.json.PagamentiJson;
+
 // Generated Sep 6, 2016 2:40:20 PM by Hibernate Tools 3.4.0.CR1
 
 /**
@@ -22,6 +25,14 @@ public class SwImpegni implements java.io.Serializable {
 
 	public void setId(SwImpegniId id) {
 		this.id = id;
+	}
+	
+public ImpegniJson wrapperToJson(){
+		
+		ImpegniJson PJson = new ImpegniJson();
+		
+		
+		return PJson;
 	}
 
 }

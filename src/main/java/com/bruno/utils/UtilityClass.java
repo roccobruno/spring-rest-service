@@ -1,17 +1,19 @@
 package com.bruno.utils;
 
-public class UtilityClass {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class UtilityClass implements IUtilityClass,ResourceName{
 	
-	public static String getHoName(String resourceName){
+	private static final Logger log = LoggerFactory.getLogger(UtilityClass.class);
+	
+	public int getResourceNameInt(String resourceName){
 		
-		switch (1) {
-		case 1:
-			return "SwPagamenti";
-			
-		default:
-			break;
-		}
-		return resourceName;
+		if(resourceName.equalsIgnoreCase("pagamenti"))
+			return PAGAMENTI;
+		else if(resourceName.equalsIgnoreCase("impegni"))
+			return IMPEGNI;
+		return 0;
 	}
 
 }

@@ -3,7 +3,7 @@ package com.bruno.model.json;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class PagamentoJson {
+public class PagamentiJson {
 	
 	private String codLocProg;
 	private Date dataPagamento;
@@ -16,7 +16,7 @@ public class PagamentoJson {
 	private String descCodiceGestionale;
 	private String note;
 	
-	public PagamentoJson(){}
+	public PagamentiJson(){}
 
 	public String getCodLocProg() {
 		return codLocProg;

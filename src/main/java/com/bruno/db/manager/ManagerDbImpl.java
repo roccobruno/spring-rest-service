@@ -8,13 +8,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bruno.dao.service.IDBDaoService;
-import com.bruno.model.Swpagamenti;
-import com.bruno.model.json.PagamentoJson;
+import com.bruno.model.SwImpegni;
+import com.bruno.model.SwPagamenti;
+import com.bruno.model.json.ImpegniJson;
+import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
+import com.bruno.utils.IUtilityClass;
 import com.bruno.utils.RESOURCE_NAME_CONSTANTS;
+import com.bruno.utils.ResourceName;
 
 @Service
-public class ManagerDbImpl implements IManagerDb {
+public class ManagerDbImpl implements IManagerDb,ResourceName {
 
     private static final Logger log = LoggerFactory.getLogger(ManagerDbImpl.class);
     
@@ -23,6 +27,9 @@ public class ManagerDbImpl implements IManagerDb {
     
     @Autowired
     WrapperToJson wrapperToJson;
+    
+    @Autowired
+    IUtilityClass utilityClass;
     
     @Override
     public List<Object> getPagamenti() {
@@ -41,15 +48,25 @@ public class ManagerDbImpl implements IManagerDb {
     	int resourceNameInt = 1;
     	
     	try{
-    		switch (resourceNameInt) {
-			case 1:
-				List<Swpagamenti> pagamentiList = (List<Swpagamenti>) iDBDaoService.genericquery("from Swpagamenti where rownum <= 10");
+    		switch (utilityClass.getResourceNameInt(resourceName)) {
+    		
+			case PAGAMENTI:
+				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
 				
-				List<PagamentoJson> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
+				List<PagamentiJson> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
 				
 				return pagamentiJson;
+			
+			case IMPEGNI:
+				
+				List<SwImpegni> impegniList = (List<SwImpegni>) iDBDaoService.genericquery("from SwImpegni where rownum <= 10");
+				
+				List<ImpegniJson> impegniJson = wrapperToJson.impegni(impegniList);
+				
+				return impegniJson;
 
 			default:
+				
 				break;
 			}
     	}catch(Exception e){
