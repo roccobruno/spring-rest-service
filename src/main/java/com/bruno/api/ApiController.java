@@ -85,7 +85,7 @@ public class ApiController {
 //    }
     
     @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET)
-    public @ResponseBody Object getPagamenti(@PathVariable("resourse") String resourse) {
+    public @ResponseBody Object getResources(@PathVariable("resourse") String resourse) {
     	
     	Object risorsaList = null;
     	
@@ -95,6 +95,20 @@ public class ApiController {
     		gestioneException.gestisciException(e);
     	}    	
     	return risorsaList;
+    }
+    
+    @RequestMapping(value = "/{resourse}/{id}" ,method = RequestMethod.GET)
+    public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
+    										 @PathVariable("id") String id) {
+    	
+    	Object risorsa = null;
+    	
+    	try{
+   	
+    	}catch(Exception e){
+    		gestioneException.gestisciException(e);
+    	}    	
+    	return risorsa;
     }
 
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
