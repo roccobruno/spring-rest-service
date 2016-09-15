@@ -1,21 +1,35 @@
 package com.bruno.api;
 
 
-import com.bruno.model.FilePagamentiFiltri;
-import com.bruno.model.Pagamento;
-import com.bruno.service.PagamentoRisultatiRicerca;
-import com.bruno.service.PagamentoService;
-import com.bruno.service.filejob.*;
-import com.bruno.utils.FileResourceUtil;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+import com.bruno.db.manager.IManagerDb;
+import com.bruno.model.FilePagamentiFiltri;
+import com.bruno.model.SwPagamenti;
+import com.bruno.model.json.PagamentoJson;
+import com.bruno.model.wrapper.WrapperToJson;
+import com.bruno.service.PagamentoRisultatiRicerca;
+import com.bruno.service.PagamentoService;
+import com.bruno.service.filejob.FileJob;
+import com.bruno.service.filejob.FileJobMessage;
+import com.bruno.service.filejob.FileJobPagamentiConsumer;
+import com.bruno.service.filejob.FileJobProducer;
+import com.bruno.service.filejob.FileJobService;
+import com.bruno.utils.FileResourceUtil;
 
 @Controller
 @RequestMapping("/pagamenti")
@@ -36,16 +50,30 @@ public class PagamentiController {
     @Autowired
     private FileResourceUtil fileResourceUtil;
 
-
     @Autowired
     private FileJobService fileJobService;
+    
+    @Autowired
+    private WrapperToJson wrapperToJson;
+    
+    @Autowired
+    private IManagerDb managerDb;
 
 
-
+//    @RequestMapping(method = RequestMethod.GET)
+//    public @ResponseBody
+//    List<Pagamento> getPagamenti() {
+//       return  pagamentoService.getPagamento();
+//    }
+    
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody
-    List<Pagamento> getPagamenti() {
-       return  pagamentoService.getPagamento();
+    public @ResponseBody List<PagamentoJson> getPagamenti() {
+    	
+    	List<SwPagamenti> pagamentiList = managerDb.getPagamenti();
+    	
+    	List<PagamentoJson> pagamentiJsonList = wrapperToJson.pagamenti(pagamentiList);
+    	
+    	return pagamentiJsonList;
     }
 
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
