@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bruno.dao.service.IDBDaoService;
+import com.bruno.model.Filter;
 import com.bruno.model.SwImpegni;
 import com.bruno.model.SwPagamenti;
 import com.bruno.model.json.ImpegniJson;
@@ -42,7 +43,7 @@ public class ManagerDbImpl implements IManagerDb,ResourceName {
     }
     
     @Override
-    public Object getRisorsaList(String resourceName) throws Exception {
+    public Object getRisorsaList(String resourceName, Filter filter) throws Exception {
     	
     	List<Object> risorsaList = null;
     	int resourceNameInt = 1;
@@ -51,7 +52,9 @@ public class ManagerDbImpl implements IManagerDb,ResourceName {
     		switch (utilityClass.getResourceNameInt(resourceName)) {
     		
 			case PAGAMENTI:
-				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
+//				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
+				
+				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.getResourceList(filter, resourceName);
 				
 				List<PagamentiJson> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
 				

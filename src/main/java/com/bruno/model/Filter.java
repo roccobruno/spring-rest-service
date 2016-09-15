@@ -1,112 +1,53 @@
 package com.bruno.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 public class Filter implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String nomeCooperativa;
-	private Long numeroAccertamento;
-	private String codiceFiscale;
-	private String statoAccertamento;
-	private String codiceTributo;
-	private Long annoTributo;
-	private Calendar dataDa;
-	private Calendar dataA;
-	private boolean assegnataMe;
-	private Long idAssegnatario;
-	private Long tipoIstanza;
-	private Long statoIstanza;
-	private boolean istanzaSpontanea;
 	
+	private String cup;	
+	private String soggetto;
+	private String formaGiuridica;
+	private String settore;
+	private String sottoSettore;
 	
+	public Filter(){}
 	
-	public String getStatoAccertamento() {
-		return statoAccertamento;
+	public String getCup() {
+		return cup;
 	}
-	public void setStatoAccertamento(String statoAccertamento) {
-		this.statoAccertamento = statoAccertamento;
+	public void setCup(String cup) {
+		this.cup = cup;
 	}
-	public Long getStatoIstanza() {
-		return statoIstanza;
+	public String getSoggetto() {
+		return soggetto;
 	}
-	public void setStatoIstanza(Long statoIstanza) {
-		this.statoIstanza = statoIstanza;
+	public void setSoggetto(String soggetto) {
+		this.soggetto = soggetto;
 	}
-	public String getNomeCooperativa() {
-		return nomeCooperativa;
+	public String getFormaGiuridica() {
+		return formaGiuridica;
 	}
-	public void setNomeCooperativa(String nomeCooperativa) {
-		this.nomeCooperativa = nomeCooperativa;
+	public void setFormaGiuridica(String formaGiuridica) {
+		this.formaGiuridica = formaGiuridica;
 	}
-	public Long getNumeroAccertamento() {
-		return numeroAccertamento;
+	public String getSettore() {
+		return settore;
 	}
-	public void setNumeroAccertamento(Long numeroAccertamento) {
-		this.numeroAccertamento = numeroAccertamento;
-	}
-	public String getCodiceFiscale() {
-		return codiceFiscale;
-	}
-	public void setCodiceFiscale(String codiceFiscale) {
-		this.codiceFiscale = codiceFiscale;
+	public void setSettore(String settore) {
+		this.settore = settore;
 	}
 	
-	public String getCodiceTributo() {
-		return codiceTributo;
-	}
-	public void setCodiceTributo(String codiceTributo) {
-		this.codiceTributo = codiceTributo;
-	}
-	public Long getAnnoTributo() {
-		return annoTributo;
-	}
-	public void setAnnoTributo(Long annoTributo) {
-		this.annoTributo = annoTributo;
+	public String getSottoSettore() {
+		return sottoSettore;
 	}
 	
-	public Calendar getDataDa() {
-		return dataDa;
-	}
-	public void setDataDa(Calendar dataDa) {
-		this.dataDa = dataDa;
-	}
-	public Calendar getDataA() {
-		return dataA;
-	}
-	public void setDataA(Calendar dataA) {
-		this.dataA = dataA;
-	}
-	public boolean isAssegnataMe() {
-		return assegnataMe;
-	}
-	public void setAssegnataMe(boolean assegnataMe) {
-		this.assegnataMe = assegnataMe;
+	public void setSottoSettore(String sottoSettore) {
+		this.sottoSettore = sottoSettore;
 	}
 	
-	public Long getIdAssegnatario() {
-		return idAssegnatario;
-	}
-	public void setIdAssegnatario(Long idAssegnatario) {
-		this.idAssegnatario = idAssegnatario;
-	}
-	public Long getTipoIstanza() {
-		return tipoIstanza;
-	}
-	public void setTipoIstanza(Long tipoIstanza) {
-		this.tipoIstanza = tipoIstanza;
-	}
-	
-	
-	public boolean isIstanzaSpontanea() {
-		return istanzaSpontanea;
-	}
-	public void setIstanzaSpontanea(boolean istanzaSpontanea) {
-		this.istanzaSpontanea = istanzaSpontanea;
-	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
+	}	
 }

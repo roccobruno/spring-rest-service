@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bruno.dao.IDBDao;
+import com.bruno.model.Filter;
 
 @Service
 public class DBDaoServiceImpl implements IDBDaoService{
@@ -51,6 +52,11 @@ public class DBDaoServiceImpl implements IDBDaoService{
 	@Transactional
 	public Object genericquery(String query){
 		return iDBDao.genericquery(query);
+	}
+	
+	@Transactional
+	public List<Object> getResourceList(Filter filter, String resourceName){
+		return iDBDao.getResourceList(filter, resourceName);
 	}
 
 }

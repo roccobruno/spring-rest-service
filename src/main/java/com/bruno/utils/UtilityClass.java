@@ -1,7 +1,11 @@
 package com.bruno.utils;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.bruno.model.Filter;
 
 public class UtilityClass implements IUtilityClass,ResourceName{
 	
@@ -14,6 +18,10 @@ public class UtilityClass implements IUtilityClass,ResourceName{
 		else if(resourceName.equalsIgnoreCase("impegni"))
 			return IMPEGNI;
 		return 0;
+	}
+	
+	public void getFilter(Map<String,String> allRequestParams,Filter filter){
+		
 	}
 
 }

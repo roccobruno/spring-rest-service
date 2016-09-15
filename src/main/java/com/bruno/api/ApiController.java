@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bruno.db.manager.IManagerDb;
 import com.bruno.exception.GestioneException;
 import com.bruno.model.FilePagamentiFiltri;
+import com.bruno.model.Filter;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.service.PagamentoRisultatiRicerca;
 import com.bruno.service.PagamentoService;
@@ -30,6 +31,7 @@ import com.bruno.service.filejob.FileJobPagamentiConsumer;
 import com.bruno.service.filejob.FileJobProducer;
 import com.bruno.service.filejob.FileJobService;
 import com.bruno.utils.FileResourceUtil;
+import com.bruno.utils.UtilityClass;
 
 @Controller
 @RequestMapping("/api/v1.0")
@@ -63,6 +65,9 @@ public class ApiController {
     
     @Autowired
     GestioneException gestioneException;
+    
+    @Autowired
+    UtilityClass utilityClass;
 
 
 //    @RequestMapping(method = RequestMethod.GET)
@@ -87,12 +92,15 @@ public class ApiController {
 //    }
     
     @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET)
-    public @ResponseBody Object getResources(@PathVariable("resourse") String resourse) {
+    public @ResponseBody Object getResources(@PathVariable("resourse") String resourse,
+    										 @RequestParam Map<String,String> allRequestParams) {
     	
     	Object risorsaList = null;
+    	Filter filter = null;
     	
     	try{
-    		risorsaList = managerDb.getRisorsaList(resourse);       	
+    		utilityClass.getFilter(allRequestParams,filter);
+    		risorsaList = managerDb.getRisorsaList(resourse,filter);       	
     	}catch(Exception e){
     		gestioneException.gestisciException(e);
     	}    	
@@ -101,8 +109,7 @@ public class ApiController {
     
     @RequestMapping(value = "/{resourse}/{id}" ,method = RequestMethod.GET)
     public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
-    										 @PathVariable("id") String id,
-    										 @RequestParam Map<String,String> allRequestParams) {
+    										 @PathVariable("id") String id) {
     	
     	Object risorsa = null;
     	

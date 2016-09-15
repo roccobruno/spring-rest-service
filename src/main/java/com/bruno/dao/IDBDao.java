@@ -20,5 +20,5 @@ public interface IDBDao {
 
     public List<Object> findAll(String beanName) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 
-	List<Object> getBy(Filter filter);
+	List<Object> getResourceList(Filter filter, String resourceName);
 }

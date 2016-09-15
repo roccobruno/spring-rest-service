@@ -180,42 +180,29 @@ public class DBDaoImpl implements IDBDao {
     // }
     
     @Override
-    public List<Object> getBy(Filter filter)  {
+    public List<Object> getResourceList(Filter filter,String resourceName)  {
     	
-    	Query query = getNamedQuery("IstanzeHO.get");
+    	String query = "FROM "+resourceName;
 		QueryBuilder queryBuilder = new QueryBuilder();
-		queryBuilder.append(query.getQueryString());
+		queryBuilder.append(query);
 		queryBuilder.append(" where ");
-		queryBuilder.append(" 1=1 ");
+		queryBuilder.append(" 1=1 ");		
 		
-		
-		queryBuilder.append(" and ist.idCom.id = :numeroAccertamento ", filter.getNumeroAccertamento());
-		queryBuilder.append(" and ist.idCom.nomeCoop = :nomeCooperativa ", filter.getNomeCooperativa());
-		queryBuilder.append(" and ist.idCom.codiceFiscale = :codiceFiscale ", filter.getCodiceFiscale());
-		queryBuilder.append(" and ist.idAccert.codiceTributo = :codTributo ", filter.getCodiceTributo());
-		queryBuilder.append(" and ist.idAccert.annoTributo = :annoTributo ", filter.getAnnoTributo());
-		queryBuilder.append(" and ist.idCom.dtProt >= :dataDa ", filter.getDataDa());
-		queryBuilder.append(" and ist.idCom.dtProt <= :dataA ", filter.getDataA());
-		queryBuilder.append(" and ist.idAccert.idAssegnatario = :idAssegnatario ", filter.getIdAssegnatario());
-		queryBuilder.append(" and ist.tipo = :tipoIstanza ", filter.getTipoIstanza());
-		queryBuilder.append(" and ist.stato = :statoIstanza ", filter.getStatoIstanza());
-		queryBuilder.append(" and ist.idAccert.tipo.id = 3 ", filter.isIstanzaSpontanea());
+		queryBuilder.append(" and cup = :cup ", filter.getCup());
+		queryBuilder.append(" and soggetto = :cup ", filter.getCup());
+		queryBuilder.append(" and formaGiuridica = :formaGiuridica ", filter.getFormaGiuridica());
+		queryBuilder.append(" and settore = :settore ", filter.getSettore());
+		queryBuilder.append(" and sottoSettore = :sottoSettore ", filter.getSottoSettore());
+
 		queryBuilder.append(" ORDER BY ist.id desc ");
 //
 		FlexibleQuery flex = createFlexibleQuery(queryBuilder);
-		flex.setString("nomeCooperativa", filter.getNomeCooperativa());
-		flex.setLong("numeroAccertamento", filter.getNumeroAccertamento());
-		flex.setString("codiceFiscale", filter.getCodiceFiscale());
-		flex.setString("codTributo", filter.getCodiceTributo());
-		flex.setLong("annoTributo", filter.getAnnoTributo());
-		flex.setCalendar("dataDa", filter.getDataDa());
-		flex.setCalendar("dataA", filter.getDataA());
-		flex.setLong("idAssegnatario", filter.getIdAssegnatario());
-		flex.setLong("tipoIstanza", filter.getTipoIstanza());
-		flex.setLong("statoIstanza", filter.getStatoIstanza());
-		
+		flex.setString("cup", filter.getCup());
+		flex.setString("soggetto", filter.getSoggetto());
+		flex.setString("formaGiuridica", filter.getFormaGiuridica());
+		flex.setString("settore", filter.getSettore());
+		flex.setString("sottoSettore", filter.getSottoSettore());		
 		return flex.list();
-
     }
     
     protected FlexibleQuery createFlexibleQuery(QueryBuilder query) {
