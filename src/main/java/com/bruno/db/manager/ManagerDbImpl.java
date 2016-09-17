@@ -1,13 +1,11 @@
 package com.bruno.db.manager;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bruno.dao.service.IDBDaoService;
+import com.bruno.service.IDBDaoService;
 import com.bruno.model.Filter;
 import com.bruno.model.SwImpegni;
 import com.bruno.model.SwPagamenti;
@@ -15,7 +13,6 @@ import com.bruno.model.json.ImpegniJson;
 import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.utils.IUtilityClass;
-import com.bruno.utils.RESOURCE_NAME_CONSTANTS;
 import com.bruno.utils.ResourceName;
 
 @Service

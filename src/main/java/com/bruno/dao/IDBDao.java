@@ -4,21 +4,21 @@ import java.util.List;
 
 import com.bruno.model.Filter;
 
-public interface IDBDao {
+public interface IDBDao<T, D> {
 
-    public void insert(Object bean);
+    public void insert(T bean);
 
-    public void insertOrUpdate(Object bean);
+    public void insertOrUpdate(T bean);
 
-    public void update(Object beanName);
+    public void update(T beanName);
 
-    public void delete(Object bean);
+    public void delete(T bean);
 
-    public Object genericquery(String query);
+    public List<T> genericquery(String query);
 
-    public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
+    public T findbyId( D id) throws InstantiationException, IllegalAccessException;
 
-    public List<Object> findAll(String beanName) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
+    public List<T> findAll() throws InstantiationException, IllegalAccessException;
 
-	List<Object> getResourceList(Filter filter, String resourceName);
+	List<T> getResourceList(Filter filter, String resourceName);
 }
