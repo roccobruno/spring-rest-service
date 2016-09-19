@@ -3,7 +3,7 @@ package com.bruno.exception;
 import com.bruno.utils.MessageJson;
 
 
-public class FilterNotFoundException extends Exception {
+public class FilterNotFoundException extends Exception implements IGeneralException {
 	
 	/**
 	 * 

@@ -14,9 +14,18 @@ public class PagamentiJson {
 	private String descrizioneCausale;
 	private String codiceGestionale;
 	private String descCodiceGestionale;
-	private String note;
+	private String note;	
+	private Metadata metadata = new Metadata();
 	
 	public PagamentiJson(){}
+	
+	public Metadata getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(Metadata metadata) {
+		this.metadata = metadata;
+	}
 
 	public String getCodLocProg() {
 		return codLocProg;

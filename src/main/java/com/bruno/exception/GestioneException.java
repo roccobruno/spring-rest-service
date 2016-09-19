@@ -15,12 +15,8 @@ public class GestioneException {
 	log.info("Inizio metodo GestioneException.gestisciException!");
 
 	try {
-		if(e instanceof FilterNotFoundException)
-			return ((FilterNotFoundException) e).getMessageJson();
-		if(e instanceof ResourceNotFoundException)
-			return ((ResourceNotFoundException) e).getMessageJson();
-		if(e instanceof EmptyListResorceException)
-			return ((EmptyListResorceException) e).getMessageJson();
+		if(e instanceof IGeneralException)
+			return ((IGeneralException) e).getMessageJson();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	    log.error(ex + " on  method GestioneException.gestisciException!");	  

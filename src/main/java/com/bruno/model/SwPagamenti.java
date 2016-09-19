@@ -343,6 +343,7 @@ public class SwPagamenti implements java.io.Serializable {
 		PJson.setCodiceGestionale(this.codiceGestionale);
 		PJson.setDescCodiceGestionale(this.descCodiceGestionale);
 		PJson.setNote(this.note);
+//		PJson.getMetadata().getLinks().setSelf("http://localhost:7001/spring-rest-service/api/v1.0/pagamenti/"+this.sequSwPagamento);
 		return PJson;
 	}
 	

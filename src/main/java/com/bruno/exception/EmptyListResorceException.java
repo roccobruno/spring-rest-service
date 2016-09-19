@@ -2,13 +2,13 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class EmptyListResorceException extends Exception {
+public class EmptyListResorceException extends Exception implements IGeneralException {
 	
 	private MessageJson messageJson = new MessageJson("Non e' stato trovato nessun record per la ricerca effettuata!");
 	
-	public void EmptyListResorceException(){}
+	public EmptyListResorceException(){}
 	
-	public void EmptyListResorceException(MessageJson messageJson){
+	public EmptyListResorceException(MessageJson messageJson){
 		this.messageJson = messageJson;
 	}
 

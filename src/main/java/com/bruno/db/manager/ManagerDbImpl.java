@@ -16,6 +16,7 @@ import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.utils.IUtilityClass;
 import com.bruno.utils.IResourceName;
+import com.bruno.utils.MessageJson;
 
 
 @Service
@@ -31,16 +32,6 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     
     @Autowired
     IUtilityClass utilityClass;
-    
-    @Override
-    public List<Object> getPagamenti() {
-    	
-    	String query = "tab.codLocProg,tab.dataPagamento,tab.codicePagamento,tab.tipologiaPagamento,tab.importo,tab.codiceCausale, tab.descrizioneCausale,tab.codiceGestionale,tab.descCodiceGestionale,tab.note";
-        
-        List<Object> pagamentiList = (List<Object>) iDBDaoService.genericquery("from SwPagamenti tab where rownum <= 10");
-
-        return pagamentiList;
-    }
     
     @Override
     public Object getRisorsaList(String resourceName, Filter filter) throws Exception {
@@ -64,7 +55,9 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
 			
 			case IMPEGNI:
 				
-				List<SwImpegni> impegniList = (List<SwImpegni>) iDBDaoService.genericquery("from SwImpegni where rownum <= 10");
+				List<SwImpegni> impegniList = (List<SwImpegni>) iDBDaoService.getResourceList(filter, "SwImpegni");
+				if(impegniList.isEmpty())
+					throw new EmptyListResorceException();
 				
 				List<ImpegniJson> impegniJson = wrapperToJson.impegni(impegniList);
 				

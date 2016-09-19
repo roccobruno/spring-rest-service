@@ -2,9 +2,7 @@ package com.bruno.api;
 
 import java.io.IOException;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.bruno.db.manager.IManagerDb;
 import com.bruno.exception.GestioneException;
 import com.bruno.model.FilePagamentiFiltri;
@@ -93,6 +90,7 @@ public class ApiController {
     										 @RequestParam Map<String,String> allRequestParams) {
     	
     	Object risorsaList = null;
+    	Object risorsa = null;
     	Filter filter = new Filter();
     	
     	try{
@@ -113,7 +111,7 @@ public class ApiController {
     	Object risorsa = null;
     	
     	try{
-   	
+
     	}catch(Exception e){
     		gestioneException.gestisciException(e);
     	}    	

@@ -2,7 +2,7 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class ResourceNotFoundException extends Exception {
+public class ResourceNotFoundException extends Exception implements IGeneralException {
 	
 	private MessageJson messageJson = new MessageJson("La risorsa richiesta risulta non esistente!");
 	
