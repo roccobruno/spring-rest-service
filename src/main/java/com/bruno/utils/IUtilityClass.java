@@ -1,10 +1,8 @@
 package com.bruno.utils;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public interface IUtilityClass {
 	
-	public int getResourceNameInt(String resourceName);
+	public int getResourceNameIntValue(String resourceName);
+	public int getFilterNameIntValue(String resourceName);
 
 }

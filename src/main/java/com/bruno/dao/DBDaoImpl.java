@@ -182,19 +182,19 @@ public class DBDaoImpl implements IDBDao {
     @Override
     public List<Object> getResourceList(Filter filter,String resourceName)  {
     	
-    	String query = "FROM "+resourceName;
+    	String query = "FROM "+resourceName+" tab";
 		QueryBuilder queryBuilder = new QueryBuilder();
 		queryBuilder.append(query);
 		queryBuilder.append(" where ");
 		queryBuilder.append(" 1=1 ");		
 		
-		queryBuilder.append(" and cup = :cup ", filter.getCup());
-		queryBuilder.append(" and soggetto = :cup ", filter.getCup());
-		queryBuilder.append(" and formaGiuridica = :formaGiuridica ", filter.getFormaGiuridica());
-		queryBuilder.append(" and settore = :settore ", filter.getSettore());
-		queryBuilder.append(" and sottoSettore = :sottoSettore ", filter.getSottoSettore());
+		queryBuilder.append(" and tab.cup = :cup ", filter.getCup());
+		queryBuilder.append(" and tab.soggetto = :soggetto ", filter.getSoggetto());
+		queryBuilder.append(" and tab.formaGiuridica = :formaGiuridica ", filter.getFormaGiuridica());
+		queryBuilder.append(" and tab.settore = :settore ", filter.getSettore());
+		queryBuilder.append(" and tab.sottoSettore = :sottoSettore ", filter.getSottoSettore());
 
-		queryBuilder.append(" ORDER BY ist.id desc ");
+		queryBuilder.append(" and rownum <= 10");
 //
 		FlexibleQuery flex = createFlexibleQuery(queryBuilder);
 		flex.setString("cup", filter.getCup());

@@ -30,7 +30,7 @@ public class WrapperToJson {
 	
 		ImpegniJson impJson = null;
 		for(SwImpegni p:impegniList){
-			impJson = p.wrapperToJson();
+//			impJson = p.wrapperToJson();
 			impegniJsonList.add(impJson);
 		}
 		return impegniJsonList;

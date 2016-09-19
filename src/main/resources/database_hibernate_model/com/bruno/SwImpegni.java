@@ -1,4 +1,4 @@
-package com.bruno.model;
+package com.bruno;
 
 // Generated Sep 16, 2016 5:42:05 PM by Hibernate Tools 3.4.0.CR1
 

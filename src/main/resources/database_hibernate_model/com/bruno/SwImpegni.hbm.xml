@@ -3,9 +3,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 16, 2016 5:42:06 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwRevocherinunce" table="SW_REVOCHERINUNCE">
-        <id name="sequSwRevocherinunce" type="long">
-            <column name="SEQU_SW_REVOCHERINUNCE" precision="11" scale="0" />
+    <class name="com.bruno.SwImpegni" table="SW_IMPEGNI" schema="U_BDAP_MWEB_WKA_SVL">
+        <id name="sequSwImpegni" type="long">
+            <column name="SEQU_SW_IMPEGNI" precision="11" scale="0" />
             <generator class="assigned" />
         </id>
         <property name="textKsogSoggCfiscale" type="string">
@@ -56,20 +56,20 @@
         <property name="codiKurpUrpiCodLocProg" type="string">
             <column name="CODI_KURP_URPI_COD_LOC_PROG" length="68" />
         </property>
-        <property name="flgTipologiaFinanz" type="string">
-            <column name="FLG_TIPOLOGIA_FINANZ" />
+        <property name="dataImpegno" type="date">
+            <column name="DATA_IMPEGNO" length="7" />
         </property>
-        <property name="codiKmreMoreCodMotivo" type="string">
-            <column name="CODI_KMRE_MORE_COD_MOTIVO" length="3" />
+        <property name="flgTipologiaImpegno" type="string">
+            <column name="FLG_TIPOLOGIA_IMPEGNO" length="50" />
         </property>
-        <property name="descKmreMoreDescMot" type="string">
-            <column name="DESC_KMRE_MORE_DESC_MOT" length="200" />
+        <property name="textFigvCodImpegno" type="string">
+            <column name="TEXT_FIGV_COD_IMPEGNO" length="20" />
         </property>
-        <property name="impoFrerRevocRinunFinanz" type="big_decimal">
-            <column name="IMPO_FRER_REVOC_RINUN_FINANZ" precision="17" />
+        <property name="textFigvNoteImpegno" type="string">
+            <column name="TEXT_FIGV_NOTE_IMPEGNO" length="1000" />
         </property>
-        <property name="dataFrerDataRevocRinun" type="date">
-            <column name="DATA_FRER_DATA_REVOC_RINUN" length="7" />
+        <property name="impoFigvImporto" type="big_decimal">
+            <column name="IMPO_FIGV_IMPORTO" precision="17" />
         </property>
     </class>
 </hibernate-mapping>

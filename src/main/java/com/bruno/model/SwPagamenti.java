@@ -13,21 +13,21 @@ import com.bruno.model.json.PagamentiJson;
 public class SwPagamenti implements java.io.Serializable {
 
 	private long sequSwPagamento;
-	private String textKsogSoggCfiscale;
-	private String textKsogFogiCodFormaGiur;
+	private String soggetto;
+	private String formaGiuridica;
 	private String descKsogFogiDescFormaGiu;
-	private String codiCcupCcupAnagCcup;
-	private String textCcupSipiCodSetInv;
+	private String cup;
+	private String settore;
 	private String descCcupSipiDescSetCup;
-	private String textCcupSspiCodSsetInv;
+	private String sottoSettore;
 	private String descCcupSspiDescSsetCup;
-	private String textCcupCipiCodCatInv;
+	private String categoria;
 	private String descCcupCipiDescCatCup;
-	private String codiKregKregId;
+	private String regione;
 	private String descKregKregDescRegione;
-	private String textCodFonte;
-	private String descDimensione;
-	private String textCcupTipiCodTipInv;
+	private String fonteCodLocaleProg;
+	private String dimensione;
+	private String tipologiaLavori;
 	private String codLocProg;
 	private Date dataPagamento;
 	private String codicePagamento;
@@ -44,129 +44,187 @@ public class SwPagamenti implements java.io.Serializable {
 	public SwPagamenti() {
 	}
 
-	public SwPagamenti(long sequSwPagamento) {
-		this.sequSwPagamento = sequSwPagamento;
+	
+
+	public String getSoggetto() {
+		return soggetto;
 	}
 
-	public String getTextKsogSoggCfiscale() {
-		return textKsogSoggCfiscale;
+
+
+	public void setSoggetto(String soggetto) {
+		this.soggetto = soggetto;
 	}
 
-	public void setTextKsogSoggCfiscale(String textKsogSoggCfiscale) {
-		this.textKsogSoggCfiscale = textKsogSoggCfiscale;
+
+
+	public String getFormaGiuridica() {
+		return formaGiuridica;
 	}
 
-	public String getTextKsogFogiCodFormaGiur() {
-		return textKsogFogiCodFormaGiur;
+
+
+	public void setFormaGiuridica(String formaGiuridica) {
+		this.formaGiuridica = formaGiuridica;
 	}
 
-	public void setTextKsogFogiCodFormaGiur(String textKsogFogiCodFormaGiur) {
-		this.textKsogFogiCodFormaGiur = textKsogFogiCodFormaGiur;
-	}
+
 
 	public String getDescKsogFogiDescFormaGiu() {
 		return descKsogFogiDescFormaGiu;
 	}
 
+
+
 	public void setDescKsogFogiDescFormaGiu(String descKsogFogiDescFormaGiu) {
 		this.descKsogFogiDescFormaGiu = descKsogFogiDescFormaGiu;
 	}
 
-	public String getCodiCcupCcupAnagCcup() {
-		return codiCcupCcupAnagCcup;
+
+
+	public String getCup() {
+		return cup;
 	}
 
-	public void setCodiCcupCcupAnagCcup(String codiCcupCcupAnagCcup) {
-		this.codiCcupCcupAnagCcup = codiCcupCcupAnagCcup;
+
+
+	public void setCup(String cup) {
+		this.cup = cup;
 	}
 
-	public String getTextCcupSipiCodSetInv() {
-		return textCcupSipiCodSetInv;
+
+
+	public String getSettore() {
+		return settore;
 	}
 
-	public void setTextCcupSipiCodSetInv(String textCcupSipiCodSetInv) {
-		this.textCcupSipiCodSetInv = textCcupSipiCodSetInv;
+
+
+	public void setSettore(String settore) {
+		this.settore = settore;
 	}
+
+
 
 	public String getDescCcupSipiDescSetCup() {
 		return descCcupSipiDescSetCup;
 	}
 
+
+
 	public void setDescCcupSipiDescSetCup(String descCcupSipiDescSetCup) {
 		this.descCcupSipiDescSetCup = descCcupSipiDescSetCup;
 	}
 
-	public String getTextCcupSspiCodSsetInv() {
-		return textCcupSspiCodSsetInv;
+
+
+	public String getSottoSettore() {
+		return sottoSettore;
 	}
 
-	public void setTextCcupSspiCodSsetInv(String textCcupSspiCodSsetInv) {
-		this.textCcupSspiCodSsetInv = textCcupSspiCodSsetInv;
+
+
+	public void setSottoSettore(String sottoSettore) {
+		this.sottoSettore = sottoSettore;
 	}
+
+
 
 	public String getDescCcupSspiDescSsetCup() {
 		return descCcupSspiDescSsetCup;
 	}
 
+
+
 	public void setDescCcupSspiDescSsetCup(String descCcupSspiDescSsetCup) {
 		this.descCcupSspiDescSsetCup = descCcupSspiDescSsetCup;
 	}
 
-	public String getTextCcupCipiCodCatInv() {
-		return textCcupCipiCodCatInv;
+
+
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setTextCcupCipiCodCatInv(String textCcupCipiCodCatInv) {
-		this.textCcupCipiCodCatInv = textCcupCipiCodCatInv;
+
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
+
+
 
 	public String getDescCcupCipiDescCatCup() {
 		return descCcupCipiDescCatCup;
 	}
 
+
+
 	public void setDescCcupCipiDescCatCup(String descCcupCipiDescCatCup) {
 		this.descCcupCipiDescCatCup = descCcupCipiDescCatCup;
 	}
 
-	public String getCodiKregKregId() {
-		return codiKregKregId;
+
+
+	public String getRegione() {
+		return regione;
 	}
 
-	public void setCodiKregKregId(String codiKregKregId) {
-		this.codiKregKregId = codiKregKregId;
+
+
+	public void setRegione(String regione) {
+		this.regione = regione;
 	}
+
+
 
 	public String getDescKregKregDescRegione() {
 		return descKregKregDescRegione;
 	}
 
+
+
 	public void setDescKregKregDescRegione(String descKregKregDescRegione) {
 		this.descKregKregDescRegione = descKregKregDescRegione;
 	}
 
-	public String getTextCodFonte() {
-		return textCodFonte;
+
+
+	public String getFonteCodLocaleProg() {
+		return fonteCodLocaleProg;
 	}
 
-	public void setTextCodFonte(String textCodFonte) {
-		this.textCodFonte = textCodFonte;
+
+
+	public void setFonteCodLocaleProg(String fonteCodLocaleProg) {
+		this.fonteCodLocaleProg = fonteCodLocaleProg;
 	}
 
-	public String getDescDimensione() {
-		return descDimensione;
+
+
+	public String getDimensione() {
+		return dimensione;
 	}
 
-	public void setDescDimensione(String descDimensione) {
-		this.descDimensione = descDimensione;
+
+
+	public void setDimensione(String dimensione) {
+		this.dimensione = dimensione;
 	}
 
-	public String getTextCcupTipiCodTipInv() {
-		return textCcupTipiCodTipInv;
+
+
+	public String getTipologiaLavori() {
+		return tipologiaLavori;
 	}
 
-	public void setTextCcupTipiCodTipInv(String textCcupTipiCodTipInv) {
-		this.textCcupTipiCodTipInv = textCcupTipiCodTipInv;
+
+
+	public void setTipologiaLavori(String tipologiaLavori) {
+		this.tipologiaLavori = tipologiaLavori;
 	}
+
+
 
 	public String getCodLocProg() {
 		return codLocProg;

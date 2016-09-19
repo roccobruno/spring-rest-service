@@ -16,10 +16,10 @@ import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.utils.IUtilityClass;
 import com.bruno.utils.RESOURCE_NAME_CONSTANTS;
-import com.bruno.utils.ResourceName;
+import com.bruno.utils.IResourceName;
 
 @Service
-public class ManagerDbImpl implements IManagerDb,ResourceName {
+public class ManagerDbImpl implements IManagerDb,IResourceName {
 
     private static final Logger log = LoggerFactory.getLogger(ManagerDbImpl.class);
     
@@ -49,12 +49,13 @@ public class ManagerDbImpl implements IManagerDb,ResourceName {
     	int resourceNameInt = 1;
     	
     	try{
-    		switch (utilityClass.getResourceNameInt(resourceName)) {
+    		switch (utilityClass.getResourceNameIntValue(resourceName)) {
     		
 			case PAGAMENTI:
 //				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
-				
-				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.getResourceList(filter, resourceName);
+//				Fare la count per vedere il numero dei records
+//				Do il numero alla routine di paginazione
+				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.getResourceList(filter, "SwPagamenti");
 				
 				List<PagamentiJson> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
 				
@@ -69,7 +70,7 @@ public class ManagerDbImpl implements IManagerDb,ResourceName {
 				return impegniJson;
 
 			default:
-				
+//				throw new ResourceNotFoundException();				
 				break;
 			}
     	}catch(Exception e){
