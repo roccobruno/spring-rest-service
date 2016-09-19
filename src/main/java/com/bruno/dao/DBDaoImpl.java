@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import com.bruno.model.Filter;
 import com.bruno.utils.FlexibleQuery;
 import com.bruno.utils.QueryBuilder;
@@ -185,29 +185,46 @@ public abstract class DBDaoImpl<T, D> implements IDBDao<T, D> {
     // }
 
     @Override
-    public List<T> getResourceList(Filter filter, String resourceName) {
-
-        String query = "FROM " + resourceName;
-        QueryBuilder queryBuilder = new QueryBuilder();
-        queryBuilder.append(query);
-        queryBuilder.append(" where ");
-        queryBuilder.append(" 1=1 ");
-
-        queryBuilder.append(" and cup = :cup ", filter.getCup());
-        queryBuilder.append(" and soggetto = :cup ", filter.getCup());
-        queryBuilder.append(" and formaGiuridica = :formaGiuridica ", filter.getFormaGiuridica());
-        queryBuilder.append(" and settore = :settore ", filter.getSettore());
-        queryBuilder.append(" and sottoSettore = :sottoSettore ", filter.getSottoSettore());
-
-        queryBuilder.append(" ORDER BY ist.id desc ");
-
-        FlexibleQuery flex = createFlexibleQuery(queryBuilder);
-        flex.setString("cup", filter.getCup());
-        flex.setString("soggetto", filter.getSoggetto());
-        flex.setString("formaGiuridica", filter.getFormaGiuridica());
-        flex.setString("settore", filter.getSettore());
-        flex.setString("sottoSettore", filter.getSottoSettore());
-        return flex.list();
+    public List<T> getResourceList(Filter filter,String resourceName)  {
+    	
+    	String query = "FROM "+resourceName+" tab";
+		QueryBuilder queryBuilder = new QueryBuilder();
+		queryBuilder.append(query);
+		queryBuilder.append(" where ");
+		queryBuilder.append(" 1=1 ");		
+		
+		queryBuilder.append(" and tab.cup = :cup ", filter.getCup());
+		queryBuilder.append(" and tab.cig = :cig ", filter.getCig());
+		queryBuilder.append(" and tab.soggetto = :soggetto ", filter.getSoggetto());
+		queryBuilder.append(" and tab.formaGiuridica = :formaGiuridica ", filter.getFormaGiuridica());
+		queryBuilder.append(" and tab.settore = :settore ", filter.getSettore());
+		queryBuilder.append(" and tab.sottoSettore = :sottoSettore ", filter.getSottoSettore());		
+		queryBuilder.append(" and tab.categoria = :categoria ", filter.getCategoria());
+		queryBuilder.append(" and tab.regione = :regione ", filter.getRegione());
+		queryBuilder.append(" and tab.fonteCodLocaleProg = :fonteCodLocaleProg ", filter.getFonteCodLocaleProg());
+		queryBuilder.append(" and tab.dimensione = :dimensione ", filter.getDimensione());
+		queryBuilder.append(" and tab.tipologiaLavori = :tipologiaLavori ", filter.getTipologiaLavori());
+		queryBuilder.append(" and tab.numRecords = :numRecords ", filter.getNumRecords());
+		queryBuilder.append(" and tab.ordinaPer = :ordinaPer ", filter.getOrdinaPer());
+		
+		queryBuilder.append(" and rownum <= 10");
+//
+		FlexibleQuery flex = createFlexibleQuery(queryBuilder);
+		flex.setString("cup", filter.getCup());
+		flex.setString("cig", filter.getCig());
+		flex.setString("soggetto", filter.getSoggetto());
+		flex.setString("formaGiuridica", filter.getFormaGiuridica());
+		flex.setString("settore", filter.getSettore());
+		flex.setString("sottoSettore", filter.getSottoSettore());		
+		flex.setString("categoria", filter.getCategoria());
+		flex.setString("regione", filter.getRegione());
+		flex.setString("fonteCodLocaleProg", filter.getFonteCodLocaleProg());
+		flex.setString("dimensione", filter.getDimensione());
+		flex.setString("tipologiaLavori", filter.getTipologiaLavori());
+		flex.setString("numRecords", filter.getNumRecords());
+		flex.setString("ordinaPer", filter.getOrdinaPer());
+		
+		return flex.list();
     }
 
     protected FlexibleQuery createFlexibleQuery(QueryBuilder query) {

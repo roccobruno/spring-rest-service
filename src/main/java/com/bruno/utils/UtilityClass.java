@@ -3,12 +3,12 @@ package com.bruno.utils;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.bruno.exception.FilterNotFoundException;
 import com.bruno.model.Filter;
 
 @Component
@@ -137,11 +137,13 @@ public class UtilityClass implements IUtilityClass,IResourceName,IFilterName{
 						break;
 
 					default:
-						
-						break;
+//						ErrorMessage error = new ErrorMessage("001","Prova");
+						throw new FilterNotFoundException();
 					}
 				}			
 			}				
+		}catch(FilterNotFoundException e){
+			throw new FilterNotFoundException();
 		}catch(Exception e){
 			throw new Exception(e);
 		}

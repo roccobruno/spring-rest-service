@@ -29,6 +29,7 @@ import com.bruno.service.filejob.FileJobMessage;
 import com.bruno.service.filejob.FileJobPagamentiConsumer;
 import com.bruno.service.filejob.FileJobProducer;
 import com.bruno.service.filejob.FileJobService;
+import com.bruno.utils.MessageJson;
 import com.bruno.utils.FileResourceUtil;
 import com.bruno.utils.UtilityClass;
 
@@ -98,7 +99,9 @@ public class ApiController {
     		utilityClass.getFilter(allRequestParams,filter);
     		risorsaList = managerDb.getRisorsaList(resourse,filter);       	
     	}catch(Exception e){
-    		gestioneException.gestisciException(e);
+    		log.error(e.getMessage());
+//    		gestioneException.gestisciException(e);
+    		return gestioneException.gestisciException(e);
     	}    	
     	return risorsaList;
     }
