@@ -20,7 +20,7 @@ import com.bruno.exception.GestioneException;
 import com.bruno.model.FilePagamentiFiltri;
 import com.bruno.model.Filter;
 import com.bruno.service.PagamentoRisultatiRicerca;
-import com.bruno.service.PagamentoService;
+import com.bruno.service.IPagamentoService;
 import com.bruno.service.filejob.FileJob;
 import com.bruno.service.filejob.FileJobMessage;
 import com.bruno.service.filejob.FileJobPagamentiConsumer;
@@ -37,7 +37,7 @@ public class ApiController {
 	private static final Logger log = LoggerFactory.getLogger(ApiController.class);
 
     @Autowired
-    private PagamentoService pagamentoService;
+    private IPagamentoService pagamentoService;
 
     @Value("${cartella.files.pagamenti}")
     private String fileLocation;
@@ -85,9 +85,10 @@ public class ApiController {
 //    	return pagamentiJsonList;
 //    }
     
-    @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET,produces = "application/json")
     public @ResponseBody Object getResources(@PathVariable("resourse") String resourse,
-    										 @RequestParam Map<String,String> allRequestParams) {
+    										 @RequestParam Map<String,String> allRequestParams,
+    										 HttpServletResponse response) {
     	
     	Object risorsaList = null;
     	Object risorsa = null;
@@ -98,22 +99,23 @@ public class ApiController {
     		risorsaList = managerDb.getRisorsaList(resourse,filter);       	
     	}catch(Exception e){
     		log.error(e.getMessage());
-//    		gestioneException.gestisciException(e);
-    		return gestioneException.gestisciException(e);
+    		return gestioneException.gestisciException(e,response);
     	}    	
     	return risorsaList;
     }
     
     @RequestMapping(value = "/{resourse}/{id}" ,method = RequestMethod.GET)
     public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
-    										@PathVariable("id") String id) {
+    										@PathVariable("id") String id,
+    										HttpServletResponse response) {
     	
     	Object risorsa = null;
     	
     	try{
-
+    		risorsa = managerDb.getRisorsaById(resourse,id);
     	}catch(Exception e){
-    		gestioneException.gestisciException(e);
+    		log.error(e.getMessage());
+    		return gestioneException.gestisciException(e,response);
     	}    	
     	return risorsa;
     }

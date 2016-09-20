@@ -59,7 +59,7 @@
 //
 //}
 
-package com.bruno.service;
+package com.bruno.dao.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

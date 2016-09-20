@@ -1,7 +1,7 @@
 package com.bruno.service.filejob;
 
 import com.bruno.model.Pagamento;
-import com.bruno.service.PagamentoService;
+import com.bruno.service.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class FileJobPagamentiConsumer {
 
 
     @Autowired
-    private PagamentoService pagamentoService;
+    private IPagamentoService pagamentoService;
 
     private void consumeMessage(final FileJobMessage message) throws InterruptedException {
         components.getExecutor().submit(new Runnable() {

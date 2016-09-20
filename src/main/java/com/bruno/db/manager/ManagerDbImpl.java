@@ -1,23 +1,23 @@
 package com.bruno.db.manager;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bruno.service.IDBDaoService;
+import com.bruno.dao.service.IDBDaoService;
 import com.bruno.exception.EmptyListResorceException;
+import com.bruno.exception.ResourceByIdNotFound;
 import com.bruno.exception.ResourceNotFoundException;
 import com.bruno.model.Filter;
 import com.bruno.model.SwImpegni;
-import com.bruno.model.SwPagamenti;
 import com.bruno.model.json.ImpegniJson;
 import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
-import com.bruno.utils.IUtilityClass;
+import com.bruno.service.IPagamentoService;
 import com.bruno.utils.IResourceName;
-import com.bruno.utils.MessageJson;
-
+import com.bruno.utils.IUtilityClass;
 
 @Service
 public class ManagerDbImpl implements IManagerDb,IResourceName {
@@ -33,6 +33,9 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     @Autowired
     IUtilityClass utilityClass;
     
+    @Autowired
+    IPagamentoService pagamentoService;
+    
     @Override
     public Object getRisorsaList(String resourceName, Filter filter) throws Exception {
     	
@@ -43,14 +46,8 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     		switch (utilityClass.getResourceNameIntValue(resourceName)) {
     		
 			case PAGAMENTI:
-//				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.genericquery("from SwPagamenti where rownum <= 10");
-//				Fare la count per vedere il numero dei records
-//				Do il numero alla routine di paginazione
-				List<SwPagamenti> pagamentiList = (List<SwPagamenti>) iDBDaoService.getResourceList(filter, "SwPagamenti");
-				if(pagamentiList.isEmpty())
-					throw new EmptyListResorceException();				
-				List<PagamentiJson> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
-				
+
+				List<PagamentiJson> pagamentiJson = pagamentoService.getPagamentiList(filter);				
 				return pagamentiJson;
 			
 			case IMPEGNI:
@@ -68,6 +65,29 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
 			}
     	}catch(EmptyListResorceException e){
     		throw new EmptyListResorceException();
+    	}catch(ResourceNotFoundException e){
+    		throw new ResourceNotFoundException();
+    	}catch(Exception e){
+    		throw new Exception(e);
+    	}
+    }
+    
+    @Override
+    public Object getRisorsaById(String resourceName, String id) throws Exception {
+    	
+    	try{
+    		switch (utilityClass.getResourceNameIntValue(resourceName)) {
+    		
+			case PAGAMENTI:
+
+				List<PagamentiJson> pagamentiJson = pagamentoService.getPagamentoById(id);				
+				return pagamentiJson;
+
+			default:
+				throw new ResourceNotFoundException();				
+			}
+    	}catch(ResourceByIdNotFound e){
+    		throw new ResourceByIdNotFound();
     	}catch(ResourceNotFoundException e){
     		throw new ResourceNotFoundException();
     	}catch(Exception e){

@@ -1,4 +1,4 @@
-package com.bruno.service;
+package com.bruno.dao.service;
 
 import java.util.List;
 

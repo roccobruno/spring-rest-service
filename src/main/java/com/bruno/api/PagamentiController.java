@@ -20,7 +20,7 @@ import com.bruno.model.SwPagamenti;
 import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.service.PagamentoRisultatiRicerca;
-import com.bruno.service.PagamentoService;
+import com.bruno.service.IPagamentoService;
 import com.bruno.service.filejob.FileJob;
 import com.bruno.service.filejob.FileJobMessage;
 import com.bruno.service.filejob.FileJobPagamentiConsumer;
@@ -33,7 +33,7 @@ import com.bruno.utils.FileResourceUtil;
 public class PagamentiController {
 
     @Autowired
-    private PagamentoService pagamentoService;
+    private IPagamentoService pagamentoService;
 
     @Value("${cartella.files.pagamenti}")
     private String fileLocation;

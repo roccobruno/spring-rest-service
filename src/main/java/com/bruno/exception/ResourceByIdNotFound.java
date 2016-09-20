@@ -2,14 +2,14 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class EmptyListResorceException extends Exception implements IGeneralException {
+public class ResourceByIdNotFound extends Exception implements IGeneralException {
 	
-	private MessageJson messageJson = new MessageJson("Non e' stato trovato nessun record per la ricerca effettuata!");
-	private int statusCode = 401;
+	private MessageJson messageJson = new MessageJson("Non e' stato trovato nessun record con l'id specificato!!");
+	private int statusCode = 403;
 	
-	public EmptyListResorceException(){}
+	public ResourceByIdNotFound(){}
 	
-	public EmptyListResorceException(MessageJson messageJson){
+	public ResourceByIdNotFound(MessageJson messageJson){
 		this.messageJson = messageJson;
 	}
 
@@ -28,6 +28,5 @@ public class EmptyListResorceException extends Exception implements IGeneralExce
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
-	
 	
 }

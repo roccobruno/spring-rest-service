@@ -11,6 +11,7 @@ public class FilterNotFoundException extends Exception implements IGeneralExcept
 	private static final long serialVersionUID = 1L;
 	
 	private MessageJson messageJson = new MessageJson("E' stato utilizzato un filtro non esistente per la risorsa richiesta!");
+	private int statusCode = 402;
 	
 	public FilterNotFoundException(){}	
 
@@ -24,6 +25,14 @@ public class FilterNotFoundException extends Exception implements IGeneralExcept
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public int getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(int statusCode) {
+		this.statusCode = statusCode;
 	}
 	
 }
