@@ -4,28 +4,28 @@ import com.bruno.model.Pagamento;
 
 import java.util.List;
 
-public class PagamentoRisultatiRicerca {
+public class RisultatiRicerca<T> {
 
     private final Integer selectedPage;
     private final Integer pageSize;
-    private final Integer total;
-    private final List<Pagamento> results;
+    private final Long total;
+    private final List<T> results;
     private  String nextPageLink;
     private  String previousPageLink;
 
 
-    public PagamentoRisultatiRicerca(Integer total, List<Pagamento> results, Integer selectedPage, Integer pageSize) {
+    public RisultatiRicerca(Long total, List<T> results, Integer selectedPage, Integer pageSize) {
         this.total = total;
         this.selectedPage = selectedPage;
         this.pageSize = pageSize;
         this.results = results;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public List<Pagamento> getResults() {
+    public List<T> getResults() {
         return results;
     }
 

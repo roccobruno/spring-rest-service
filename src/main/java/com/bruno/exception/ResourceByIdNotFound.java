@@ -2,7 +2,7 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class ResourceByIdNotFound extends Exception implements IGeneralException {
+public class ResourceByIdNotFound extends GeneralException {
 	
 	private MessageJson messageJson = new MessageJson("Non e' stato trovato nessun record con l'id specificato!!");
 	private int statusCode = 403;

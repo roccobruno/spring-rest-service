@@ -17,10 +17,21 @@ public class Filter implements Serializable {
 	private String fonteCodLocaleProg;
 	private String dimensione;
 	private String tipologiaLavori;
-	private String numRecords;
 	private String ordinaPer;
-	
-	
+
+	//paginazione
+	private Integer numRecords = 100;
+	private Integer numPagina = 1;
+
+	public void setNumPagina(Integer numPagina) {
+		this.numPagina = numPagina;
+	}
+
+	public Integer getNumPagina() {
+
+		return numPagina;
+	}
+
 	public Filter(){}
 	
 	public String getCig() {
@@ -108,11 +119,11 @@ public class Filter implements Serializable {
 		this.tipologiaLavori = tipologiaLavori;
 	}
 
-	public String getNumRecords() {
+	public Integer getNumRecords() {
 		return numRecords;
 	}
 
-	public void setNumRecords(String numRecords) {
+	public void setNumRecords(Integer numRecords) {
 		this.numRecords = numRecords;
 	}
 
