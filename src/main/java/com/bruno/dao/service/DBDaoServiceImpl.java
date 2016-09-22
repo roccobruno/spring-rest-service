@@ -87,5 +87,10 @@ public class DBDaoServiceImpl implements IDBDaoService{
 	public Object genericquery(String query) {
 		return dBDao.genericquery(query);
 	}
+	
+	@Transactional
+	public long getCountValue(String query) {
+		return dBDao.getCountValue(query);
+	}
 
 }

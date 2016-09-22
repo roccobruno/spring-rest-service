@@ -23,6 +23,7 @@ import org.hibernate.ScrollableResults;
 import org.hibernate.transform.ResultTransformer;
 import org.hibernate.type.Type;
 
+
 public class FlexibleQuery {
 
 	protected Query query;
@@ -108,10 +109,13 @@ public class FlexibleQuery {
 
 		return query.getNamedParameters();
 	}
-
-
-
-
+	
+//	public FlexibleQuery(Query query, Query queryCount, PaginatorUpdater pUpdater) {
+//		this.query = query;
+//		this.queryCount = queryCount;
+//		this.pUpdater=pUpdater;
+//		this.pdata = new PaginatorData(pUpdater.getCurrentPage(), pUpdater.getPageSize());
+//	}
 
 	public FlexibleQuery setBigDecimal(int position, BigDecimal number) {
 		if (isNotEmpty(number)) {query.setBigDecimal(position, number);

@@ -6,7 +6,8 @@ import com.bruno.model.Filter;
 
 public interface IDBDaoService {
 	
-	public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 	Object genericquery(String query);	
+	long getCountValue(String queryString);
 	Object getResourceList(Filter filter, String resourceName);
 }

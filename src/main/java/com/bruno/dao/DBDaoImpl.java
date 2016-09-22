@@ -238,6 +238,8 @@
 
 package com.bruno.dao;
 
+import java.util.StringTokenizer;
+
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -272,15 +274,31 @@ public class DBDaoImpl implements IDBDao {
 
     @Override
     public Object genericquery(String queryString) {
-	log.info("Start DBDaoImpl.genericquery method");
-	try {
-	    Query query = sessionFactoryMopWS.getCurrentSession().createQuery(queryString);
-	    log.info("DBDaoImpl.genericquery successful");
-	    return query.list();
-	} catch (RuntimeException re) {
-	    log.error("DBDaoImpl.genericquery failed", re);
-	    throw re;
-	}
+		log.info("Start DBDaoImpl.genericquery method");
+		try {
+		    Query query = sessionFactoryMopWS.getCurrentSession().createQuery(queryString);
+		    log.info("DBDaoImpl.genericquery successful");
+		    return query.list();
+		} catch (RuntimeException re) {
+		    log.error("DBDaoImpl.genericquery failed", re);
+		    throw re;
+		}
+    }
+    
+    @Override
+    public long getCountValue(String queryString) {
+		log.info("Start DBDaoImpl.getCountValue method");
+		
+		String countQuery = "select count(*) ";
+		
+		try {
+		    Query query = sessionFactoryMopWS.getCurrentSession().createQuery(countQuery+queryString);
+		    log.info("DBDaoImpl.getCountValue successful");
+		    return (Long) query.uniqueResult();
+		} catch (RuntimeException re) {
+		    log.error("DBDaoImpl.getCountValue failed", re);
+		    throw re;
+		}
     }
 
 
@@ -375,8 +393,8 @@ public class DBDaoImpl implements IDBDao {
 		queryBuilder.append(" and tab.fonteCodLocaleProg = :fonteCodLocaleProg ", filter.getFonteCodLocaleProg());
 		queryBuilder.append(" and tab.dimensione = :dimensione ", filter.getDimensione());
 		queryBuilder.append(" and tab.tipologiaLavori = :tipologiaLavori ", filter.getTipologiaLavori());
-		queryBuilder.append(" and tab.numRecords = :numRecords ", filter.getNumRecords());
-		queryBuilder.append(" and tab.ordinaPer = :ordinaPer ", filter.getOrdinaPer());
+		queryBuilder.append(" and rownum <= :numRecords ", filter.getNumRecords());
+//		queryBuilder.append(" order by tab."+filter.getOrdinaPer());
 		
 		queryBuilder.append(" and rownum <= 10");
 
@@ -393,7 +411,7 @@ public class DBDaoImpl implements IDBDao {
 		flex.setString("dimensione", filter.getDimensione());
 		flex.setString("tipologiaLavori", filter.getTipologiaLavori());
 		flex.setString("numRecords", filter.getNumRecords());
-		flex.setString("ordinaPer", filter.getOrdinaPer());
+//		flex.setString("ordinaPer", filter.getOrdinaPer());
 		
 		return flex.list();
     }
@@ -402,7 +420,47 @@ public class DBDaoImpl implements IDBDao {
 		return new FlexibleQuery(sessionFactoryMopWS.getCurrentSession().createQuery(query.toString()));
 	}
     
+//    protected FlexibleQuery createFlexibleQuery(QueryBuilder query, PaginatorUpdater pUpdater) {
+//		if (pUpdater == null) {
+//			return createFlexibleQuery(query);
+//		} else {
+//			Query originalQuery = createQuery(query.toString());
+//			Query countQuery = createQuery(createCountQuery(query.toString()));
+//			return  new FlexibleQuery(originalQuery, countQuery, pUpdater);
+//		}
+//	}
+    
     protected Query getNamedQuery(String queryName) {
 		return sessionFactoryMopWS.getCurrentSession().getNamedQuery(queryName);
+	}
+    
+    protected Query createQuery(String queryString) {
+		return sessionFactoryMopWS.getCurrentSession().createQuery(queryString);
+	}
+    
+    private static String createCountQuery(String query){
+		StringTokenizer stz = new StringTokenizer(query, " \n\t");
+		StringBuffer sb= new StringBuffer();
+		String token = null;
+		boolean found=false;
+		for(;stz.hasMoreTokens();){
+			token=stz.nextToken();
+			if (token.toUpperCase().equals("FROM")){
+				found=true;
+				break;
+			}else {
+				sb.append(token);
+				sb.append(" ");
+			}
+		}
+		if (found){
+			sb= new StringBuffer("select count(*) from ");
+		}
+		for(;stz.hasMoreTokens();){
+			token=stz.nextToken();
+			sb.append(token);
+			sb.append(" ");
+		}
+		return sb.toString();
 	}
 }

@@ -81,10 +81,10 @@ public class UtilityClass implements IUtilityClass,IResourceName,IFilterName{
 							filter.setCig((String)entry.getValue());						
 						break;
 						
-					case SOGGETTO:
-						if(filter.getSoggetto() == null)
-							filter.setSoggetto((String)entry.getValue());	
-						break;
+//					case SOGGETTO:
+//						if(filter.getSoggetto() == null)
+//							filter.setSoggetto((String)entry.getValue());	
+//						break;
 						
 					case FORMAGIURIDICA:
 						if(filter.getFormaGiuridica() == null)
@@ -131,10 +131,10 @@ public class UtilityClass implements IUtilityClass,IResourceName,IFilterName{
 							filter.setNumRecords((String)entry.getValue());	
 						break;
 						
-					case ORDINAPER:
-						if(filter.getOrdinaPer() == null)
-							filter.setOrdinaPer((String)entry.getValue());	
-						break;
+//					case ORDINAPER:
+//						if(filter.getOrdinaPer() == null)
+//							filter.setOrdinaPer((String)entry.getValue());	
+//						break;
 
 					default:
 //						ErrorMessage error = new ErrorMessage("001","Prova");

@@ -52,6 +52,8 @@ public class PagamentoServiceImpl implements IPagamentoService {
     
     public List<PagamentiJson> getPagamentiList(Filter filter) throws EmptyListResorceException {
     	
+    	long count = dBDaoService.getCountValue("from SwPagamenti tab where tab.soggetto = '"+filter.getSoggetto()+"' ");
+    	
     	List<SwPagamenti> pagamentiList = (List<SwPagamenti>) dBDaoService.getResourceList(filter, "SwPagamenti");
 		if(pagamentiList.isEmpty())
 			throw new EmptyListResorceException();				

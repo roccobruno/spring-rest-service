@@ -18,7 +18,7 @@ public class Filter implements Serializable {
 	private String dimensione;
 	private String tipologiaLavori;
 	private String numRecords;
-	private String ordinaPer;
+//	private String ordinaPer;
 	
 	
 	public Filter(){}
@@ -116,11 +116,11 @@ public class Filter implements Serializable {
 		this.numRecords = numRecords;
 	}
 
-	public String getOrdinaPer() {
-		return ordinaPer;
-	}
-
-	public void setOrdinaPer(String ordinaPer) {
-		this.ordinaPer = ordinaPer;
-	}	
+//	public String getOrdinaPer() {
+//		return ordinaPer;
+//	}
+//
+//	public void setOrdinaPer(String ordinaPer) {
+//		this.ordinaPer = ordinaPer;
+//	}	
 }

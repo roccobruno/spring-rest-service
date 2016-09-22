@@ -91,10 +91,10 @@ public class ApiController {
     										 HttpServletResponse response) {
     	
     	Object risorsaList = null;
-    	Object risorsa = null;
     	Filter filter = new Filter();
     	
     	try{
+    		filter.setSoggetto("80017210727");
     		utilityClass.getFilter(allRequestParams,filter);
     		risorsaList = managerDb.getRisorsaList(resourse,filter);       	
     	}catch(Exception e){

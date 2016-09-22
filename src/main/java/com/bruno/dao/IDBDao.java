@@ -30,6 +30,8 @@ import com.bruno.model.Filter;
 public interface IDBDao {
 
     public Object genericquery(String query);
+    
+    public long getCountValue(String queryString);
 
     public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 

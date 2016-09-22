@@ -1,5 +1,6 @@
 package com.bruno.db.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,6 +15,8 @@ import com.bruno.model.Filter;
 import com.bruno.model.SwImpegni;
 import com.bruno.model.json.ImpegniJson;
 import com.bruno.model.json.PagamentiJson;
+import com.bruno.model.json.PagamentiProva;
+import com.bruno.model.json.PagamentoProva;
 import com.bruno.model.wrapper.WrapperToJson;
 import com.bruno.service.IPagamentoService;
 import com.bruno.utils.IResourceName;
@@ -75,13 +78,15 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     @Override
     public Object getRisorsaById(String resourceName, String id) throws Exception {
     	
+    	List<PagamentoProva> pagamentiList = new ArrayList<PagamentoProva>();
+    	
     	try{
     		switch (utilityClass.getResourceNameIntValue(resourceName)) {
     		
 			case PAGAMENTI:
 
 				List<PagamentiJson> pagamentiJson = pagamentoService.getPagamentoById(id);				
-				return pagamentiJson;
+//				return new PagamentiProva(pagamentiList.add(pagamentiJson));
 
 			default:
 				throw new ResourceNotFoundException();				
