@@ -13,5 +13,6 @@ public interface IPagamentoService {
     public List<Pagamento> getPagamento();
     public List<PagamentiJson> getPagamentoById(String id) throws  ResourceByIdNotFound;
     public List<PagamentiJson> getPagamentiList(Filter filter) throws EmptyListResorceException;
-    public PagamentoRisultatiRicerca cercaPagamenti(String cig, Integer pageSize, Integer pageNumber);
+    public RisultatiRicerca<PagamentiJson> getPagamenti(Filter filter) throws EmptyListResorceException;
+    public RisultatiRicerca cercaPagamenti(String cig, Integer pageSize, Integer pageNumber);
 }

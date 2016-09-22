@@ -10,4 +10,5 @@ public interface IDBDaoService {
 	Object genericquery(String query);	
 	long getCountValue(String queryString);
 	Object getResourceList(Filter filter, String resourceName);
+	Long getCount (Filter filters, String resourceName);
 }

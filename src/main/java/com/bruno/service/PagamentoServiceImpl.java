@@ -37,7 +37,7 @@ public class PagamentoServiceImpl implements IPagamentoService {
     }
 
     @Override
-    public PagamentoRisultatiRicerca cercaPagamenti(String cig, Integer pageSize, Integer pageNumber) {
+    public RisultatiRicerca cercaPagamenti(String cig, Integer pageSize, Integer pageNumber) {
         List<Pagamento> pagamentoList = new ArrayList<Pagamento>();
 //        if(cig!=null && cig.equalsIgnoreCase("2322"))
         pagamentoList.add(new Pagamento("id1","desc1","2322"));
@@ -47,7 +47,7 @@ public class PagamentoServiceImpl implements IPagamentoService {
         pagamentoList.add(new Pagamento("id3","desc1","2324"));
 
 
-        return new PagamentoRisultatiRicerca(10000,pagamentoList,pageNumber,pageSize);
+        return new RisultatiRicerca(10000l,pagamentoList,pageNumber,pageSize);
     }
     
     public List<PagamentiJson> getPagamentiList(Filter filter) throws EmptyListResorceException {
@@ -61,7 +61,15 @@ public class PagamentoServiceImpl implements IPagamentoService {
 		
 		return pagamentiJson;
     }
-    
+
+    @Override
+    public RisultatiRicerca<PagamentiJson> getPagamenti(Filter filter) throws EmptyListResorceException {
+
+        Long totalRecord = dBDaoService.getCount(filter, "SwPagamenti");
+
+        return new RisultatiRicerca<PagamentiJson>(totalRecord,getPagamentiList(filter), filter.getNumPagina(), filter.getNumRecords() );
+    }
+
     public List<PagamentiJson> getPagamentoById(String id) throws ResourceByIdNotFound {
     	
     	List<SwPagamenti> pagamentiList = (List<SwPagamenti>) dBDaoService.genericquery("from SwPagamenti tab where tab.sequSwPagamento = "+id+"");

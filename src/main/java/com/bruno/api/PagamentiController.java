@@ -1,7 +1,6 @@
 package com.bruno.api;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,10 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bruno.db.manager.IManagerDb;
 import com.bruno.exception.GestioneException;
 import com.bruno.model.FilePagamentiFiltri;
-import com.bruno.model.SwPagamenti;
-import com.bruno.model.json.PagamentiJson;
 import com.bruno.model.wrapper.WrapperToJson;
-import com.bruno.service.PagamentoRisultatiRicerca;
+import com.bruno.service.RisultatiRicerca;
 import com.bruno.service.IPagamentoService;
 import com.bruno.service.filejob.FileJob;
 import com.bruno.service.filejob.FileJobMessage;
@@ -83,9 +80,9 @@ public class PagamentiController {
 
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
     public @ResponseBody
-    PagamentoRisultatiRicerca cercaPagamenti(@RequestParam(value = "cig", required = false) String cig,
-                                             @RequestParam(value = "pageSize", required = true) Integer pageSize,
-                                             @RequestParam(value = "pageNumber", required = true) Integer pageNumber) {
+    RisultatiRicerca cercaPagamenti(@RequestParam(value = "cig", required = false) String cig,
+                                    @RequestParam(value = "pageSize", required = true) Integer pageSize,
+                                    @RequestParam(value = "pageNumber", required = true) Integer pageNumber) {
         System.out.print("cig -"+cig);
         return  pagamentoService.cercaPagamenti(cig,pageSize,pageNumber);
     }

@@ -33,6 +33,8 @@ public interface IDBDao {
     
     public long getCountValue(String queryString);
 
+    public Long getCount(Filter filter, String resourceName);
+
     public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 
 	Object getResourceList(Filter filter, String resourceName);

@@ -83,6 +83,11 @@ public class DBDaoServiceImpl implements IDBDaoService{
 		return dBDao.getResourceList(filter,resourceName);
 	}
 
+	@Override
+	public Long getCount(Filter filters, String resourceName) {
+		return dBDao.getCount(filters, resourceName);
+	}
+
 	@Transactional
 	public Object genericquery(String query) {
 		return dBDao.genericquery(query);
