@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwSoggetticorrelatianac" table="SW_SOGGETTICORRELATIANAC">
+    <class name="com.bruno.model.ho.SwSoggetticorrelatianac" table="SW_SOGGETTICORRELATIANAC">
         <comment>SOGGETTI CORRELATI CIG - ANAC: Restituisce una lista di record con i dati dei Soggetti Correlati inviati dall&#191;ANAC relativi ai CIG</comment>
         <id name="sequSwSoggetticorrelatianac" type="long">
             <column name="SEQU_SW_SOGGETTICORRELATIANAC" precision="11" scale="0" />

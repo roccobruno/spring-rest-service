@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwPagamentisiopemovimenti" table="SW_PAGAMENTISIOPEMOVIMENTI">
+    <class name="com.bruno.model.ho.SwPagamentisiopemovimenti" table="SW_PAGAMENTISIOPEMOVIMENTI">
         <comment>PAGAMENTI SIOPE MOVIMENTI ENTE ENTRATA E USCITA: Restituisce una lista di pagamenti siope, Informazioni di Movimento di Uscita/Spesa effettuato da un Ente e
         registrato dall'Istituto di credito trasmesso alla Banca d'Italia.Le misure sono aggregate per CUP, Classificazione Gestionale e Data movimento Ente.</comment>
         <id name="sequSwPagamentisiopemov" type="long">

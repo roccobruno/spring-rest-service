@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwAssociazionecupciganac" table="SW_ASSOCIAZIONECUPCIGANAC">
+    <class name="com.bruno.model.ho.SwAssociazionecupciganac" table="SW_ASSOCIAZIONECUPCIGANAC">
         <comment>(ASSOCIAZIONE CUP/CIG ANAC: Restituisce una lista di record con i dati delle Associazioni tra cup e cig inviati dall&#191;ANAC relativi ai CIG</comment>
         <id name="sequSwAssociazionecupciganac" type="long">
             <column name="SEQU_SW_ASSOCIAZIONECUPCIGANAC" precision="11" scale="0" />

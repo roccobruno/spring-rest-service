@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwEconomie" table="SW_ECONOMIE">
+    <class name="com.bruno.model.ho.SwEconomie" table="SW_ECONOMIE">
         <comment>A12 &#191; ECONOMIE - Restituisce una lista di quadro economico relativi ai cup</comment>
         <id name="sequSwEconomie" type="long">
             <column name="SEQU_SW_ECONOMIE" precision="11" scale="0" />

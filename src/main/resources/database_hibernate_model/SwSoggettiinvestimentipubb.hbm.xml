@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwSoggettiinvestimentipubb" table="SW_SOGGETTIINVESTIMENTIPUBB">
+    <class name="com.bruno.model.ho.SwSoggettiinvestimentipubb" table="SW_SOGGETTIINVESTIMENTIPUBB">
         <comment>Restituisce una lista di record con i dati dei &#191;Soggetti investimenti pubblici&#191;</comment>
         <id name="sequSwSoggettiinvestpubb" type="long">
             <column name="SEQU_SW_SOGGETTIINVESTPUBB" precision="11" scale="0" />

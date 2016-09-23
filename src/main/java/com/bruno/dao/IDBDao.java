@@ -25,17 +25,12 @@
 
 package com.bruno.dao;
 
-import com.bruno.model.Filter;
+import com.bruno.model.bo.Filter;
 
 public interface IDBDao {
 
-    public Object genericquery(String query);
-    
-    public long getCountValue(String queryString);
-
-    public Long getCount(Filter filter, String resourceName);
-
-    public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
-
+	Object genericquery(String query);
+    Long getCount(Filter filter, String resourceName);
+    Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 	Object getResourceList(Filter filter, String resourceName);
 }

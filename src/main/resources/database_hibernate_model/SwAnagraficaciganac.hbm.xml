@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwAnagraficaciganac" table="SW_ANAGRAFICACIGANAC">
+    <class name="com.bruno.model.ho.SwAnagraficaciganac" table="SW_ANAGRAFICACIGANAC">
         <comment>ANAGRAFICA DEI CIG - ANAC: Restituisce una lista con i dati delle anagrafiche dei CIG inviate dall&#191;anac</comment>
         <id name="sequSwAnagraficaciganac" type="long">
             <column name="SEQU_SW_ANAGRAFICACIGANAC" precision="11" scale="0" />

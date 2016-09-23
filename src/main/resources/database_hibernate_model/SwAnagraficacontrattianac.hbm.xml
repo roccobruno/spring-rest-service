@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwAnagraficacontrattianac" table="SW_ANAGRAFICACONTRATTIANAC">
+    <class name="com.bruno.model.ho.SwAnagraficacontrattianac" table="SW_ANAGRAFICACONTRATTIANAC">
         <comment>ANAGRAFICA DEI CONTRATTI ANAC: Restituisce una lista di record con i dati delle &#191;Anagrafiche dei Contratti&#191; inviati dall&#191;anac relative ai
         CIG</comment>
         <id name="sequSwAnagcontratti" type="long">

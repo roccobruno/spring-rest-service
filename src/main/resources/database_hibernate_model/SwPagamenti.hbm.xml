@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwPagamenti" table="SW_PAGAMENTI">
+    <class name="com.bruno.model.ho.SwPagamenti" table="SW_PAGAMENTI">
         <comment>A15 &#191; PAGAMENTI: Restituisce una lista di pagamenti relativi ai cup</comment>
         <id name="sequSwPagamento" type="long">
             <column name="SEQU_SW_PAGAMENTO" precision="11" scale="0" />

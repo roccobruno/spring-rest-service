@@ -15,4 +15,5 @@ public interface IFilterName {
 	final static int TIPOLOGIALAVORI = 11;
 	final static int NUMRECORDS = 12;
 	final static int ORDINAPER = 13;
+	final static int NUMPAGINA = 14;
 }

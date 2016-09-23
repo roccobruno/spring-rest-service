@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwPianocosti" table="SW_PIANOCOSTI">
+    <class name="com.bruno.model.ho.SwPianocosti" table="SW_PIANOCOSTI">
         <comment>A16 &#191; PIANO DEI COSTI: Restituisce una lista di &#191;piano dei costi&#191; relativi ai cup</comment>
         <id name="sequSwPianocosti" type="long">
             <column name="SEQU_SW_PIANOCOSTI" precision="11" scale="0" />

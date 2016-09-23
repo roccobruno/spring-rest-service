@@ -1,6 +1,13 @@
 package com.bruno.utils;
 
-import com.bruno.model.Pagamento;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ValidationException;
-import java.io.*;
-import java.util.List;
-
 
 @Component
 public class FileResourceUtil implements ResourceLoaderAware {

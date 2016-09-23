@@ -5,9 +5,6 @@ import com.bruno.utils.MessageJson;
 
 public class FilterNotFoundException extends GeneralException {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private MessageJson messageJson = new MessageJson("E' stato utilizzato un filtro non esistente per la risorsa richiesta!");

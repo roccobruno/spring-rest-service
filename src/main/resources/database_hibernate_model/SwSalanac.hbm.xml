@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwSalanac" table="SW_SALANAC">
+    <class name="com.bruno.model.ho.SwSalanac" table="SW_SALANAC">
         <comment>STATO AVANZAMENTO LAVORI - ANAC - Restituisce una lista di record con i dati degli Stato avanzamento lavori inviati dall'ANAC relativi ai CIG</comment>
         <id name="sequSwSalanac" type="long">
             <column name="SEQU_SW_SALANAC" precision="11" scale="0" />

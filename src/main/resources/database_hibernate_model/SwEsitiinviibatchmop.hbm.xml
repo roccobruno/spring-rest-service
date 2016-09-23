@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwEsitiinviibatchmop" table="SW_ESITIINVIIBATCHMOP">
+    <class name="com.bruno.model.ho.SwEsitiinviibatchmop" table="SW_ESITIINVIIBATCHMOP">
         <comment>Restituisce una lista di record con i dati relativi agli esiti degli invii dei dati di monitoraggio tramite Batch Mop</comment>
         <id name="sequSwEsitiinviibatchmop" type="long">
             <column name="SEQU_SW_ESITIINVIIBATCHMOP" precision="11" scale="0" />

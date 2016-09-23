@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwIterprocaggiudic" table="SW_ITERPROCAGGIUDIC">
+    <class name="com.bruno.model.ho.SwIterprocaggiudic" table="SW_ITERPROCAGGIUDIC">
         <comment>A29 &#191; ITER PROCEDURE DI AGGIUDICAZIONE: Restituisce una lista di &#191;iter procedure di aggiudicazione&#191; relative ai cup</comment>
         <id name="sequSwIterprocaggiudic" type="long">
             <column name="SEQU_SW_ITERPROCAGGIUDIC" precision="11" scale="0" />

@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwAnagraficasoggetticorrelati" table="SW_ANAGRAFICASOGGETTICORRELATI">
+    <class name="com.bruno.model.ho.SwAnagraficasoggetticorrelati" table="SW_ANAGRAFICASOGGETTICORRELATI">
         <comment>A26 &#191; ANAGRAFICA SOGGETTI CORRELATI: Restituisce una lista di &#191;anagrafiche dei soggetti correlati&#191; relative ai cup</comment>
         <id name="sequSwAnagraficasoggcorr" type="long">
             <column name="SEQU_SW_ANAGRAFICASOGGCORR" precision="11" scale="0" />

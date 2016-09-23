@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwPagamentisiopeordini" table="SW_PAGAMENTISIOPEORDINI">
+    <class name="com.bruno.model.ho.SwPagamentisiopeordini" table="SW_PAGAMENTISIOPEORDINI">
         <comment>PAGAMENTI SIOPE - ORDINI DI PAGARE: Restituisce una lista di pagamenti siope, Informazioni relative al Pagato con Ordine di Pagare. Le misure sono aggregate per
         CUP, Classificazione Gestionale e Data Pagamento OP.</comment>
         <id name="sequSwPagamentisiopeordini" type="long">

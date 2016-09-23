@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwGaraappaltoanac" table="SW_GARAAPPALTOANAC">
+    <class name="com.bruno.model.ho.SwGaraappaltoanac" table="SW_GARAAPPALTOANAC">
         <comment>GARA D&#191;APPALTO - ANAC: Restituisce una lista di record con i dati delle Gare d&#191;appalto inviati dall&#191;ANAC relativi ai CIG</comment>
         <id name="sequSwGaraappaltoanac" type="long">
             <column name="SEQU_SW_GARAAPPALTOANAC" precision="11" scale="0" />

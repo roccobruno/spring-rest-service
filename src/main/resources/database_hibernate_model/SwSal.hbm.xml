@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwSal" table="SW_SAL">
+    <class name="com.bruno.model.ho.SwSal" table="SW_SAL">
         <comment>A22 &#191; STATO AVANZAMENTO LAVORI: Restituisce una lista di &#191;SAL&#191; relativi ai cup</comment>
         <id name="sequSwSal" type="long">
             <column name="SEQU_SW_SAL" precision="11" scale="0" />

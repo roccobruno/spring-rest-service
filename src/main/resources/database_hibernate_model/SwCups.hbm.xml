@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwCups" table="SW_CUPS">
+    <class name="com.bruno.model.ho.SwCups" table="SW_CUPS">
         <comment>Restituisce una lista di anagrafiche dei cup</comment>
         <id name="sequSwCups" type="long">
             <column name="SEQU_SW_CUPS" precision="11" scale="0" />

@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwRibassiasta" table="SW_RIBASSIASTA">
+    <class name="com.bruno.model.ho.SwRibassiasta" table="SW_RIBASSIASTA">
         <comment>A13 &#191; RIBASSI D&#191;ASTA: Restituisce una lista di &#191;ribassi d&#191;asta&#191; relativi ai cup</comment>
         <id name="sequSwRibassiasta" type="long">
             <column name="SEQU_SW_RIBASSIASTA" precision="11" scale="0" />

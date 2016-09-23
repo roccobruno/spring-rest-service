@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwVarianticontrattoanac" table="SW_VARIANTICONTRATTOANAC">
+    <class name="com.bruno.model.ho.SwVarianticontrattoanac" table="SW_VARIANTICONTRATTOANAC">
         <comment>VARIANTI CONTRATTO - ANAC: Restituisce una lista di record con i dati delle varianti dei contratti inviati dall&#191;anac relative ai cig</comment>
         <id name="sequSwVarianticontrattoanac" type="long">
             <column name="SEQU_SW_VARIANTICONTRATTOANAC" precision="11" scale="0" />

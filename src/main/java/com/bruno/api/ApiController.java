@@ -3,8 +3,6 @@ package com.bruno.api;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
-
-import com.bruno.exception.GeneralException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.bruno.db.manager.IManagerDb;
+import com.bruno.exception.GeneralException;
 import com.bruno.exception.GestioneException;
-import com.bruno.model.FilePagamentiFiltri;
-import com.bruno.service.RisultatiRicerca;
-import com.bruno.service.IPagamentoService;
+import com.bruno.model.bo.FilePagamentiFiltri;
 import com.bruno.service.filejob.FileJob;
 import com.bruno.service.filejob.FileJobMessage;
 import com.bruno.service.filejob.FileJobPagamentiConsumer;
@@ -35,9 +32,6 @@ import com.bruno.utils.UtilityClass;
 public class ApiController {
 
     private static final Logger log = LoggerFactory.getLogger(ApiController.class);
-
-    @Autowired
-    private IPagamentoService pagamentoService;
 
     @Value("${cartella.files.pagamenti}")
     private String fileLocation;
@@ -63,74 +57,15 @@ public class ApiController {
     @Autowired
     UtilityClass utilityClass;
 
-
-//    @RequestMapping(method = RequestMethod.GET)
-//    public @ResponseBody
-//    List<Pagamento> getPagamenti() {
-//       return  pagamentoService.getPagamento();
-//    }
-
-//    @RequestMapping(method = RequestMethod.GET)
-//    public @ResponseBody List<PagamentoJson> getPagamenti() {
-//    	
-//    	List<SwPagamenti> pagamentiList = null;
-//    	List<PagamentoJson> pagamentiJsonList = null;
-//    	
-//    	try{
-//    		pagamentiList = managerDb.getPagamenti();        	
-//        	pagamentiJsonList = wrapperToJson.pagamenti(pagamentiList);
-//    	}catch(Exception e){
-//    		gestioneException.gestisciException(e);
-//    	}    	
-//    	return pagamentiJsonList;
-//    }
-
-    
-//    @RequestMapping(value = "/{resourse}" ,method = RequestMethod.GET,produces = "application/json")
-//    public @ResponseBody Object getResources(@PathVariable("resourse") String resourse,
-//    										 @RequestParam Map<String,String> allRequestParams,
-//    										 HttpServletResponse response) {
-//    	
-//    	Object risorsaList = null;
-//    	Filter filter = new Filter();
-//    	
-//    	try{
-//    		filter.setSoggetto("80017210727");
-//    		utilityClass.getFilter(allRequestParams,filter);
-//    		risorsaList = managerDb.getRisorsaList(resourse,filter);       	
-//    	}catch(Exception e){
-//    		log.error(e.getMessage());
-//    		return gestioneException.gestisciException(e,response);
-//    	}    	
-//    	return risorsaList;
-//    }
-//    
-//    @RequestMapping(value = "/{resourse}/{id}" ,method = RequestMethod.GET)
-//    public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
-//    										@PathVariable("id") String id,
-//    										HttpServletResponse response) {
-//    	
-//    	Object risorsa = null;
-//    	
-//    	try{
-//    		risorsa = managerDb.getRisorsaById(resourse,id);
-//    	}catch(Exception e){
-//    		log.error(e.getMessage());
-//    		return gestioneException.gestisciException(e,response);
-//    	}    	
-//    	return risorsa;
-    	
-
-    @RequestMapping(value = "/{resourse}", method = RequestMethod.GET, produces = "application/json")
-    public
-    @ResponseBody
-    Object getResources(@PathVariable("resourse") String resourse,
-                        @RequestParam Map<String, String> allRequestParams,
-                        HttpServletResponse response) {
+    @RequestMapping(value = "/{resource}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody Object getResources(@PathVariable("resource") String resourceName,
+    										 @RequestParam Map<String, String> allRequestParams,
+    										 HttpServletResponse response) {
 
         Object risorsaList = null;
+        
         try {
-            risorsaList = managerDb.getRisorsaList(resourse, utilityClass.checkAndCreateFilter(allRequestParams));
+            risorsaList = managerDb.getRisorsaList(resourceName, utilityClass.checkAndCreateFilter(allRequestParams));
         } catch (GeneralException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
@@ -139,12 +74,10 @@ public class ApiController {
 
     }
 
-    @RequestMapping(value = "/{resourse}/{id}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    Object getResource(@PathVariable("resourse") String resourse,
-                       @PathVariable("id") String id,
-                       HttpServletResponse response) {
+    @RequestMapping(value = "/{resourse}/{id}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
+    										@PathVariable("id") String id,
+    										HttpServletResponse response) {
 
         Object risorsa = null;
 
@@ -157,27 +90,13 @@ public class ApiController {
         return risorsa;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    RisultatiRicerca cercaPagamenti(@RequestParam(value = "cig", required = false) String cig,
-                                    @RequestParam(value = "pageSize", required = true) Integer pageSize,
-                                    @RequestParam(value = "pageNumber", required = true) Integer pageNumber) {
-        System.out.print("cig -" + cig);
-        return pagamentoService.cercaPagamenti(cig, pageSize, pageNumber);
-    }
-
-
     @RequestMapping(value = "/file/job/{id}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    FileJob getFileJob(@PathVariable("id") String fileId) {
+    public @ResponseBody FileJob getFileJob(@PathVariable("id") String fileId) {
         return fileJobService.getById(fileId);
     }
 
     @RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]>
-    getFile(HttpServletResponse resp, @PathVariable("id") String fileId) throws IOException {
+    public ResponseEntity<byte[]> getFile(HttpServletResponse resp, @PathVariable("id") String fileId) throws IOException {
 
         String directoryurl = fileLocation
                 + "/";
@@ -189,9 +108,7 @@ public class ApiController {
 
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    FileJob generateFile(@RequestBody FilePagamentiFiltri paramsRicercaPagamenti) {
+    public @ResponseBody FileJob generateFile(@RequestBody FilePagamentiFiltri paramsRicercaPagamenti) {
 
         FileJob fileJob = fileJobService.creteJob(paramsRicercaPagamenti);
         FileJobMessage message = new FileJobMessage(fileJob);

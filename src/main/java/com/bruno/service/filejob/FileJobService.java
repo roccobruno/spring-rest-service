@@ -1,8 +1,9 @@
 package com.bruno.service.filejob;
 
-import com.bruno.model.FilePagamentiFiltri;
-import com.bruno.model.Pagamento;
 import org.springframework.stereotype.Service;
+
+import com.bruno.model.bo.FilePagamentiFiltri;
+import com.bruno.model.bo.Pagamento;
 
 import java.util.UUID;
 

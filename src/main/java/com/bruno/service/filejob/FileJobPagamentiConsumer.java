@@ -1,6 +1,9 @@
 package com.bruno.service.filejob;
 
-import com.bruno.model.Pagamento;
+import com.bruno.exception.EmptyListResorceException;
+import com.bruno.model.bo.Filter;
+import com.bruno.model.bo.PagamentiBo;
+import com.bruno.model.bo.Pagamento;
 import com.bruno.service.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
 import org.slf4j.LoggerFactory;
@@ -11,9 +14,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by roccobruno on 31/07/2016.
- */
 @Component
 public class FileJobPagamentiConsumer {
 
@@ -41,7 +41,13 @@ public class FileJobPagamentiConsumer {
                 logger.info("receiving message " + message);
                 //fai la query in base a cio' che e' contenuto nel message
                 //leggi i record a gruppi di 1000 or 10000
-                List<Pagamento> pagamenti = pagamentoService.getPagamento();
+                List<PagamentiBo> pagamenti = null;
+				try {
+					pagamenti = pagamentoService.getPagamentiList(new Filter());
+				} catch (EmptyListResorceException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 List<String> fileContent = new ArrayList<String>();
                 for (int i = 0; i < pagamenti.size(); i++) {
                     fileContent.add(pagamenti.get(i).toFileLine());

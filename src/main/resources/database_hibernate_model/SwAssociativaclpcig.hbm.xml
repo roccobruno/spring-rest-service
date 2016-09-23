@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwAssociativaclpcig" table="SW_ASSOCIATIVACLPCIG">
+    <class name="com.bruno.model.ho.SwAssociativaclpcig" table="SW_ASSOCIATIVACLPCIG">
         <comment>A30 - ASSOCIATIVA CODICE LOCALE PROGETTO/CIG: Restituisce una lista di associazioni clp/cig relative ai cup</comment>
         <id name="sequSwAssociativaclpcig" type="long">
             <column name="SEQU_SW_ASSOCIATIVACLPCIG" precision="11" scale="0" />

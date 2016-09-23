@@ -1,14 +1,11 @@
 package com.bruno.dao.service;
 
-import java.util.List;
-
-import com.bruno.model.Filter;
+import com.bruno.model.bo.Filter;
 
 public interface IDBDaoService {
 	
 	Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 	Object genericquery(String query);	
-	long getCountValue(String queryString);
 	Object getResourceList(Filter filter, String resourceName);
 	Long getCount (Filter filters, String resourceName);
 }

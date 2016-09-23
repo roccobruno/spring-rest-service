@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwCollaudogaraanac" table="SW_COLLAUDOGARAANAC">
+    <class name="com.bruno.model.ho.SwCollaudogaraanac" table="SW_COLLAUDOGARAANAC">
         <comment>COLLAUDO CONTRATTO DI GARA ANAC: Restituisce una lista di record con i dati dei &#191;collaudi di gara&#191; inviati dall&#191;anac relativi ai cig</comment>
         <id name="sequSwCollaudogaraanac" type="long">
             <column name="SEQU_SW_COLLAUDOGARAANAC" precision="11" scale="0" />

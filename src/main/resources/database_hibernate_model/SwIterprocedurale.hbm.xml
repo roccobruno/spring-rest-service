@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 6, 2016 2:40:21 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.bruno.model.SwIterprocedurale" table="SW_ITERPROCEDURALE">
+    <class name="com.bruno.model.ho.SwIterprocedurale" table="SW_ITERPROCEDURALE">
         <comment>A21 ITER PROCEDURALE DEL PROGETTO: Restituisce una lista di iter procedurali relativi ai cup</comment>
         <id name="sequSwIterprocedurale" type="long">
             <column name="SEQU_SW_ITERPROCEDURALE" precision="11" scale="0" />
