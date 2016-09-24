@@ -6,8 +6,7 @@
     <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/spring/spring-context.xml
-        			 /WEB-INF/spring/spring-database.xml</param-value>
+        <param-value>/WEB-INF/spring/spring-database.xml</param-value>
     </context-param>
 
     <!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -40,11 +39,6 @@
     <servlet-mapping>
         <servlet-name>appServlet</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/swagger-ui.html</url-pattern>
     </servlet-mapping>
     
     <!-- Disables Servlet Container welcome file handling. Needed for compatibility with Servlet 3.0 and Tomcat 7.0 -->
