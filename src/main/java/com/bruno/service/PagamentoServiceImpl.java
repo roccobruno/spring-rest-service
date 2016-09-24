@@ -38,11 +38,11 @@ public class PagamentoServiceImpl implements IPagamentoService {
     }
 
     @Override
-    public RisultatiRicerca<PagamentiBo> getPagamenti(String resourceName, Filter filter) throws EmptyListResorceException {
+    public RisultatiRicerca<PagamentiBo> getPagamenti(Filter filter,String baseUrl) throws EmptyListResorceException {
 
         Long totalRecord = dBDaoService.getCount(filter, "SwPagamenti");
 
-        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter),new Paging(resourceName,filter.getNumPagina(), filter.getNumRecords(), totalRecord,filter.getFilterPaginator()));
+        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter),new Paging(filter.getNumPagina(), filter.getNumRecords(), totalRecord,filter.getFilterPaginator(),baseUrl));
     }
 
     public List<PagamentiBo> getPagamentoById(String id) throws ResourceByIdNotFound {
@@ -53,5 +53,12 @@ public class PagamentoServiceImpl implements IPagamentoService {
 		List<PagamentiBo> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
 		
 		return pagamentiJson;
+    }
+    
+    @Override
+    public RisultatiRicerca<PagamentiBo> getPagamento(String id,String baseUrl) throws EmptyListResorceException, ResourceByIdNotFound {
+
+    	Long totalRecord = new Long("1");
+        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentoById(id),new Paging(1, 1, totalRecord,null,baseUrl));
     }
 }

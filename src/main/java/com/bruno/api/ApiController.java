@@ -2,6 +2,8 @@ package com.bruno.api;
 
 import java.io.IOException;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,7 @@ public class ApiController {
 
     private static final Logger log = LoggerFactory.getLogger(ApiController.class);
 
-    @Value("${cartella.files.pagamenti}")
+    @Value("${mopWs.cartella.files.pagamenti}")
     private String fileLocation;
 
     @Autowired
@@ -58,14 +60,15 @@ public class ApiController {
     UtilityClass utilityClass;
 
     @RequestMapping(value = "/{resource}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody Object getResources(@PathVariable("resource") String resourceName,
+    public @ResponseBody Object getResources(@PathVariable("resource") String resourceName,    				   										 
     										 @RequestParam Map<String, String> allRequestParams,
-    										 HttpServletResponse response) {
+    										 HttpServletResponse response,
+    										 HttpServletRequest request) {
 
         Object risorsaList = null;
         
-        try {
-            risorsaList = managerDb.getRisorsaList(resourceName, utilityClass.checkAndCreateFilter(allRequestParams));
+        try {        	
+            risorsaList = managerDb.getRisorsaList(resourceName,utilityClass.checkAndCreateFilter(allRequestParams),utilityClass.getBaseUrl(request));
         } catch (GeneralException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
@@ -75,14 +78,16 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/{resourse}/{id}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody Object getResource(@PathVariable("resourse") String resourse,
-    										@PathVariable("id") String id,
-    										HttpServletResponse response) {
+    public @ResponseBody Object getResource(@PathVariable("resourse") String resourceName,
+    										@PathVariable("id") String id,    	
+    										@RequestParam(value="settore",required=false) String settore,
+    										HttpServletResponse response,
+    										HttpServletRequest request) {
 
         Object risorsa = null;
 
         try {
-            risorsa = managerDb.getRisorsaById(resourse, id);
+            risorsa = managerDb.getRisorsaById(resourceName,id,utilityClass.getBaseUrl(request));
         } catch (GeneralException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);

@@ -2,6 +2,11 @@ package com.bruno.model.bo;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Filter implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -18,11 +23,16 @@ public class Filter implements Serializable {
 	private String dimensione;
 	private String tipologiaLavori;
 	private Integer numRecords;
-	private Integer numPagina = 1;
-	private Integer numRecordsForPage  = 10;
+	private Integer numPagina = 1;	
+	private Integer numRecordsForPage = 10;
 	private String filterPaginator;
 
 	public Filter(){}
+	
+	
+	public Filter(@Value("${mopWS.numRecordsForPage}")Integer numRecordsForPage){
+		this.numRecordsForPage = numRecordsForPage;
+	}
 	
 	public String getFilterPaginator() {
 		StringBuilder builder = new StringBuilder(this.cup != null ? "&cup="+this.cup : "")

@@ -1,6 +1,5 @@
 package com.bruno.db.manager;
 
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     IPagamentoService pagamentoService;
 
     @Override
-    public RisultatiRicerca getRisorsaList(String resourceName, Filter filter) throws GeneralException {
+    public RisultatiRicerca getRisorsaList(String resourceName, Filter filter,String baseUrl) throws GeneralException {
     	log.info("Start method ManagerDbImpl.getRisorsaList!");
 
         try {
@@ -45,8 +44,8 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
 
                 case PAGAMENTI:
 
-                    RisultatiRicerca<PagamentiBo> pagamentiJson = pagamentoService.getPagamenti(resourceName,filter);
-                    return pagamentiJson;
+                    RisultatiRicerca<PagamentiBo> pagamentiBo = pagamentoService.getPagamenti(filter,baseUrl);
+                    return pagamentiBo;
 
                 default:
                     throw new ResourceNotFoundException();
@@ -64,7 +63,7 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     }
 
     @Override
-    public Object getRisorsaById(String resourceName, String id) throws GeneralException {
+    public Object getRisorsaById(String resourceName, String id,String baseUrl) throws GeneralException {
     	log.info("Start method ManagerDbImpl.getRisorsaById!");
 
         try {
@@ -72,8 +71,8 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
 
                 case PAGAMENTI:
 
-                    List<PagamentiBo> pagamentiJson = pagamentoService.getPagamentoById(id);
-                    return pagamentiJson;
+                	 RisultatiRicerca<PagamentiBo> pagamentiBo = pagamentoService.getPagamento(id,baseUrl);
+                    return pagamentiBo;
 
                 default:
                     throw new ResourceNotFoundException();

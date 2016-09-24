@@ -2,20 +2,21 @@ package com.bruno.model.bo;
 
 public class Paging {
 	
-	private final String resourceName;
+	private String resourceName;
 	private final Integer selectedPage;
     private final Integer pageSize;
     private final Long total;    
 	private String previousPageLink;
 	private String nextPageLink;
 	private String filterPaginator;
+	private String baseUrl;
 	
-	public Paging(String resourceName,Integer selectedPage,Integer pageSize, Long total,String filterPaginator){
-		this.resourceName = resourceName;
+	public Paging(Integer selectedPage,Integer pageSize, Long total,String filterPaginator,String baseUrl){
 		this.total = total;
         this.selectedPage = selectedPage;
         this.pageSize = pageSize;
         this.filterPaginator = filterPaginator;
+        this.baseUrl = baseUrl;
 	}	
 
 	public String getNextPageLink() {
@@ -43,7 +44,7 @@ public class Paging {
 
 	    private String buildPageLink(int i) {
 	        //TODO aggiungi gli altri filtri
-	        StringBuilder builder = new StringBuilder("http://localhost:7001/spring-rest-service/api/v1.0/").append(resourceName).append("?pageNumber=").append(i).append(filterPaginator != null ? filterPaginator : "");
+	        StringBuilder builder = new StringBuilder(baseUrl).append("?pageNumber=").append(i).append(filterPaginator != null ? filterPaginator : "");
 	        return builder.toString();
 	    }
 

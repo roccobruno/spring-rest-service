@@ -21,7 +21,7 @@ public class FileJobPagamentiConsumer {
             .getLogger(FileJobPagamentiConsumer.class);
     private boolean init = false;
 
-    @Value("${cartella.files.pagamenti}")
+    @Value("${mopWs.cartella.files.pagamenti}")
     private String fileLocation;
 
     @Autowired

@@ -3,9 +3,8 @@ package com.bruno.utils;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
+import javax.servlet.http.HttpServletRequest;
 import javassist.expr.NewArray;
-
 import com.bruno.exception.GeneralException;
 import com.bruno.exception.InternalServerErrorException;
 import org.slf4j.Logger;
@@ -23,6 +22,14 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 
     @Autowired
     IUtilityClass utilityClass;
+    
+    public String getBaseUrl(HttpServletRequest request) {
+        String typeConnection = false ? "https://" : "http://";
+
+        StringBuilder builder = new StringBuilder(typeConnection);
+        builder.append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getRequestURI());
+        return builder.toString();
+    }
 
     public int getResourceNameIntValue(String resourceName) {
 

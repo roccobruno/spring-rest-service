@@ -1,8 +1,11 @@
 package com.bruno.utils;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface IUtilityClass {
 	
-	public int getResourceNameIntValue(String resourceName);
-	public int getFilterNameIntValue(String resourceName);
+	int getResourceNameIntValue(String resourceName);
+	int getFilterNameIntValue(String resourceName);
+	String getBaseUrl(HttpServletRequest request);
 
 }
