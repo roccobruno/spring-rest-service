@@ -79,8 +79,7 @@ public class ApiController {
 
     @RequestMapping(value = "/{resourse}/{id}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Object getResource(@PathVariable("resourse") String resourceName,
-    										@PathVariable("id") String id,    	
-    										@RequestParam(value="settore",required=false) String settore,
+    										@PathVariable("id") String id,    	    										
     										HttpServletResponse response,
     										HttpServletRequest request) {
 
