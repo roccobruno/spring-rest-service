@@ -10,6 +10,7 @@
 
     <!--<beans:import resource="classpath*:test-hibernate.xml" />-->
 
+    <default-servlet-handler/>
     <annotation-driven />
     <context:property-placeholder location="classpath*:config.properties" />
     <context:component-scan base-package="com.bruno" />
