@@ -13,7 +13,7 @@ import com.bruno.exception.ResourceNotFoundException;
 import com.bruno.model.bo.Filter;
 import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.bo.RisultatiRicerca;
-import com.bruno.model.wrapper.WrapperToJson;
+import com.bruno.model.wrapper.WrapperFromHoToBoImpl;
 import com.bruno.service.IPagamentoService;
 import com.bruno.utils.IResourceName;
 import com.bruno.utils.IUtilityClass;
@@ -27,7 +27,7 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     IDBDaoService iDBDaoService;
 
     @Autowired
-    WrapperToJson wrapperToJson;
+    WrapperFromHoToBoImpl wrapperToJson;
 
     @Autowired
     IUtilityClass utilityClass;

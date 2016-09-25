@@ -26,6 +26,7 @@ public class Filter implements Serializable {
 	private Integer numPagina = 1;	
 	private Integer numRecordsForPage = 10;
 	private String filterPaginator;
+	private Integer totalRecords;
 
 	public Filter(){}
 	
@@ -49,6 +50,16 @@ public class Filter implements Serializable {
 										  .append(this.numRecords != null ? "&numRecords="+this.numRecords : "");
         return builder.toString();
 	}
+
+	public Integer getTotalRecords() {
+		return totalRecords;
+	}
+
+
+	public void setTotalRecords(Integer totalRecords) {
+		this.totalRecords = totalRecords;
+	}
+
 
 	public void setFilterPaginator(String filterPaginator) {
 		this.filterPaginator = filterPaginator;

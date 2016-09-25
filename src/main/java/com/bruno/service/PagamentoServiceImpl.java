@@ -13,7 +13,8 @@ import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.bo.Paging;
 import com.bruno.model.bo.RisultatiRicerca;
 import com.bruno.model.ho.SwPagamenti;
-import com.bruno.model.wrapper.WrapperToJson;
+import com.bruno.model.wrapper.IWrapperFromHoToBo;
+import com.bruno.model.wrapper.WrapperFromHoToBoImpl;
 
 @Service
 public class PagamentoServiceImpl implements IPagamentoService {
@@ -24,41 +25,51 @@ public class PagamentoServiceImpl implements IPagamentoService {
 	IDBDaoService dBDaoService;
 	
 	@Autowired
-	WrapperToJson wrapperToJson;	
+	IWrapperFromHoToBo wrapper;	
 	
     @Override
-    public List<PagamentiBo> getPagamentiList(Filter filter) throws EmptyListResorceException {
+    public List<PagamentiBo> getPagamentiList(Filter filter,String baseUrl) throws EmptyListResorceException {
+    	
+    	List<PagamentiBo> pagamentiBo = null;
     	
     	List<SwPagamenti> pagamentiList = (List<SwPagamenti>) dBDaoService.getResourceList(filter, "SwPagamenti");
-		if(pagamentiList.isEmpty())
-			throw new EmptyListResorceException();				
-		List<PagamentiBo> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
+		if(!pagamentiList.isEmpty())
+			pagamentiBo = wrapper.getPagamentiBo(pagamentiList,baseUrl,false);
 		
-		return pagamentiJson;
+		return pagamentiBo;
     }
 
     @Override
     public RisultatiRicerca<PagamentiBo> getPagamenti(Filter filter,String baseUrl) throws EmptyListResorceException {
 
-        Long totalRecord = dBDaoService.getCount(filter, "SwPagamenti");
+    	Long totalRecord = null;
+    	if(filter.getTotalRecords() == null)
+    		totalRecord = dBDaoService.getCount(filter, "SwPagamenti");
+    	else totalRecord = new Long(filter.getTotalRecords());
 
-        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter),new Paging(filter.getNumPagina(), filter.getNumRecords(), totalRecord,filter.getFilterPaginator(),baseUrl));
+        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter,baseUrl),new Paging(filter.getNumPagina(), filter.getNumRecords(), totalRecord,filter.getFilterPaginator(),baseUrl));
     }
 
-    public List<PagamentiBo> getPagamentoById(String id) throws ResourceByIdNotFound {
+    public List<PagamentiBo> getPagamentoById(String id,String baseUrl) throws ResourceByIdNotFound {
+    	
+    	List<PagamentiBo> pagamentiBo = null;
     	
     	List<SwPagamenti> pagamentiList = (List<SwPagamenti>) dBDaoService.genericquery("from SwPagamenti tab where tab.sequSwPagamento = "+id+"");
-		if(pagamentiList.isEmpty())
-			throw new ResourceByIdNotFound();				
-		List<PagamentiBo> pagamentiJson = wrapperToJson.pagamenti(pagamentiList);
+		if(!pagamentiList.isEmpty())
+			pagamentiBo = wrapper.getPagamentiBo(pagamentiList, baseUrl,true);
 		
-		return pagamentiJson;
+		return pagamentiBo;
     }
     
     @Override
     public RisultatiRicerca<PagamentiBo> getPagamento(String id,String baseUrl) throws EmptyListResorceException, ResourceByIdNotFound {
 
-    	Long totalRecord = new Long("1");
-        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentoById(id),new Paging(1, 1, totalRecord,null,baseUrl));
+    	Long totalRecord = null;
+    	List<PagamentiBo> pagamentiBo = getPagamentoById(id,baseUrl);
+    	if(pagamentiBo == null)
+    		totalRecord = new Long("0");
+    	else totalRecord = new Long("1");
+    	
+        return new RisultatiRicerca<PagamentiBo>(totalRecord,pagamentiBo,new Paging(1, 1, totalRecord,null,baseUrl));
     }
 }

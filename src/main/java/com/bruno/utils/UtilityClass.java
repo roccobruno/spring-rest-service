@@ -70,6 +70,8 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
             return ORDINAPER;
         if (filterName.equalsIgnoreCase("pageNumber"))
             return NUMPAGINA;
+        if (filterName.equalsIgnoreCase("totalRecords"))
+            return TOTALRECORDS;
         return 0;
     }
 
@@ -137,6 +139,10 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
                             
                         case NUMPAGINA:
                         	filter.setNumPagina(Integer.parseInt((String) entry.getValue()));
+                            break;
+                            
+                        case TOTALRECORDS:
+                        	filter.setTotalRecords(Integer.parseInt((String) entry.getValue()));
                             break;
 
                         default:

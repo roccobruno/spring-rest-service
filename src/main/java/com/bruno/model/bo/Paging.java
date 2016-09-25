@@ -44,7 +44,7 @@ public class Paging {
 
 	    private String buildPageLink(int i) {
 	        //TODO aggiungi gli altri filtri
-	        StringBuilder builder = new StringBuilder(baseUrl).append("?pageNumber=").append(i).append(filterPaginator != null ? filterPaginator : "");
+	        StringBuilder builder = new StringBuilder(baseUrl).append("?totalRecords=").append(total).append("&pageNumber=").append(i).append(filterPaginator != null ? filterPaginator : "");
 	        return builder.toString();
 	    }
 

@@ -43,7 +43,7 @@ public class FileJobPagamentiConsumer {
                 //leggi i record a gruppi di 1000 or 10000
                 List<PagamentiBo> pagamenti = null;
 				try {
-					pagamenti = pagamentoService.getPagamentiList(new Filter());
+					pagamenti = pagamentoService.getPagamentiList(new Filter(),"");
 				} catch (EmptyListResorceException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

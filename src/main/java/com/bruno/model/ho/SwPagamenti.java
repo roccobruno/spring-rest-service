@@ -328,23 +328,5 @@ public class SwPagamenti implements java.io.Serializable {
 
 	public void setSequSwPagamento(long sequSwPagamento) {
 		this.sequSwPagamento = sequSwPagamento;
-	}
-	
-	public PagamentiBo wrapperToJson(){
-		
-		PagamentiBo PJson = new PagamentiBo();
-		PJson.setCodLocProg(this.codLocProg);
-		PJson.setCodicePagamento(this.codicePagamento);
-		PJson.setDataPagamento(this.dataPagamento);
-		PJson.setImporto(this.importo);
-		PJson.setTipologiaPagamento(this.tipologiaPagamento);
-		PJson.setCodiceCausale(this.codiceCausale);
-		PJson.setDescrizioneCausale(this.descrizioneCausale);
-		PJson.setCodiceGestionale(this.codiceGestionale);
-		PJson.setDescCodiceGestionale(this.descCodiceGestionale);
-		PJson.setNote(this.note);
-		PJson.getMetadata().getLinks().setSelf("http://localhost:7001/spring-rest-service/api/v1.0/pagamenti/"+this.sequSwPagamento);
-		return PJson;
-	}
-	
+	}	
 }
