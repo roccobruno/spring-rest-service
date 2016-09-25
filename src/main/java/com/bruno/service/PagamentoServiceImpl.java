@@ -14,7 +14,6 @@ import com.bruno.model.bo.Paging;
 import com.bruno.model.bo.RisultatiRicerca;
 import com.bruno.model.ho.SwPagamenti;
 import com.bruno.model.wrapper.IWrapperFromHoToBo;
-import com.bruno.model.wrapper.WrapperFromHoToBoImpl;
 
 @Service
 public class PagamentoServiceImpl implements IPagamentoService {
