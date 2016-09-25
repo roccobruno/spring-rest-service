@@ -29,30 +29,13 @@
 				<property name="suffix" value=".jsp" />
 				<property name="order" value="1" />
 			</bean>
-	 
-	 
-	 <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		 <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
-		 <property name="locations">
-			 <list>
-			 	<value>classpath:swagger.properties</value>
-			 </list>
-		 </property>
-	</bean>
-	-->
+	 -->	
 	
 	<context:component-scan base-package="com.bruno" />
 	<mvc:annotation-driven/>
 	<context:annotation-config />
 	
 	<mvc:default-servlet-handler/>
-	
-	<!-- To enable @RequestMapping process on type level and method level -->
- 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
-	
-	<!-- creates a controller at /api-docs from this uri, which serves swagger's raw documentation in JSON format. -->
-    <bean id="documentationConfig" class="com.mangofactory.swagger.configuration.DocumentationConfig"></bean>
- 	
 	
 	<context:property-placeholder location="classpath*:config.properties" />
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
