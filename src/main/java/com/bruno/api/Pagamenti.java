@@ -126,7 +126,6 @@ public class Pagamenti implements IDescRequestParam{
             @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Internal server problems",response = MessageJson.class)
     })
     @ApiOperation(value = "Pagamenti", notes = "La seguente api consente lo scarico dei dati del pagamento cha ha come chiave l'id passato come parametro!")
-    @ApiIgnore
     @RequestMapping(value = "/pagamenti/{id}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Object getPagamento(@ApiParam(value = ID) @PathVariable("id") String id,HttpServletResponse response,	HttpServletRequest request) {
 
