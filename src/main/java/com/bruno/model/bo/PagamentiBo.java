@@ -5,9 +5,8 @@ import java.util.Date;
 
 import com.bruno.model.bo.Metadata;
 
-public class PagamentiBo {
+public class PagamentiBo extends BaseBo {
 	
-	private String codLocProg;
 	private Date dataPagamento;
 	private String codicePagamento;
 	private String tipologiaPagamento;
@@ -17,104 +16,99 @@ public class PagamentiBo {
 	private String codiceGestionale;
 	private String descCodiceGestionale;
 	private String note;	
-	private Metadata metadata = new Metadata();
 		
 	public PagamentiBo(){}
-	
-	
-	public String getCodLocProg() {
-		return codLocProg;
-	}
-
-
-	public void setCodLocProg(String codLocProg) {
-		this.codLocProg = codLocProg;
-	}
-
-
-	public Metadata getMetadata() {
-		return metadata;
-	}
-
-
-	public void setMetadata(Metadata metadata) {
-		this.metadata = metadata;
-	}
-
 
 	public Date getDataPagamento() {
 		return dataPagamento;
 	}
 
+
 	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
+
 
 	public String getCodicePagamento() {
 		return codicePagamento;
 	}
 
+
 	public void setCodicePagamento(String codicePagamento) {
 		this.codicePagamento = codicePagamento;
 	}
+
 
 	public String getTipologiaPagamento() {
 		return tipologiaPagamento;
 	}
 
+
 	public void setTipologiaPagamento(String tipologiaPagamento) {
 		this.tipologiaPagamento = tipologiaPagamento;
 	}
+
 
 	public BigDecimal getImporto() {
 		return importo;
 	}
 
+
 	public void setImporto(BigDecimal importo) {
 		this.importo = importo;
 	}
+
 
 	public String getCodiceCausale() {
 		return codiceCausale;
 	}
 
+
 	public void setCodiceCausale(String codiceCausale) {
 		this.codiceCausale = codiceCausale;
 	}
+
 
 	public String getDescrizioneCausale() {
 		return descrizioneCausale;
 	}
 
+
 	public void setDescrizioneCausale(String descrizioneCausale) {
 		this.descrizioneCausale = descrizioneCausale;
 	}
+
 
 	public String getCodiceGestionale() {
 		return codiceGestionale;
 	}
 
+
 	public void setCodiceGestionale(String codiceGestionale) {
 		this.codiceGestionale = codiceGestionale;
 	}
+
 
 	public String getDescCodiceGestionale() {
 		return descCodiceGestionale;
 	}
 
+
 	public void setDescCodiceGestionale(String descCodiceGestionale) {
 		this.descCodiceGestionale = descCodiceGestionale;
 	}
+
 
 	public String getNote() {
 		return note;
 	}
 
+
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
-	 public String toFileLine() {
+
+	public String toFileLine() {
 	        StringBuilder builder = new StringBuilder(codicePagamento).append(",").append(tipologiaPagamento).append(",").append(importo);
 	        return builder.toString();
 	    }

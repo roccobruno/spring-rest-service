@@ -15,26 +15,24 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
     public static final String AUTHENTICATION_HEADER = "Authorization";
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain filter) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response,FilterChain filter) throws IOException, ServletException {
+    	
         if (request instanceof HttpServletRequest) {
+        	
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            String authCredentials = httpServletRequest
-                    .getHeader(AUTHENTICATION_HEADER);
+            String authCredentials = httpServletRequest.getHeader(AUTHENTICATION_HEADER);
 
             // better injected
             AuthenticationService authenticationService = new AuthenticationServiceImpl();
 
-            boolean authenticationStatus = authenticationService
-                    .authenticate(authCredentials);
+            boolean authenticationStatus = authenticationService.authenticate(authCredentials);
 
             if (authenticationStatus) {
                 filter.doFilter(request, response);
             } else {
                 if (response instanceof HttpServletResponse) {
                     HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-                    httpServletResponse
-                            .setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 }
             }
         }

@@ -1,7 +1,7 @@
 package com.bruno.service.filejob;
 
 import com.bruno.exception.EmptyListResorceException;
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.bo.Pagamento;
 import com.bruno.service.IPagamentoService;

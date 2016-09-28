@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bruno.dao.IDBDao;
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 
 @Service
 public class DBDaoServiceImpl implements IDBDaoService{

@@ -25,7 +25,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("swagger-ui.html")
+        registry.addResourceHandler("api-docs-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
 
         registry.addResourceHandler("/webjars/**")
@@ -35,12 +35,12 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
                 "MOP REST API",
-                "Some custom description of API.",
+                "Descrizione ......",
                 "1.0",
                 "Terms of service",
                 "SOGEI 2016",
-                "License of API",
-                "API license URL");
+                "",
+                "");
         return apiInfo;
     }
 }

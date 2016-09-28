@@ -1,4 +1,4 @@
-package com.bruno.model.bo;
+package com.bruno.model.response;
 
 public class Paging {
 	

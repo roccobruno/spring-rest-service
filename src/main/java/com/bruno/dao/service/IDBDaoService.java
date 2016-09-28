@@ -1,6 +1,6 @@
 package com.bruno.dao.service;
 
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 
 public interface IDBDaoService {
 	

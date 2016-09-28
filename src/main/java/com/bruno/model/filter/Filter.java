@@ -1,4 +1,4 @@
-package com.bruno.model.bo;
+package com.bruno.model.filter;
 
 import java.io.Serializable;
 
@@ -38,8 +38,8 @@ public class Filter implements Serializable {
 	public String getFilterPaginator() {
 		StringBuilder builder = new StringBuilder(this.cup != null ? "&cup="+this.cup : "")
 										  .append(this.cig != null ? "&cig="+this.cig : "")
-										  .append(this.soggetto != null ? "&soggetto="+this.soggetto : "")
-										  .append(this.formaGiuridica != null ? "&formaGiuridica="+this.formaGiuridica : "")
+//										  .append(this.soggetto != null ? "&soggetto="+this.soggetto : "")
+//										  .append(this.formaGiuridica != null ? "&formaGiuridica="+this.formaGiuridica : "")
 										  .append(this.settore != null ? "&settore="+this.settore : "")
 										  .append(this.sottoSettore != null ? "&sottoSettore="+this.sottoSettore : "")
 										  .append(this.categoria != null ? "&categoria="+this.categoria : "")

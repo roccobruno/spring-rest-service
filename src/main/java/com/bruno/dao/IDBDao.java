@@ -25,7 +25,7 @@
 
 package com.bruno.dao;
 
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 
 public interface IDBDao {
 

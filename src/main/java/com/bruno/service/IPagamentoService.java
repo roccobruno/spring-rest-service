@@ -2,10 +2,11 @@ package com.bruno.service;
 
 import com.bruno.exception.EmptyListResorceException;
 import com.bruno.exception.ResourceByIdNotFound;
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.bo.Pagamento;
-import com.bruno.model.bo.RisultatiRicerca;
+import com.bruno.model.response.RisultatiRicerca;
+
 import java.util.List;
 
 public interface IPagamentoService {

@@ -1,4 +1,4 @@
-package com.bruno.model.bo;
+package com.bruno.model.filter;
 
 /**
  * Created by roccobruno on 31/07/2016.

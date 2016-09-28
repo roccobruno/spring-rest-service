@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.bruno.exception.FilterNotFoundException;
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 
 @Component
 public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
@@ -97,13 +97,13 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
                             filter.setCig((String) entry.getValue());
                             break;
 
-                        case SOGGETTO:
-                            filter.setSoggetto((String) entry.getValue());
-                            break;
+//                        case SOGGETTO:
+//                            filter.setSoggetto((String) entry.getValue());
+//                            break;
 
-                        case FORMAGIURIDICA:
-                            filter.setFormaGiuridica((String) entry.getValue());
-                            break;
+//                        case FORMAGIURIDICA:
+//                            filter.setFormaGiuridica((String) entry.getValue());
+//                            break;
 
                         case SETTORE:
                             filter.setSettore((String) entry.getValue());

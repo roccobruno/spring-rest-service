@@ -19,6 +19,9 @@
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.ResponseBody;
+//
+//import springfox.documentation.annotations.ApiIgnore;
+//
 //import com.bruno.db.manager.IManagerDb;
 //import com.bruno.exception.GeneralException;
 //import com.bruno.exception.GestioneException;
@@ -31,7 +34,7 @@
 //import com.bruno.utils.FileResourceUtil;
 //import com.bruno.utils.UtilityClass;
 //
-//
+//@ApiIgnore
 //@Controller
 //@RequestMapping("/api/v1.0")
 //public class ApiController {

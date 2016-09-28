@@ -1,8 +1,8 @@
 package com.bruno.db.manager;
 
 import com.bruno.exception.GeneralException;
-import com.bruno.model.bo.Filter;
-import com.bruno.model.bo.RisultatiRicerca;
+import com.bruno.model.filter.Filter;
+import com.bruno.model.response.RisultatiRicerca;
 
 public interface IManagerDb {
 

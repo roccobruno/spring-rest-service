@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.bruno.dao.service.IDBDaoService;
 import com.bruno.exception.EmptyListResorceException;
 import com.bruno.exception.ResourceByIdNotFound;
-import com.bruno.model.bo.Filter;
+import com.bruno.model.filter.Filter;
 import com.bruno.model.bo.PagamentiBo;
-import com.bruno.model.bo.Paging;
-import com.bruno.model.bo.RisultatiRicerca;
+import com.bruno.model.response.Paging;
+import com.bruno.model.response.RisultatiRicerca;
 import com.bruno.model.ho.SwPagamenti;
 import com.bruno.model.wrapper.IWrapperFromHoToBo;
 
@@ -45,6 +45,8 @@ public class PagamentoServiceImpl implements IPagamentoService {
     	if(filter.getTotalRecords() == null)
     		totalRecord = dBDaoService.getCount(filter, "SwPagamenti");
     	else totalRecord = new Long(filter.getTotalRecords());
+    	
+    	filter.setSoggetto("80017210727");
 
         return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter,baseUrl),new Paging(filter.getNumPagina(), filter.getNumRecords(), totalRecord,filter.getFilterPaginator(),baseUrl));
     }
