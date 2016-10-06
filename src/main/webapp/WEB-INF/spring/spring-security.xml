@@ -23,22 +23,22 @@
   
     <request-cache ref="requestCache"/> 	
 	<session-management session-fixation-protection="newSession"/>	
-</http>
-
-<beans:bean id="userDetailsServiceImpl" class="com.bruno.security.UserDetailsServiceImpl" />
-
-<beans:bean id="preAuthenticatedProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
-
-<beans:bean id="preAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
-    <beans:property name="preAuthenticatedUserDetailsService" ref="userDetailsServiceImpl" />
-</beans:bean>
-
-<beans:bean id="preAuthFilter" class="com.bruno.security.UrlParametersAuthenticationFilter">
-    <beans:property name="authenticationManager" ref="appControlAuthenticationManager" />
-</beans:bean>
-
-<authentication-manager alias="appControlAuthenticationManager">
-    <authentication-provider ref="preAuthenticationProvider" />
-</authentication-manager>
- 
-</beans:beans>
+	</http>
+	
+	<beans:bean id="userDetailsServiceImpl" class="com.bruno.security.UserDetailsServiceImpl" />
+	
+	<beans:bean id="preAuthenticatedProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+	
+	<beans:bean id="preAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+	    <beans:property name="preAuthenticatedUserDetailsService" ref="userDetailsServiceImpl" />
+	</beans:bean>
+	
+	<beans:bean id="preAuthFilter" class="com.bruno.security.UrlParametersAuthenticationFilter">
+	    <beans:property name="authenticationManager" ref="appControlAuthenticationManager" />
+	</beans:bean>
+	
+	<authentication-manager alias="appControlAuthenticationManager">
+	    <authentication-provider ref="preAuthenticationProvider" />
+	</authentication-manager>
+	 
+	</beans:beans>

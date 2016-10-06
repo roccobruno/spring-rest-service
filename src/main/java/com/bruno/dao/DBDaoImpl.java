@@ -59,8 +59,8 @@ public class DBDaoImpl implements IDBDao {
     	String query = "FROM "+resourceName+" tab";
 
         FlexibleQuery flex = createFlexiQuery(filter, query);
-		flex.setFirstResult((filter.getNumPagina() - 1) * filter.getNumRecordsForPage());
-		flex.setMaxResults(filter.getNumRecordsForPage());
+		flex.setFirstResult((filter.getNumPagina() - 1) * filter.getlimitForPage());
+		flex.setMaxResults(filter.getlimitForPage());
 		
 		return flex.list();
     }
@@ -84,7 +84,7 @@ public class DBDaoImpl implements IDBDao {
 		queryBuilder.append(" and tab.fonteCodLocaleProg = :fonteCodLocaleProg ", filter.getFonteCodLocaleProg());
 		queryBuilder.append(" and tab.dimensione = :dimensione ", filter.getDimensione());
 		queryBuilder.append(" and tab.tipologiaLavori = :tipologiaLavori ", filter.getTipologiaLavori());
-		queryBuilder.append(" and rownum <= :numRecords  ", filter.getNumRecords());
+		queryBuilder.append(" and rownum <= :limit  ", filter.getlimit());
 
 		FlexibleQuery flex = createFlexibleQuery(queryBuilder);
 		flex.setString("cup", filter.getCup());
@@ -98,7 +98,7 @@ public class DBDaoImpl implements IDBDao {
 		flex.setString("fonteCodLocaleProg", filter.getFonteCodLocaleProg());
 		flex.setString("dimensione", filter.getDimensione());
 		flex.setString("tipologiaLavori", filter.getTipologiaLavori());
-		flex.setInteger("numRecords", filter.getNumRecords());
+		flex.setInteger("limit", filter.getlimit());
 
         return flex;
     }

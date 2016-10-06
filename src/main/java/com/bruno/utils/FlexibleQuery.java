@@ -114,7 +114,7 @@ public class FlexibleQuery {
 //		this.query = query;
 //		this.queryCount = queryCount;
 //		this.pUpdater=pUpdater;
-//		this.pdata = new PaginatorData(pUpdater.getCurrentPage(), pUpdater.getPageSize());
+//		this.pdata = new PaginatorData(pUpdater.getCurrentPage(), pUpdater.getpageSize());
 //	}
 
 	public FlexibleQuery setBigDecimal(int position, BigDecimal number) {

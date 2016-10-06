@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bruno.dao.service.IDBDaoService;
-import com.bruno.exception.BudRequestException;
+import com.bruno.exception.BadRequestException;
 import com.bruno.exception.ControllerException;
 import com.bruno.exception.InternalServerErrorException;
 import com.bruno.model.bo.PagamentiBo;
@@ -46,11 +46,11 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
                     return pagamentiBo;
 
                 default:
-                    throw new BudRequestException();
+                    throw new BadRequestException();
             }
-        } catch (BudRequestException e) {
+        } catch (BadRequestException e) {
         	log.error(e.getMessage());
-            throw new BudRequestException();
+            throw new BadRequestException();
         } catch (Exception e) {
         	log.error(e.getMessage());
             throw new InternalServerErrorException();
@@ -70,11 +70,11 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
                     return pagamentiBo;
 
                 default:
-                    throw new BudRequestException();
+                    throw new BadRequestException();
             }
-        } catch (BudRequestException e) {
+        } catch (BadRequestException e) {
         	log.error(e.getMessage());
-            throw new BudRequestException();
+            throw new BadRequestException();
         } catch (Exception e) {
         	log.error(e.getMessage());
             throw new InternalServerErrorException();

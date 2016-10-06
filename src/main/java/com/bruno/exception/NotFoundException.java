@@ -2,16 +2,12 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class ResourceByIdNotFound extends ControllerException {
+public class NotFoundException extends ControllerException {
 	
-	private MessageJson messageJson = new MessageJson("Non e' stato trovato nessun record con l'id specificato!!");
-	private int statusCode = 403;
+	private MessageJson messageJson = new MessageJson("URL does not exist!");
+	private int statusCode = 404;
 	
-	public ResourceByIdNotFound(){}
-	
-	public ResourceByIdNotFound(MessageJson messageJson){
-		this.messageJson = messageJson;
-	}
+	public NotFoundException(){}
 
 	public MessageJson getMessageJson() {
 		return messageJson;
@@ -28,5 +24,4 @@ public class ResourceByIdNotFound extends ControllerException {
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
-	
 }

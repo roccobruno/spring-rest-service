@@ -2,14 +2,14 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class BudRequestException extends ControllerException {
+public class BadRequestException extends ControllerException {
 	
 	private MessageJson messageJson = new MessageJson("E' stato inserito un id non valido!");
 	private int statusCode = 400;
 	
-	public BudRequestException(){}
+	public BadRequestException(){}
 	
-	public BudRequestException(MessageJson messageJson){
+	public BadRequestException(MessageJson messageJson){
 		this.messageJson = messageJson;
 	}
 

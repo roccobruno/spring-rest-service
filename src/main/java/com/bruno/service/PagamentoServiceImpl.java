@@ -55,7 +55,7 @@ public class PagamentoServiceImpl implements IPagamentoService {
     		log.error(e.getMessage());
             throw new InternalServerErrorException();
     	}    	
-        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter,baseUrl),new Paging(filter.getNumPagina(), filter.getNumRecords(), totalRecord,filter.getFilterPaginator(),baseUrl));
+        return new RisultatiRicerca<PagamentiBo>(totalRecord,getPagamentiList(filter,baseUrl),new Paging(filter.getNumPagina(), filter.getlimit(), totalRecord,filter.getFilterPaginator(),baseUrl));
     }
 
     public List<PagamentiBo> getPagamentoById(String id,String baseUrl) throws InternalServerErrorException {

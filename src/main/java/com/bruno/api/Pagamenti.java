@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
-import com.bruno.exception.BudRequestException;
+import com.bruno.exception.BadRequestException;
 import com.bruno.exception.ControllerException;
 import com.bruno.exception.GestioneException;
 import com.bruno.exception.UnauthorizationException;
@@ -111,8 +111,8 @@ public class Pagamenti implements IDescRequestParam{
     											@RequestParam(value = "dimensione", required = false) String dimensione,
     											@ApiParam(value = TIPOLOGIALAVORI)
     											@RequestParam(value = "tipologiaLavori", required = false) String tipologiaLavori,
-    											@ApiParam(value = NUMRECORDS)
-    											@RequestParam(value = "numRecords", required = false) String numRecords) {
+    											@ApiParam(value = LIMIT)
+    											@RequestParam(value = "limit", required = false) String limit) {
     
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
     	
@@ -142,7 +142,7 @@ public class Pagamenti implements IDescRequestParam{
     										 @ApiParam(value = AUTHORIZATIONID)
 											 @RequestHeader(value="authorization-id",required = false) String auth_id,
 											 @ApiParam(value = ID,required = true) 
-    										 @PathVariable("id") String id) throws BudRequestException {
+    										 @PathVariable("id") String id) throws BadRequestException {
 
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
     	int id_Int;
@@ -154,7 +154,7 @@ public class Pagamenti implements IDescRequestParam{
         	pagamentiBo = pagamentoService.getPagamento(id.toString(),utilityClass.getBaseUrl(request));
         }catch (NumberFormatException e) {
         	log.error(e.getMessage());
-            return gestioneException.gestisciException(new BudRequestException(), response);
+            return gestioneException.gestisciException(new BadRequestException(), response);
         } catch (ControllerException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);

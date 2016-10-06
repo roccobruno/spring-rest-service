@@ -77,11 +77,11 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 	            return DIMENSIONE;
 	        if (filterName.equalsIgnoreCase("tipologiaLavori"))
 	            return TIPOLOGIALAVORI;
-	        if (filterName.equalsIgnoreCase("numRecords"))
-	            return NUMRECORDS;
+	        if (filterName.equalsIgnoreCase("limit"))
+	            return limit;
 	        if (filterName.equalsIgnoreCase("ordinaPer"))
 	            return ORDINAPER;
-	        if (filterName.equalsIgnoreCase("pageNumber"))
+	        if (filterName.equalsIgnoreCase("offset"))
 	            return NUMPAGINA;
 	        if (filterName.equalsIgnoreCase("totalRecords"))
 	            return TOTALRECORDS;
@@ -150,8 +150,8 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
                             filter.setTipologiaLavori((String) entry.getValue());
                             break;
 
-                        case NUMRECORDS:
-                            filter.setNumRecords(Integer.parseInt((String) entry.getValue()));
+                        case limit:
+                            filter.setlimit(Integer.parseInt((String) entry.getValue()));
                             break;
                             
                         case NUMPAGINA:

@@ -22,17 +22,17 @@ public class Filter implements Serializable {
 	private String fonteCodLocaleProg;
 	private String dimensione;
 	private String tipologiaLavori;
-	private Integer numRecords;
+	private Integer limit;
 	private Integer numPagina = 1;	
-	private Integer numRecordsForPage = 10;
+	private Integer limitForPage = 10;
 	private String filterPaginator;
 	private Integer totalRecords;
 
 	public Filter(){}
 	
 	
-	public Filter(@Value("${mopWS.numRecordsForPage}")Integer numRecordsForPage){
-		this.numRecordsForPage = numRecordsForPage;
+	public Filter(@Value("${mopWS.limitForPage}")Integer limitForPage){
+		this.limitForPage = limitForPage;
 	}
 	
 	public String getFilterPaginator() {
@@ -47,7 +47,7 @@ public class Filter implements Serializable {
 										  .append(this.fonteCodLocaleProg != null ? "&fonteCodLocaleProg="+this.fonteCodLocaleProg : "")
 										  .append(this.dimensione != null ? "&dimensione="+this.dimensione : "")
 										  .append(this.tipologiaLavori != null ? "&tipologiaLavori="+this.tipologiaLavori : "")
-										  .append(this.numRecords != null ? "&numRecords="+this.numRecords : "");
+										  .append(this.limit != null ? "&limit="+this.limit : "");
         return builder.toString();
 	}
 
@@ -65,12 +65,12 @@ public class Filter implements Serializable {
 		this.filterPaginator = filterPaginator;
 	}
 
-	public Integer getNumRecordsForPage() {
-		return numRecordsForPage;
+	public Integer getlimitForPage() {
+		return limitForPage;
 	}
 
-	public void setNumRecordsForPage(Integer numRecordsForPage) {
-		this.numRecordsForPage = numRecordsForPage;
+	public void setlimitForPage(Integer limitForPage) {
+		this.limitForPage = limitForPage;
 	}
 
 	public void setNumPagina(Integer numPagina) {
@@ -167,11 +167,11 @@ public class Filter implements Serializable {
 		this.tipologiaLavori = tipologiaLavori;
 	}
 
-	public Integer getNumRecords() {
-		return numRecords;
+	public Integer getlimit() {
+		return limit;
 	}
 
-	public void setNumRecords(Integer numRecords) {
-		this.numRecords = numRecords;
+	public void setlimit(Integer limit) {
+		this.limit = limit;
 	}	
 }
