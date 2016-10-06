@@ -3,10 +3,7 @@ package com.bruno.model.wrapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
-
-import com.bruno.model.bo.ImpegniBo;
 import com.bruno.model.bo.PagamentiBo;
-import com.bruno.model.ho.SwImpegni;
 import com.bruno.model.ho.SwPagamenti;
 
 @Component

@@ -5,13 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bruno.dao.service.IDBDaoService;
-import com.bruno.exception.EmptyListResorceException;
-import com.bruno.exception.GeneralException;
+import com.bruno.exception.BudRequestException;
+import com.bruno.exception.ControllerException;
 import com.bruno.exception.InternalServerErrorException;
-import com.bruno.exception.ResourceByIdNotFound;
-import com.bruno.exception.ResourceNotFoundException;
-import com.bruno.model.filter.Filter;
 import com.bruno.model.bo.PagamentiBo;
+import com.bruno.model.filter.Filter;
 import com.bruno.model.response.RisultatiRicerca;
 import com.bruno.model.wrapper.WrapperFromHoToBoImpl;
 import com.bruno.service.IPagamentoService;
@@ -36,7 +34,7 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
     IPagamentoService pagamentoService;
 
     @Override
-    public RisultatiRicerca getRisorsaList(String resourceName, Filter filter,String baseUrl) throws GeneralException {
+    public RisultatiRicerca getRisorsaList(String resourceName, Filter filter,String baseUrl) throws ControllerException {
     	log.info("Start method ManagerDbImpl.getRisorsaList!");
 
         try {
@@ -48,22 +46,19 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
                     return pagamentiBo;
 
                 default:
-                    throw new ResourceNotFoundException();
+                    throw new BudRequestException();
             }
-        } catch (EmptyListResorceException e) {
+        } catch (BudRequestException e) {
         	log.error(e.getMessage());
-            throw new EmptyListResorceException();
-        } catch (ResourceNotFoundException e) {
-        	log.error(e.getMessage());
-            throw new ResourceNotFoundException();
+            throw new BudRequestException();
         } catch (Exception e) {
         	log.error(e.getMessage());
-            throw new InternalServerErrorException(e);
+            throw new InternalServerErrorException();
         }
     }
 
     @Override
-    public Object getRisorsaById(String resourceName, String id,String baseUrl) throws GeneralException {
+    public Object getRisorsaById(String resourceName, String id,String baseUrl) throws ControllerException {
     	log.info("Start method ManagerDbImpl.getRisorsaById!");
 
         try {
@@ -75,17 +70,14 @@ public class ManagerDbImpl implements IManagerDb,IResourceName {
                     return pagamentiBo;
 
                 default:
-                    throw new ResourceNotFoundException();
+                    throw new BudRequestException();
             }
-        } catch (ResourceByIdNotFound e) {
+        } catch (BudRequestException e) {
         	log.error(e.getMessage());
-            throw new ResourceByIdNotFound();
-        } catch (ResourceNotFoundException e) {
-        	log.error(e.getMessage());
-            throw new ResourceNotFoundException();
+            throw new BudRequestException();
         } catch (Exception e) {
         	log.error(e.getMessage());
-            throw new InternalServerErrorException(e);
+            throw new InternalServerErrorException();
         }
     }
 }

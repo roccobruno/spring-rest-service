@@ -4,8 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
-import javassist.expr.NewArray;
-import com.bruno.exception.GeneralException;
+import com.bruno.exception.ControllerException;
 import com.bruno.exception.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,59 +22,77 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
     @Autowired
     IUtilityClass utilityClass;
     
-    public String getBaseUrl(HttpServletRequest request) {
-        String typeConnection = false ? "https://" : "http://";
-
-        StringBuilder builder = new StringBuilder(typeConnection);
-        builder.append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getRequestURI());
+    public String getBaseUrl(HttpServletRequest request) throws InternalServerErrorException {
+    	
+    	StringBuilder builder = null;
+    	String typeConnection = null;
+    	
+    	try{
+	        typeConnection = false ? "https://" : "http://";	
+	        builder = new StringBuilder(typeConnection);
+	        builder.append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getRequestURI());
+	    }catch(Exception e){
+	    	log.error(e.getMessage());
+            throw new InternalServerErrorException();
+	    }
         return builder.toString();
     }
 
-    public int getResourceNameIntValue(String resourceName) {
+    public int getResourceNameIntValue(String resourceName) throws InternalServerErrorException {
 
-        if (resourceName.equalsIgnoreCase("pagamenti"))
-            return PAGAMENTI;
-        else if (resourceName.equalsIgnoreCase("impegni"))
-            return IMPEGNI;
+    	try{
+	        if (resourceName.equalsIgnoreCase("pagamenti"))
+	            return PAGAMENTI;
+	        else if (resourceName.equalsIgnoreCase("impegni"))
+	            return IMPEGNI;
+    	}catch(Exception e){
+    		log.error(e.getMessage());
+            throw new InternalServerErrorException();
+    	}
         return 0;
     }
 
-    public int getFilterNameIntValue(String filterName) {
+    public int getFilterNameIntValue(String filterName) throws InternalServerErrorException {
 
-        if (filterName.equalsIgnoreCase("cup"))
-            return CUP;
-        if (filterName.equalsIgnoreCase("cig"))
-            return CIG;
-        if (filterName.equalsIgnoreCase("soggetto"))
-            return SOGGETTO;
-        if (filterName.equalsIgnoreCase("formaGiuridica"))
-            return FORMAGIURIDICA;
-        if (filterName.equalsIgnoreCase("settore"))
-            return SETTORE;
-        if (filterName.equalsIgnoreCase("sottoSettore"))
-            return SOTTOSETTORE;
-        if (filterName.equalsIgnoreCase("categoria"))
-            return CATEGORIA;
-        if (filterName.equalsIgnoreCase("regione"))
-            return REGIONE;
-        if (filterName.equalsIgnoreCase("fonteCodLocaleProg"))
-            return FONTECODLOCALEPROG;
-        if (filterName.equalsIgnoreCase("dimensione"))
-            return DIMENSIONE;
-        if (filterName.equalsIgnoreCase("tipologiaLavori"))
-            return TIPOLOGIALAVORI;
-        if (filterName.equalsIgnoreCase("numRecords"))
-            return NUMRECORDS;
-        if (filterName.equalsIgnoreCase("ordinaPer"))
-            return ORDINAPER;
-        if (filterName.equalsIgnoreCase("pageNumber"))
-            return NUMPAGINA;
-        if (filterName.equalsIgnoreCase("totalRecords"))
-            return TOTALRECORDS;
+    	try{
+	        if (filterName.equalsIgnoreCase("cup"))
+	            return CUP;
+	        if (filterName.equalsIgnoreCase("cig"))
+	            return CIG;
+	        if (filterName.equalsIgnoreCase("soggetto"))
+	            return SOGGETTO;
+	        if (filterName.equalsIgnoreCase("formaGiuridica"))
+	            return FORMAGIURIDICA;
+	        if (filterName.equalsIgnoreCase("settore"))
+	            return SETTORE;
+	        if (filterName.equalsIgnoreCase("sottoSettore"))
+	            return SOTTOSETTORE;
+	        if (filterName.equalsIgnoreCase("categoria"))
+	            return CATEGORIA;
+	        if (filterName.equalsIgnoreCase("regione"))
+	            return REGIONE;
+	        if (filterName.equalsIgnoreCase("fonteCodLocaleProg"))
+	            return FONTECODLOCALEPROG;
+	        if (filterName.equalsIgnoreCase("dimensione"))
+	            return DIMENSIONE;
+	        if (filterName.equalsIgnoreCase("tipologiaLavori"))
+	            return TIPOLOGIALAVORI;
+	        if (filterName.equalsIgnoreCase("numRecords"))
+	            return NUMRECORDS;
+	        if (filterName.equalsIgnoreCase("ordinaPer"))
+	            return ORDINAPER;
+	        if (filterName.equalsIgnoreCase("pageNumber"))
+	            return NUMPAGINA;
+	        if (filterName.equalsIgnoreCase("totalRecords"))
+	            return TOTALRECORDS;
+    	}catch(Exception e){
+    		log.error(e.getMessage());
+            throw new InternalServerErrorException();
+    	}
         return 0;
     }
 
-    public Filter checkAndCreateFilter(Map<String, String> allRequestParams) throws GeneralException {
+    public Filter checkAndCreateFilter(Map<String, String> allRequestParams) throws ControllerException {
 
         Filter filter = new Filter();
         Iterator<Map.Entry<String, String>> entryList = null;
@@ -157,7 +174,7 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
             throw e;
         } catch (Exception e) {
         	log.error(e.getMessage());
-            throw new InternalServerErrorException(e);
+            throw new InternalServerErrorException();
         }
 
     }

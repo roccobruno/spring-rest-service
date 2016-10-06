@@ -13,7 +13,7 @@ public class GestioneException {
 
     private static final Logger log = LoggerFactory.getLogger(GestioneException.class);
 
-    public MessageJson gestisciException(GeneralException e, HttpServletResponse response) {
+    public MessageJson gestisciException(ControllerException e, HttpServletResponse response) {
         response.setStatus(e.getStatusCode());
         return e.getMessageJson();
     }

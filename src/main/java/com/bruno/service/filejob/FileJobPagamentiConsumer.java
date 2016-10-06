@@ -1,18 +1,16 @@
 package com.bruno.service.filejob;
 
-import com.bruno.exception.EmptyListResorceException;
-import com.bruno.model.filter.Filter;
-import com.bruno.model.bo.PagamentiBo;
-import com.bruno.model.bo.Pagamento;
-import com.bruno.service.IPagamentoService;
-import com.bruno.utils.FileResourceUtil;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.bruno.exception.InternalServerErrorException;
+import com.bruno.model.bo.PagamentiBo;
+import com.bruno.model.filter.Filter;
+import com.bruno.service.IPagamentoService;
+import com.bruno.utils.FileResourceUtil;
 
 @Component
 public class FileJobPagamentiConsumer {
@@ -42,12 +40,14 @@ public class FileJobPagamentiConsumer {
                 //fai la query in base a cio' che e' contenuto nel message
                 //leggi i record a gruppi di 1000 or 10000
                 List<PagamentiBo> pagamenti = null;
+
 				try {
 					pagamenti = pagamentoService.getPagamentiList(new Filter(),"");
-				} catch (EmptyListResorceException e) {
+				} catch (InternalServerErrorException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
                 List<String> fileContent = new ArrayList<String>();
                 for (int i = 0; i < pagamenti.size(); i++) {
                     fileContent.add(pagamenti.get(i).toFileLine());

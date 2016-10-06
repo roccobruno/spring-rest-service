@@ -67,6 +67,7 @@ public class DBDaoImpl implements IDBDao {
 
     private FlexibleQuery createFlexiQuery(Filter filter, String query) {
     	
+    	filter.setSoggetto("80017210727");
     	QueryBuilder queryBuilder = new QueryBuilder();
 		queryBuilder.append(query);
 		queryBuilder.append(" where ");

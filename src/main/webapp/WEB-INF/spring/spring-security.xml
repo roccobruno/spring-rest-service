@@ -1,0 +1,44 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+ 
+ 	<beans:bean id="requestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache"></beans:bean>
+ 	<beans:bean id="secContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"></beans:bean>
+
+	<!-- Configuring security not finished!! -->
+	<http  use-expressions="true" auto-config="true" security-context-repository-ref="secContextRepository" entry-point-ref="preAuthenticatedProcessingFilterEntryPoint">
+
+	<logout delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="http://www.bdap.tesoro.it/BDAP/Pagine/default.aspx" logout-url="/j_spring_security_logout"/>
+	
+	<intercept-url pattern="/logout" access="permitAll" />   
+    <intercept-url pattern="/resources/**" access="permitAll" />
+    <intercept-url pattern="/**" access="permitAll" />
+  <!--   <intercept-url pattern="/**" access="isAuthenticated()" />    -->
+    
+    <custom-filter position="PRE_AUTH_FILTER" ref="preAuthFilter" />
+  
+    <request-cache ref="requestCache"/> 	
+	<session-management session-fixation-protection="newSession"/>	
+</http>
+
+<beans:bean id="userDetailsServiceImpl" class="com.bruno.security.UserDetailsServiceImpl" />
+
+<beans:bean id="preAuthenticatedProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+
+<beans:bean id="preAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+    <beans:property name="preAuthenticatedUserDetailsService" ref="userDetailsServiceImpl" />
+</beans:bean>
+
+<beans:bean id="preAuthFilter" class="com.bruno.security.UrlParametersAuthenticationFilter">
+    <beans:property name="authenticationManager" ref="appControlAuthenticationManager" />
+</beans:bean>
+
+<authentication-manager alias="appControlAuthenticationManager">
+    <authentication-provider ref="preAuthenticationProvider" />
+</authentication-manager>
+ 
+</beans:beans>

@@ -2,14 +2,14 @@ package com.bruno.exception;
 
 import com.bruno.utils.MessageJson;
 
-public class ResourceNotFoundException extends GeneralException {
+public class BudRequestException extends ControllerException {
 	
-	private MessageJson messageJson = new MessageJson("La risorsa richiesta risulta non esistente!");
-	private int statusCode = 404;
+	private MessageJson messageJson = new MessageJson("E' stato inserito un id non valido!");
+	private int statusCode = 400;
 	
-	public ResourceNotFoundException(){}
+	public BudRequestException(){}
 	
-	public ResourceNotFoundException(MessageJson messageJson){
+	public BudRequestException(MessageJson messageJson){
 		this.messageJson = messageJson;
 	}
 

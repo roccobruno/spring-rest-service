@@ -4,14 +4,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +16,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import springfox.documentation.annotations.ApiIgnore;
-
-import com.bruno.exception.GeneralException;
+import com.bruno.exception.BudRequestException;
+import com.bruno.exception.ControllerException;
 import com.bruno.exception.GestioneException;
+import com.bruno.exception.UnauthorizationException;
 import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.filter.FilePagamentiFiltri;
 import com.bruno.model.response.RisultatiRicerca;
 import com.bruno.model.response.RisultatoPagamenti;
+import com.bruno.security.AuthenticationService;
 import com.bruno.service.IPagamentoService;
 import com.bruno.service.filejob.FileJob;
 import com.bruno.service.filejob.FileJobMessage;
@@ -74,6 +73,9 @@ public class Pagamenti implements IDescRequestParam{
     @Autowired
     IPagamentoService pagamentoService;
     
+    @Autowired
+    AuthenticationService authenticationService;
+    
     @ApiResponses(value = {
             @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Restituisce un oggetto json composto da un campo 'totalRecords' che contiene il numero totale di record trovati, un campo 'results' che contiene una lista di oggetti di tipo 'Pagamenti', ed un oggetto di tipo 'paging', che contiene i links alle pagine precedente e successiva contenente i risultati! ",response = RisultatoPagamenti.class),
             @ApiResponse(code = HttpURLConnection.HTTP_UNAUTHORIZED, message = "Unauthorized",response = MessageJson.class),
@@ -81,14 +83,20 @@ public class Pagamenti implements IDescRequestParam{
             @ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Not found",response = MessageJson.class),
             @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Internal server problems",response = MessageJson.class)
     })
-    @ApiOperation(value = "Pagamenti", notes = "La seguente api consente lo scarico dei dati dei pagamenti!")
+    @ApiOperation(value = "Lista di Record", notes = "La seguente api consente lo scarico dei dati dei pagamenti!")
     @RequestMapping(value = "/pagamenti", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Object getPagamenti(HttpServletResponse response, HttpServletRequest request,
     											@ApiIgnore @RequestParam Map<String, String> allRequestParams,
+    											@ApiParam(value = AUTHORIZATIONID)
+    											@RequestHeader(value="authorization-id",required = false) String auth_id,
     											@ApiParam(value = CUP)
     											@RequestParam(value = "cup", required = false) String cup,
-    											@ApiParam(value = CIG)
-    											@RequestParam(value = "cig", required = false) String cig,   											
+//    											@ApiParam(value = SOGGETTO)
+//    											@RequestParam(value = "soggetto", required = false) String soggetto,
+//    											@ApiParam(value = FORMAGIURIDICA)
+//    											@RequestParam(value = "formaGiuridica", required = false) String formaGiuridica,
+//    											@ApiParam(value = CIG)
+//    											@RequestParam(value = "cig", required = false) String cig,   											
     											@ApiParam(value = SETTORE)
     											@RequestParam(value = "settore", required = false) String settore,
     											@ApiParam(value = SOTTOSETTORE)
@@ -107,10 +115,13 @@ public class Pagamenti implements IDescRequestParam{
     											@RequestParam(value = "numRecords", required = false) String numRecords) {
     
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
-        
-        try {        	
+    	
+    	try {
+	    	if(!authenticationService.checkAuthenticate(auth_id))
+	    		throw new UnauthorizationException();       
+                	
         	pagamentiBo = pagamentoService.getPagamenti(utilityClass.checkAndCreateFilter(allRequestParams),utilityClass.getBaseUrl(request));
-        } catch (GeneralException e) {
+        }catch (ControllerException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
         }
@@ -125,15 +136,26 @@ public class Pagamenti implements IDescRequestParam{
             @ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Not found",response = MessageJson.class),
             @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Internal server problems",response = MessageJson.class)
     })
-    @ApiOperation(value = "Pagamenti", notes = "La seguente api consente lo scarico dei dati del pagamento cha ha come chiave l'id passato come parametro!")
+    @ApiOperation(value = "Singolo Record", notes = "La seguente api consente lo scarico dei dati del pagamento cha ha come chiave l'id passato come parametro!")
     @RequestMapping(value = "/pagamenti/{id}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody Object getPagamento(@ApiParam(value = ID) @PathVariable("id") String id,HttpServletResponse response,	HttpServletRequest request) {
+    public @ResponseBody Object getPagamento(HttpServletResponse response,HttpServletRequest request,
+    										 @ApiParam(value = AUTHORIZATIONID)
+											 @RequestHeader(value="authorization-id",required = false) String auth_id,
+											 @ApiParam(value = ID,required = true) 
+    										 @PathVariable("id") String id) throws BudRequestException {
 
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
+    	int id_Int;
 
         try {
-        	pagamentiBo = pagamentoService.getPagamento(id,utilityClass.getBaseUrl(request));
-        } catch (GeneralException e) {
+        	if(!authenticationService.checkAuthenticate(auth_id))
+	    		throw new UnauthorizationException();
+        	id_Int = Integer.parseInt(id);        	
+        	pagamentiBo = pagamentoService.getPagamento(id.toString(),utilityClass.getBaseUrl(request));
+        }catch (NumberFormatException e) {
+        	log.error(e.getMessage());
+            return gestioneException.gestisciException(new BudRequestException(), response);
+        } catch (ControllerException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
         }
@@ -141,13 +163,13 @@ public class Pagamenti implements IDescRequestParam{
     }
 
     @ApiIgnore
-    @RequestMapping(value = "/file/job/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pagam/file/job/{id}", method = RequestMethod.GET)
     public @ResponseBody FileJob getFileJob(@PathVariable("id") String fileId) {
         return fileJobService.getById(fileId);
     }
 
     @ApiIgnore
-    @RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pagam/file/{id}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getFile(HttpServletResponse resp, @PathVariable("id") String fileId) throws IOException {
 
         String directoryurl = fileLocation
@@ -159,7 +181,7 @@ public class Pagamenti implements IDescRequestParam{
     }
 
     @ApiIgnore
-    @RequestMapping(value = "/file", method = RequestMethod.POST)
+    @RequestMapping(value = "/pagam/file", method = RequestMethod.POST)
     public @ResponseBody FileJob generateFile(@RequestBody FilePagamentiFiltri paramsRicercaPagamenti) {
 
         FileJob fileJob = fileJobService.creteJob(paramsRicercaPagamenti);
@@ -170,6 +192,4 @@ public class Pagamenti implements IDescRequestParam{
 
         return fileJob;
     }
-
-
 }
