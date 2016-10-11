@@ -10,13 +10,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public boolean authenticate(String token) {
     	
-//    	if(token == null)
-//    		return false;
+    	if(token == null)
+    		return false;
     	return true;
     }
     
-    public boolean checkAuthenticate(String auth_id){
+    @Override
+    public boolean checkAuthorization(String auth_id){
     	
-    	return authenticate(auth_id);
+    	return true;
     }
 }

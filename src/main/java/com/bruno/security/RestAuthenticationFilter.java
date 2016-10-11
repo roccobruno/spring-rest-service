@@ -1,12 +1,8 @@
 package com.bruno.security;
 
-
 import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.PrintWriter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
@@ -14,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.bruno.utils.MessageJson;
 
 public class RestAuthenticationFilter implements javax.servlet.Filter {
@@ -34,7 +29,20 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
             boolean authenticationStatus = authenticationService.authenticate(authCredentials);
 
             if (authenticationStatus) {
-                filter.doFilter(request, response);
+            	boolean authorizationStatus = authenticationService.checkAuthorization(authCredentials);
+            	
+            	if(authorizationStatus){
+            		filter.doFilter(request, response);
+            	}else{
+            		if (response instanceof HttpServletResponse) {
+                        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+                        httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                        response.setContentType("application/json");	 
+                        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
+                    	Gson gson = builder.setPrettyPrinting().create();
+    	                response.getWriter().write(gson.toJson(new MessageJson("Non Autorizzato!")));
+            	}}
+                
             } else {
                 if (response instanceof HttpServletResponse) {
                     HttpServletResponse httpServletResponse = (HttpServletResponse) response;
