@@ -2,8 +2,6 @@ package com.bruno.model.filter;
 
 import java.io.Serializable;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,14 +30,6 @@ public class Filter implements Serializable {
 	private Integer totalRecords;
 	private String ordinaPer;
 
-	public Filter(Integer numeroDiRecord) {
-
-	}
-
-//	public Filter(@Value("${mopWS.numRecordsForPage}") Integer numRecordsForPage){
-//		this.numRecordsForPage = numRecordsForPage;
-//	}
-	
 	public String getFilterPaginator() {
 		StringBuilder builder = new StringBuilder(this.cup != null ? "&cup="+this.cup : "")
 										  .append(this.cig != null ? "&cig="+this.cig : "")

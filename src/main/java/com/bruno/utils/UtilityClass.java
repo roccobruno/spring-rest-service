@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.bruno.exception.ControllerException;
 import com.bruno.exception.FilterNotFoundException;
@@ -16,17 +17,16 @@ import com.bruno.model.filter.Filter;
 @Component
 public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 
-    @Value("${mopWs.numRecordsForPage}")
-    private Integer numeroDiRecord;
-
-
-    public Integer getNumeroDiRecord() {
-        return numeroDiRecord;
-    }
-
-    public void setNumeroDiRecord(Integer numeroDiRecord) {
-        this.numeroDiRecord = numeroDiRecord;
-    }
+//    @Value("${mopWs.numRecordsForPage}")
+//    private Integer numeroDiRecord;
+//
+//    public Integer getNumeroDiRecord() {
+//        return numeroDiRecord;
+//    }
+//
+//    public void setNumeroDiRecord(Integer numeroDiRecord) {
+//        this.numeroDiRecord = numeroDiRecord;
+//    }
 
     private static final Logger log = LoggerFactory.getLogger(UtilityClass.class);
     
@@ -101,9 +101,9 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
     public Filter checkAndCreateFilter(Map<String, String> allRequestParams, String resourceName) throws ControllerException {
 
 
-        System.out.print("ROCCO "+numeroDiRecord);
-
-    	Filter filter = new Filter(numeroDiRecord);
+//        System.out.print("ROCCO "+numeroDiRecord);
+//
+    	Filter filter = new Filter();
         Iterator<Map.Entry<String, String>> entryList = null;
         Entry entry = null;
 

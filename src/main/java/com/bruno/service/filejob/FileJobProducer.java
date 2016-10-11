@@ -22,9 +22,5 @@ public class FileJobProducer {
                 components.getFileJobMessageBlockingDeque().push(message);
             }
         });
-
     }
-
-
-
 }

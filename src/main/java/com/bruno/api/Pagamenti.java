@@ -123,7 +123,7 @@ public class Pagamenti implements IDescRequestParam{
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
     	
     	try {               	
-        	pagamentiBo = pagamentoService.getPagamenti(utilityClass.checkAndCreateFilter(allRequestParams,"pagamenti"),utilityClass.getBaseUrl(request));
+        	pagamentiBo = pagamentoService.getPagamenti(utilityClass.checkAndCreateFilter(allRequestParams,"pagamenti"),request.getRequestURL().toString());
         }catch (ControllerException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
@@ -151,7 +151,7 @@ public class Pagamenti implements IDescRequestParam{
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
 
         try {        	       	
-        	pagamentiBo = pagamentoService.getPagamento(id,utilityClass.getBaseUrl(request));
+        	pagamentiBo = pagamentoService.getPagamento(id,request.getRequestURL().toString());
         }catch (NumberFormatException e) {
         	log.error(e.getMessage());
             return gestioneException.gestisciException(new BadRequestException(), response);
@@ -201,7 +201,7 @@ public class Pagamenti implements IDescRequestParam{
     public ResponseEntity<byte[]> getFile(HttpServletResponse response, @PathVariable("id") String fileId) throws IOException {
 
         String pathDir = fileLocation + "/";
-        this.fileResourceUtil.download("PAGAMENTI-" + fileId + ".csv", response, pathDir);
+        this.fileResourceUtil.download("PAGAMENTI_" + fileId + ".csv", response, pathDir);
 
         return null;
     }
