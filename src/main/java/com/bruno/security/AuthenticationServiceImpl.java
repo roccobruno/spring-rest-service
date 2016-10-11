@@ -16,7 +16,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
     
     @Override
-    public boolean checkAuthorization(String auth_id){
+    public boolean checkAuthorization(String resourceName,String auth_id){
     	
     	return true;
     }
