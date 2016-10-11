@@ -61,14 +61,11 @@ public class FileJobPagamentiConsumer {
 
 	                //scrivi file
 //	                fileResourceUtil.createFile(fileContent, "PAGAMENTI-"+filter.getSoggetto()+"-"+new Date()+message.getFileJob().getId() + ".csv", fileLocation,header);
-					fileResourceUtil.createFile(fileContent, "PAGAMENTI_"+filter.getSoggetto()+"_"+FormatUtility.formattaDataToString2("dd-MM-yyyy",new Date()) + ".csv", fileLocation,header);
+					fileResourceUtil.createFile(fileContent, "PAGAMENTI_"+filter.getSoggetto()+ ".csv", fileLocation,header);
 	                //aggiornare il record di tipo FileJob , settare lo stato a 'fatto'
 				} catch (InternalServerErrorException e) {
 					log.error(e.getMessage());			
-				} catch (ParseException e) {
-					log.error(e.getMessage());	
 				}               
-                
             }
         });
     }
