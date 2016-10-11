@@ -1,13 +1,15 @@
 package com.bruno.exception;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.bruno.utils.MessageJson;
 
 public class InternalServerErrorException extends ControllerException {
 
 	private static final long serialVersionUID = 1L;
 	
-	private MessageJson messageJson = new MessageJson("Si è verificato un errore interno al server! Riprovare oppure contattare l'assistenza.");
-	private int statusCode = 500;
+	private MessageJson messageJson = new MessageJson("Si Ã¨ verificato un errore interno al server! Riprovare oppure contattare l'assistenza.");
+	private int statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 	
 	public MessageJson getMessageJson() {
 		return messageJson;

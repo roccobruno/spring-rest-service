@@ -2,6 +2,10 @@ package com.bruno.security;
 
 
 import java.io.IOException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.PrintWriter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,8 +15,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bruno.utils.MessageJson;
+
 public class RestAuthenticationFilter implements javax.servlet.Filter {
-    public static final String AUTHENTICATION_HEADER = "Authorization_id";
+    public static final String AUTHENTICATION_HEADER = "authorization_id";
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,FilterChain filter) throws IOException, ServletException {
@@ -33,6 +39,10 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
                 if (response instanceof HttpServletResponse) {
                     HttpServletResponse httpServletResponse = (HttpServletResponse) response;
                     httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json");	 
+                    GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
+                	Gson gson = builder.setPrettyPrinting().create();
+	                response.getWriter().write(gson.toJson(new MessageJson("Non Autorizzato!")));             
                 }
             }
         }

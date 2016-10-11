@@ -1,11 +1,13 @@
 package com.bruno.exception;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.bruno.utils.MessageJson;
 
 public class UnauthorizationException extends ControllerException {
 	
 	private MessageJson messageJson = new MessageJson("Non Autorizzato!");
-	private int statusCode = 401;
+	private int statusCode = HttpServletResponse.SC_UNAUTHORIZED;
 	
 	public UnauthorizationException(){}
 	

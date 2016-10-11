@@ -4,12 +4,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bruno.utils.MessageJson;
 
-public class NotFoundException extends ControllerException {
+public class ForbiddenException extends ControllerException{
 	
-	private MessageJson messageJson = new MessageJson("URL does not exist!");
-	private int statusCode = HttpServletResponse.SC_NOT_FOUND;
+	private MessageJson messageJson = new MessageJson("Non Autorizzato!");
+	private int statusCode = HttpServletResponse.SC_FORBIDDEN;
 	
-	public NotFoundException(){}
+	public ForbiddenException(){}
 
 	public MessageJson getMessageJson() {
 		return messageJson;

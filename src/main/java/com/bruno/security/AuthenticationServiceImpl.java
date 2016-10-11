@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationServiceImpl implements AuthenticationService {
 	
-	public static final String AUTHENTICATION_HEADER = "authorization-id";
+	public static final String AUTHENTICATION_HEADER = "authorization_id";
 	
     @Override
     public boolean authenticate(String token) {

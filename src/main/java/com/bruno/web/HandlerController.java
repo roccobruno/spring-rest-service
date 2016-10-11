@@ -4,14 +4,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.bruno.exception.ControllerException;
+import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 import com.bruno.exception.GestioneException;
+import com.bruno.exception.InternalServerErrorException;
 import com.bruno.exception.NotFoundException;
 
-@RestController
-@RequestMapping(value = "handle")
+@ApiIgnore
+@Controller
+@RequestMapping(value = "handler")
 public class HandlerController {
 	
 	private static final Logger log = LoggerFactory.getLogger(HandlerController.class);
@@ -20,12 +23,12 @@ public class HandlerController {
     GestioneException gestioneException;
 	
     @RequestMapping(value = "404")
-    public Object handle404(HttpServletResponse response) {
-	   try{
-		   throw new NotFoundException();
-	   }catch(ControllerException e){
-		   log.error(e.getMessage());
-           return gestioneException.gestisciException(e, response);
-	   }
+    public @ResponseBody Object handle404(HttpServletResponse response) {
+    	return gestioneException.gestisciException(new NotFoundException(), response);
+   }
+    
+    @RequestMapping(value = "500")
+    public @ResponseBody Object handle500(HttpServletResponse response) {    	
+    	return gestioneException.gestisciException(new InternalServerErrorException(), response);
    }
 }

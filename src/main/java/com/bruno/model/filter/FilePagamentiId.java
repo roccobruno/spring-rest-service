@@ -1,8 +1,5 @@
 package com.bruno.model.filter;
 
-/**
- * Created by roccobruno on 31/07/2016.
- */
 public class FilePagamentiId {
 
     private final String id;

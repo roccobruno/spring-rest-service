@@ -1,11 +1,13 @@
 package com.bruno.exception;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.bruno.utils.MessageJson;
 
 public class BadRequestException extends ControllerException {
 	
 	private MessageJson messageJson = new MessageJson("E' stato inserito un id non valido!");
-	private int statusCode = 400;
+	private int statusCode = HttpServletResponse.SC_BAD_REQUEST;
 	
 	public BadRequestException(){}
 	

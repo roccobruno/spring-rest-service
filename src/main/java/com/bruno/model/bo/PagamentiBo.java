@@ -109,7 +109,18 @@ public class PagamentiBo extends BaseBo {
 	}
 
 	public String toFileLine() {
-	        StringBuilder builder = new StringBuilder(codicePagamento).append(",").append(tipologiaPagamento).append(",").append(importo);
+	        StringBuilder builder = new StringBuilder(codLocProg).append(",").append(dataPagamento)
+	        						.append(",").append(codicePagamento).append(",").append(tipologiaPagamento).append(",").append(importo).append(",")
+	        						.append(codiceCausale).append(",").append(descrizioneCausale).append(",").append(codiceGestionale).append(",")
+	        						.append(descCodiceGestionale).append(",").append(note);
 	        return builder.toString();
 	    }
+	
+	public String getCsvFileHeader() {
+        StringBuilder builder = new StringBuilder("codLocProg").append(",").append("dataPagamento")
+        						.append(",").append("codicePagamento").append(",").append("tipologiaPagamento").append(",").append("importo").append(",")
+        						.append("codiceCausale").append(",").append("descrizioneCausale").append(",").append("codiceGestionale").append(",")
+        						.append("descCodiceGestionale").append(",").append("note");
+        return builder.toString();
+    }
 }

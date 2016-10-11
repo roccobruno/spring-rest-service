@@ -8,9 +8,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
-/**
- * Created by roccobruno on 31/07/2016.
- */
 @Component
 public class FileJobMessageComponents {
 

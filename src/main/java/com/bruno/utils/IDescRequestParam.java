@@ -1,5 +1,8 @@
 package com.bruno.utils;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public interface IDescRequestParam {
 	
 	final static String CUP = "Codice identificativo assegnato al progetto.";	
@@ -13,7 +16,9 @@ public interface IDescRequestParam {
 	final static String FONTECODLOCALEPROG = "Codice Fonte di provenienza dei dati richiesti. Possibili valori: BATCHMOP;TP_MOP;BDU.";
 	final static String DIMENSIONE = "Codice dimensione opera, Opere grandi, piccole e medie, in base al Quadro Economico. Possibili valori: OP(Opere Piccole),OM(Opere Madie),OG(Opere Grandi).";
 	final static String TIPOLOGIALAVORI = "Codice tipologia dei lavori.";
-	final static String LIMIT = "Numero massimo dei record che si vogliono acquisire.";
-	final static String ID = "Codice che identifica univocamente il record nell'interrogazione corrente.";
+	final static String NUMRECORDS = "Numero massimo dei record che si vogliono acquisire.";
+	final static String ID = "Codice che identifica univocamente il record. Corrisponde al codice pagamento.";
 	final static String AUTHORIZATIONID = "Codice da inviare nell'header della chiamata come autorizzazione!";
+	final static String NUMPAGINA = "Numero della pagina per la quale si richiede lo scarico dei dati!";
+	final static String ORDINAPERPAGAMENTI = "Parametro per il quale si intende ordinare i dati richiesti. Possibili valori: dataPagamento; codicePagamento; tipologiaPagamento; importo; codiceCausale; descrizioneCausale; codiceGestionale; descCodiceGestionale; note";
 }

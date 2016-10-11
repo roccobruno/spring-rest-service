@@ -13,7 +13,7 @@ public interface IFilterName {
 	final static int FONTECODLOCALEPROG = 9;
 	final static int DIMENSIONE = 10;
 	final static int TIPOLOGIALAVORI = 11;
-	final static int limit = 12;
+	final static int NUMRECORDS = 12;
 	final static int ORDINAPER = 13;
 	final static int NUMPAGINA = 14;
 	final static int TOTALRECORDS = 15;

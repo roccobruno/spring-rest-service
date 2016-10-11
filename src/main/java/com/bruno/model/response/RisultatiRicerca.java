@@ -2,16 +2,28 @@ package com.bruno.model.response;
 
 import java.util.List;
 
-public class RisultatiRicerca<T> extends BaseResult {
+public class RisultatiRicerca<T> {
 
-    private final List<T> results;
+	private final Long totalRecords;
+    private final List<T> results;    
+	private final Paging paging;
 
     public RisultatiRicerca(Long totalRecords,List<T> results, Paging paging) {
-    	super(totalRecords, paging);
+    	this.totalRecords = totalRecords;
         this.results = results;
-    }    
-    
-    public List<T> getResults() {
-        return results;
+        this.paging = paging;
     }
+
+	public Long getTotalRecords() {
+		return totalRecords;
+	}
+
+	public List<T> getResults() {
+		return results;
+	}
+
+	public Paging getPaging() {
+		return paging;
+	}    
+    
 }

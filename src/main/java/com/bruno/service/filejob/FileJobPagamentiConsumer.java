@@ -1,7 +1,10 @@
 package com.bruno.service.filejob;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,12 +14,13 @@ import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.filter.Filter;
 import com.bruno.service.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
+import com.bruno.utils.FormatUtility;
 
 @Component
 public class FileJobPagamentiConsumer {
 
-    private static final org.slf4j.Logger logger = LoggerFactory
-            .getLogger(FileJobPagamentiConsumer.class);
+	private static final Logger log = LoggerFactory.getLogger(FileJobPagamentiConsumer.class);
+       
     private boolean init = false;
 
     @Value("${mopWs.cartella.files.pagamenti}")
@@ -31,32 +35,40 @@ public class FileJobPagamentiConsumer {
 
     @Autowired
     private IPagamentoService pagamentoService;
+    
+    @Autowired
+    private Filter filter;
 
     private void consumeMessage(final FileJobMessage message) throws InterruptedException {
+    	
         components.getExecutor().submit(new Runnable() {
+        	
             @Override
             public void run() {
-                logger.info("receiving message " + message);
-                //fai la query in base a cio' che e' contenuto nel message
-                //leggi i record a gruppi di 1000 or 10000
+                log.info("receiving message " + message);
+                
                 List<PagamentiBo> pagamenti = null;
+                String header = null;
+                List<String> fileContent = new ArrayList<String>();
 
 				try {
-					pagamenti = pagamentoService.getPagamentiList(new Filter(),"");
+					pagamenti = pagamentoService.getPagamentiList(filter,"");
+					header = pagamenti.get(0).getCsvFileHeader();
+					
+					for (int i = 0; i < pagamenti.size(); i++) {
+	                    fileContent.add(pagamenti.get(i).toFileLine());
+	                }
+
+	                //scrivi file
+//	                fileResourceUtil.createFile(fileContent, "PAGAMENTI-"+filter.getSoggetto()+"-"+new Date()+message.getFileJob().getId() + ".csv", fileLocation,header);
+					fileResourceUtil.createFile(fileContent, "PAGAMENTI_"+filter.getSoggetto()+"_"+FormatUtility.formattaDataToString2("dd-MM-yyyy",new Date()) + ".csv", fileLocation,header);
+	                //aggiornare il record di tipo FileJob , settare lo stato a 'fatto'
 				} catch (InternalServerErrorException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-                List<String> fileContent = new ArrayList<String>();
-                for (int i = 0; i < pagamenti.size(); i++) {
-                    fileContent.add(pagamenti.get(i).toFileLine());
-                }
-
-                //scrivi file
-                fileResourceUtil.createFile(fileContent, "PAGAMENTI-" + message.getFileJob().getId() + ".csv", fileLocation);
-
-                //aggiorna il record di tipo FileJob , setta lo stato a 'fatto'
+					log.error(e.getMessage());			
+				} catch (ParseException e) {
+					log.error(e.getMessage());	
+				}               
+                
             }
         });
     }
@@ -75,12 +87,9 @@ public class FileJobPagamentiConsumer {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             });
             init = true;
         }
     }
-
-
 }

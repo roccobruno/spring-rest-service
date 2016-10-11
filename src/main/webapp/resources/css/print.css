@@ -176,7 +176,7 @@
 .swagger-section .swagger-ui-wrap table tbody tr:last-child td {
   border-bottom: none;
 }
-.swagger-section .swagger-ui-wrap table tbody tr.offset {
+.swagger-section .swagger-ui-wrap table tbody tr.numPagina {
   background-color: #f0f0f0;
 }
 .swagger-section .swagger-ui-wrap table tbody tr td {

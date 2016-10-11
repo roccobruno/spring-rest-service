@@ -1,8 +1,5 @@
 package com.bruno.service.filejob;
 
-/**
- * Created by roccobruno on 31/07/2016.
- */
 public class FileJob {
 
     private final String id;

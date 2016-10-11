@@ -1,14 +1,19 @@
 package com.bruno.utils;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import com.bruno.exception.ControllerException;
 import com.bruno.exception.InternalServerErrorException;
+import com.bruno.exception.OrderByFieldNotFound;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.bruno.exception.FilterNotFoundException;
 import com.bruno.model.filter.Filter;
@@ -18,9 +23,6 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 
 
     private static final Logger log = LoggerFactory.getLogger(UtilityClass.class);
-
-    @Autowired
-    IUtilityClass utilityClass;
     
     public String getBaseUrl(HttpServletRequest request) throws InternalServerErrorException {
     	
@@ -77,11 +79,11 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 	            return DIMENSIONE;
 	        if (filterName.equalsIgnoreCase("tipologiaLavori"))
 	            return TIPOLOGIALAVORI;
-	        if (filterName.equalsIgnoreCase("limit"))
-	            return limit;
+	        if (filterName.equalsIgnoreCase("numRecords"))
+	            return NUMRECORDS;
 	        if (filterName.equalsIgnoreCase("ordinaPer"))
 	            return ORDINAPER;
-	        if (filterName.equalsIgnoreCase("offset"))
+	        if (filterName.equalsIgnoreCase("numPagina"))
 	            return NUMPAGINA;
 	        if (filterName.equalsIgnoreCase("totalRecords"))
 	            return TOTALRECORDS;
@@ -92,9 +94,9 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
         return 0;
     }
 
-    public Filter checkAndCreateFilter(Map<String, String> allRequestParams) throws ControllerException {
+    public Filter checkAndCreateFilter(Map<String, String> allRequestParams, String resourceName) throws ControllerException {
 
-        Filter filter = new Filter();
+    	Filter filter = new Filter();
         Iterator<Map.Entry<String, String>> entryList = null;
         Entry entry = null;
 
@@ -150,8 +152,8 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
                             filter.setTipologiaLavori((String) entry.getValue());
                             break;
 
-                        case limit:
-                            filter.setlimit(Integer.parseInt((String) entry.getValue()));
+                        case NUMRECORDS:
+                            filter.setNumRecords(Integer.parseInt((String) entry.getValue()));
                             break;
                             
                         case NUMPAGINA:
@@ -160,6 +162,16 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
                             
                         case TOTALRECORDS:
                         	filter.setTotalRecords(Integer.parseInt((String) entry.getValue()));
+                            break;
+                            
+                        case ORDINAPER:
+                        	String value = (String) entry.getValue();
+                        	String[] splitValue = value.split(" ");
+                        	if(splitValue.length > 1 && !(splitValue[1].equalsIgnoreCase("asc") || splitValue[1].equalsIgnoreCase("desc")))
+                        		throw new OrderByFieldNotFound();
+                        	if(checkValueOrderBy(resourceName,splitValue[0]))
+                        		filter.setOrdinaPer((String) entry.getValue());
+                        	else throw new OrderByFieldNotFound();
                             break;
 
                         default:
@@ -178,5 +190,49 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
         }
 
     }
+    
+public boolean checkValueOrderBy(String resourceName,String value) throws InternalServerErrorException{
+    	
+	switch (getResourceNameIntValue(resourceName)) {
+	
+	case PAGAMENTI:
+		
+		return checkValueOrderByPagamenti(value);
+
+	default:
+		break;
+	}
+    	if(value.equalsIgnoreCase(value))
+    		return true;
+    	return false;
+    }
+    
+    private boolean checkValueOrderByPagamenti(String value){
+    	
+    	if(value.equalsIgnoreCase("codLocProg"))
+    		return true;
+    	if(value.equalsIgnoreCase("dataPagamento"))
+    		return true;
+    	if(value.equalsIgnoreCase("codicePagamento"))
+    		return true;
+    	if(value.equalsIgnoreCase("tipologiaPagamento"))
+    		return true;
+    	if(value.equalsIgnoreCase("importo"))
+    		return true;
+    	if(value.equalsIgnoreCase("codiceCausale"))
+    		return true;
+    	if(value.equalsIgnoreCase("descrizioneCausale"))
+    		return true;
+    	if(value.equalsIgnoreCase("codiceGestionale"))
+    		return true;
+    	if(value.equalsIgnoreCase("descCodiceGestionale"))
+    		return true;
+    	if(value.equalsIgnoreCase("note"))
+    		return true;
+
+    	return false;
+    }
+    
+    
 
 }

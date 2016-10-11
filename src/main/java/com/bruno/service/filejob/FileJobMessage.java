@@ -2,9 +2,6 @@ package com.bruno.service.filejob;
 
 import java.util.Date;
 
-/**
- * Created by roccobruno on 31/07/2016.
- */
 public class FileJobMessage {
 
     private final FileJob fileJob;

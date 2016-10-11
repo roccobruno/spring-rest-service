@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
 public class Filter implements Serializable {
 	
@@ -22,18 +25,16 @@ public class Filter implements Serializable {
 	private String fonteCodLocaleProg;
 	private String dimensione;
 	private String tipologiaLavori;
-	private Integer limit;
-	private Integer numPagina = 1;	
-	private Integer limitForPage = 10;
+	private Integer numRecords;
+	private Integer numPagina = 1;		
+	private Integer numRecordsForPage = 10;
 	private String filterPaginator;
 	private Integer totalRecords;
+	private String ordinaPer;
 
-	public Filter(){}
-	
-	
-	public Filter(@Value("${mopWS.limitForPage}")Integer limitForPage){
-		this.limitForPage = limitForPage;
-	}
+//	public Filter(@Value("${mopWS.numRecordsForPage}") Integer numRecordsForPage){
+//		this.numRecordsForPage = numRecordsForPage;
+//	}
 	
 	public String getFilterPaginator() {
 		StringBuilder builder = new StringBuilder(this.cup != null ? "&cup="+this.cup : "")
@@ -47,41 +48,19 @@ public class Filter implements Serializable {
 										  .append(this.fonteCodLocaleProg != null ? "&fonteCodLocaleProg="+this.fonteCodLocaleProg : "")
 										  .append(this.dimensione != null ? "&dimensione="+this.dimensione : "")
 										  .append(this.tipologiaLavori != null ? "&tipologiaLavori="+this.tipologiaLavori : "")
-										  .append(this.limit != null ? "&limit="+this.limit : "");
+										  .append(this.numRecords != null ? "&numRecords="+this.numRecords : "")
+										  .append(this.ordinaPer != null ? "&ordinaPer="+this.ordinaPer : "");
         return builder.toString();
 	}
 
-	public Integer getTotalRecords() {
-		return totalRecords;
+	public String getCup() {
+		return cup;
 	}
 
-
-	public void setTotalRecords(Integer totalRecords) {
-		this.totalRecords = totalRecords;
+	public void setCup(String cup) {
+		this.cup = cup;
 	}
 
-
-	public void setFilterPaginator(String filterPaginator) {
-		this.filterPaginator = filterPaginator;
-	}
-
-	public Integer getlimitForPage() {
-		return limitForPage;
-	}
-
-	public void setlimitForPage(Integer limitForPage) {
-		this.limitForPage = limitForPage;
-	}
-
-	public void setNumPagina(Integer numPagina) {
-		this.numPagina = numPagina;
-	}
-
-	public Integer getNumPagina() {
-
-		return numPagina;
-	}
-	
 	public String getCig() {
 		return cig;
 	}
@@ -90,41 +69,36 @@ public class Filter implements Serializable {
 		this.cig = cig;
 	}
 
-	public String getCup() {
-		return cup;
-	}
-	public void setCup(String cup) {
-		this.cup = cup;
-	}
 	public String getSoggetto() {
 		return soggetto;
 	}
+
 	public void setSoggetto(String soggetto) {
 		this.soggetto = soggetto;
 	}
+
 	public String getFormaGiuridica() {
 		return formaGiuridica;
 	}
+
 	public void setFormaGiuridica(String formaGiuridica) {
 		this.formaGiuridica = formaGiuridica;
 	}
+
 	public String getSettore() {
 		return settore;
 	}
+
 	public void setSettore(String settore) {
 		this.settore = settore;
 	}
-	
+
 	public String getSottoSettore() {
 		return sottoSettore;
 	}
-	
+
 	public void setSottoSettore(String sottoSettore) {
 		this.sottoSettore = sottoSettore;
-	}
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public String getCategoria() {
@@ -167,11 +141,56 @@ public class Filter implements Serializable {
 		this.tipologiaLavori = tipologiaLavori;
 	}
 
-	public Integer getlimit() {
-		return limit;
+	public Integer getNumRecords() {
+		return numRecords;
 	}
 
-	public void setlimit(Integer limit) {
-		this.limit = limit;
-	}	
+	public void setNumRecords(Integer numRecords) {
+		this.numRecords = numRecords;
+	}
+
+	public Integer getNumPagina() {
+		return numPagina;
+	}
+
+	public void setNumPagina(Integer numPagina) {
+		this.numPagina = numPagina;
+	}
+
+	public Integer getNumRecordsForPage() {
+		return numRecordsForPage;
+	}
+
+	public void setNumRecordsForPage(Integer numRecordsForPage) {
+		this.numRecordsForPage = numRecordsForPage;
+	}
+
+	public Integer getTotalRecords() {
+		return totalRecords;
+	}
+
+	public void setTotalRecords(Integer totalRecords) {
+		this.totalRecords = totalRecords;
+	}
+
+	public String getOrdinaPer() {
+		return ordinaPer;
+	}
+
+	public void setOrdinaPer(String ordinaPer) {
+		this.ordinaPer = ordinaPer;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	public String toJson() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+
+            return "";
+        }
+    }
 }

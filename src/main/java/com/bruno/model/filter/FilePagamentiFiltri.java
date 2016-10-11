@@ -3,9 +3,6 @@ package com.bruno.model.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * Created by roccobruno on 31/07/2016.
- */
 public class FilePagamentiFiltri {
 
     public FilePagamentiFiltri() {
