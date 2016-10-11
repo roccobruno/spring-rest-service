@@ -1,8 +1,7 @@
 package com.bruno.security;
 
 import java.io.IOException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
@@ -11,14 +10,14 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.bruno.utils.MessageJson;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 
 public class RestAuthenticationFilter implements javax.servlet.Filter {
 	
-	@Autowired
-	AuthenticationService authenticationService;
+	private AuthenticationService authenticationService = new AuthenticationServiceImpl();
 	
     public static final String AUTHENTICATION_HEADER = "authorization_id";
 

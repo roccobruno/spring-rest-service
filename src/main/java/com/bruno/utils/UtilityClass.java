@@ -1,21 +1,16 @@
 package com.bruno.utils;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
-import com.bruno.exception.ControllerException;
-import com.bruno.exception.InternalServerErrorException;
-import com.bruno.exception.OrderByFieldNotFound;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import com.bruno.exception.ControllerException;
 import com.bruno.exception.FilterNotFoundException;
+import com.bruno.exception.InternalServerErrorException;
+import com.bruno.exception.OrderByFieldNotFound;
 import com.bruno.model.filter.Filter;
 
 @Component
@@ -27,12 +22,10 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
     public String getBaseUrl(HttpServletRequest request) throws InternalServerErrorException {
     	
     	StringBuilder builder = null;
-    	String typeConnection = null;
     	
     	try{
-	        typeConnection = false ? "https://" : "http://";	
-	        builder = new StringBuilder(typeConnection);
-	        builder.append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getRequestURI());
+	        builder = new StringBuilder(request.getRequestURL());
+//	        builder.append("://").append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getRequestURI());
 	    }catch(Exception e){
 	    	log.error(e.getMessage());
             throw new InternalServerErrorException();
