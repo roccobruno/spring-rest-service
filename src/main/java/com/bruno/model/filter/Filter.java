@@ -32,6 +32,10 @@ public class Filter implements Serializable {
 	private Integer totalRecords;
 	private String ordinaPer;
 
+	public Filter(Integer numeroDiRecord) {
+
+	}
+
 //	public Filter(@Value("${mopWS.numRecordsForPage}") Integer numRecordsForPage){
 //		this.numRecordsForPage = numRecordsForPage;
 //	}
