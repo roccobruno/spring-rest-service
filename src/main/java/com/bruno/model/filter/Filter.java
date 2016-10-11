@@ -32,6 +32,8 @@ public class Filter implements Serializable {
 	private Integer totalRecords;
 	private String ordinaPer;
 
+	public Filter() {}
+
 	public Filter(Integer numeroDiRecord) {
 
 	}

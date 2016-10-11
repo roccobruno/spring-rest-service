@@ -108,8 +108,6 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
     public Filter checkAndCreateFilter(Map<String, String> allRequestParams, String resourceName) throws ControllerException {
 
 
-        System.out.print("ROCCO "+numeroDiRecord);
-
     	Filter filter = new Filter(numeroDiRecord);
         Iterator<Map.Entry<String, String>> entryList = null;
         Entry entry = null;
