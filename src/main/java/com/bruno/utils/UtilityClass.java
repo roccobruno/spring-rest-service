@@ -16,6 +16,17 @@ import com.bruno.model.filter.Filter;
 @Component
 public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 
+    @Value("${mopWs.numRecordsForPage}")
+    private Integer numeroDiRecord;
+
+
+    public Integer getNumeroDiRecord() {
+        return numeroDiRecord;
+    }
+
+    public void setNumeroDiRecord(Integer numeroDiRecord) {
+        this.numeroDiRecord = numeroDiRecord;
+    }
 
     private static final Logger log = LoggerFactory.getLogger(UtilityClass.class);
     
@@ -89,7 +100,10 @@ public class UtilityClass implements IUtilityClass, IResourceName, IFilterName {
 
     public Filter checkAndCreateFilter(Map<String, String> allRequestParams, String resourceName) throws ControllerException {
 
-    	Filter filter = new Filter();
+
+        System.out.print("ROCCO "+numeroDiRecord);
+
+    	Filter filter = new Filter(numeroDiRecord);
         Iterator<Map.Entry<String, String>> entryList = null;
         Entry entry = null;
 
