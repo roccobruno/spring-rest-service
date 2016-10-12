@@ -1,5 +1,6 @@
 package com.bruno.api;
 
+import com.bruno.service.filejob.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -7,6 +8,7 @@ import io.swagger.annotations.ApiResponses;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,11 +35,6 @@ import com.bruno.model.response.RisultatiRicerca;
 import com.bruno.model.response.RisultatoPagamenti;
 import com.bruno.security.AuthenticationService;
 import com.bruno.service.IPagamentoService;
-import com.bruno.service.filejob.FileJob;
-import com.bruno.service.filejob.FileJobMessage;
-import com.bruno.service.filejob.FileJobPagamentiConsumer;
-import com.bruno.service.filejob.FileJobProducer;
-import com.bruno.service.filejob.FileJobService;
 import com.bruno.utils.FileResourceUtil;
 import com.bruno.utils.IDescRequestParam;
 import com.bruno.utils.IUtilityClass;
@@ -64,7 +61,7 @@ public class Pagamenti implements IDescRequestParam{
     private FileResourceUtil fileResourceUtil;
 
     @Autowired
-    private FileJobService fileJobService;
+    private IFileJobService fileJobService;
 
     @Autowired
     GestioneException gestioneException;
@@ -202,6 +199,31 @@ public class Pagamenti implements IDescRequestParam{
 
         String pathDir = fileLocation + "/";
         this.fileResourceUtil.download("PAGAMENTI-" + fileId + ".csv", response, pathDir);
+
+        return null;
+    }
+
+
+    @ApiIgnore
+    @RequestMapping(value = "/file/pagamenti/retry", method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    public @ResponseBody FileJob generateFileInProgress(HttpServletResponse response,HttpServletRequest request,
+                                              @ApiParam(value = AUTHORIZATIONID)
+                                              @RequestHeader(value="authorization_id",required = false) String authorization_id
+                                              ) {
+
+        List<FileJob>  jobsInProgress = fileJobService.getJobsInProgress();
+        for (FileJob jobInProgress : jobsInProgress) {
+            String fileName = "PAGAMENTI_"+ Filter.getFilterFromJob(jobInProgress).getSoggetto()+ ".csv";
+            //delete existing file
+            fileResourceUtil.deleteFile(fileName);
+            FileJobMessage message = new FileJobMessage(jobInProgress);
+
+            consumer.startConsumer();
+            producer.sendMessage(message);
+        }
+
+
+
 
         return null;
     }

@@ -50,6 +50,16 @@ public class FileResourceUtil implements ResourceLoaderAware {
         return resource.getFile();
     }
 
+    public void deleteFile(String fileName) {
+        File file = new File(fileName);
+        if(file.exists()) {
+            File dir = file.getParentFile();
+            file.delete();
+            dir.delete();
+        }
+
+    }
+
     public void createOAggiornaFile(List<String> fileLines, String fileName, String pathDir, String header) {
 
         String outputFile = pathDir + "/" + fileName;

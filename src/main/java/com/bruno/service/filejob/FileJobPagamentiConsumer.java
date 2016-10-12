@@ -1,10 +1,8 @@
 package com.bruno.service.filejob;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +58,7 @@ public class FileJobPagamentiConsumer {
                 List<PagamentiBo> pagamenti = null;
                 String header = null;
 
-                    Filter filterFromMessage = getFilterFromMessage(message);
+                    Filter filterFromMessage = Filter.getFilterFromJob(message.getFileJob());
 
 				try {
 
@@ -104,15 +102,7 @@ public class FileJobPagamentiConsumer {
        return  (int) Math.ceil (totalNumerOfRecords/numOfRecordsPerPage);
     }
 
-    private Filter getFilterFromMessage(final FileJobMessage message) {
-        Filter fitler = new Filter();
-        try {
-            fitler = new ObjectMapper().readValue(message.getFileJob().getConfig().getBytes(),Filter.class);
-        } catch (IOException e) {
-            log.error("Error in parsing Filter json : "+message.getFileJob().getConfig());
-        }
-        return fitler;
-    }
+
 
     public void startConsumer() {
         if (!init) {

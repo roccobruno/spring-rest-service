@@ -1,7 +1,13 @@
 package com.bruno.model.filter;
 
+import java.io.IOException;
 import java.io.Serializable;
 
+import com.bruno.service.filejob.FileJob;
+import com.bruno.service.filejob.FileJobMessage;
+import com.bruno.service.filejob.FileJobPagamentiConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -13,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Filter implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
+	private static final Logger log = LoggerFactory.getLogger(Filter.class);
 	private String cup;	
 	private String cig;		
 	private String soggetto;
@@ -199,4 +205,14 @@ public class Filter implements Serializable {
             return "";
         }
     }
+
+	public static Filter getFilterFromJob(final FileJob job) {
+		Filter fitler = new Filter();
+		try {
+			fitler = new ObjectMapper().readValue(job.getConfig().getBytes(),Filter.class);
+		} catch (IOException e) {
+			log.error("Error in parsing Filter json : "+job.getConfig());
+		}
+		return fitler;
+	}
 }
