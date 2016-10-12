@@ -16,7 +16,7 @@ public class DBDaoImpl implements IDBDao {
 
     private static final Logger log = LoggerFactory.getLogger(DBDaoImpl.class);
 
-    @Autowired
+//    @Autowired
     private SessionFactory sessionFactoryMopWS;
 
     @Override

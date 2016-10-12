@@ -1,9 +1,10 @@
 package com.bruno.service.filejob;
 
-import java.text.ParseException;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.filter.Filter;
 import com.bruno.service.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
-import com.bruno.utils.FormatUtility;
 
 @Component
 public class FileJobPagamentiConsumer {
@@ -26,6 +26,18 @@ public class FileJobPagamentiConsumer {
     @Value("${mopWs.cartella.files.pagamenti}")
     private String fileLocation;
 
+    @Value("${mopWs.numRecordsForPage}")
+    private Integer numeroDiRecord;
+
+
+    public Integer getNumeroDiRecord() {
+        return numeroDiRecord;
+    }
+
+    public void setNumeroDiRecord(Integer numeroDiRecord) {
+        this.numeroDiRecord = numeroDiRecord;
+    }
+
     @Autowired
     private FileJobMessageComponents components;
 
@@ -36,8 +48,6 @@ public class FileJobPagamentiConsumer {
     @Autowired
     private IPagamentoService pagamentoService;
     
-    @Autowired
-    private Filter filter;
 
     private void consumeMessage(final FileJobMessage message) throws InterruptedException {
     	
@@ -49,25 +59,59 @@ public class FileJobPagamentiConsumer {
                 
                 List<PagamentiBo> pagamenti = null;
                 String header = null;
-                List<String> fileContent = new ArrayList<String>();
+
+                    Filter filterFromMessage = getFilterFromMessage(message);
 
 				try {
-					pagamenti = pagamentoService.getPagamentiList(filter,"");
-					header = pagamenti.get(0).getCsvFileHeader();
-					
-					for (int i = 0; i < pagamenti.size(); i++) {
-	                    fileContent.add(pagamenti.get(i).toFileLine());
-	                }
 
-	                //scrivi file
-//	                fileResourceUtil.createFile(fileContent, "PAGAMENTI-"+filter.getSoggetto()+"-"+new Date()+message.getFileJob().getId() + ".csv", fileLocation,header);
-					fileResourceUtil.createFile(fileContent, "PAGAMENTI_"+filter.getSoggetto()+ ".csv", fileLocation,header);
-	                //aggiornare il record di tipo FileJob , settare lo stato a 'fatto'
+
+                    long totalNumberOfRecords = pagamentoService.countRecords(filterFromMessage);
+                    int totalNumberOfPages = getTotalNumberOfPages(totalNumberOfRecords,numeroDiRecord);
+
+                    log.info("Writing totalNumbeOfPages "+totalNumberOfPages);
+                    for (int i = 0; i < totalNumberOfPages; i++) {
+                        //scrivo una pagina alla volta
+                        filterFromMessage.setNumPagina(i);
+                        pagamenti = pagamentoService.getPagamentiListMock(filterFromMessage,"");//TODO cambia metodo , usa quello reale che legge dal DB
+                        List<String> fileContent = createFileContent(pagamenti);
+                        fileResourceUtil.createOAggiornaFile(fileContent,
+                                "PAGAMENTI_"+filterFromMessage.getSoggetto()+ ".csv",
+                                fileLocation,PagamentiBo.getCsvFileHeader());
+
+
+                    }
+
+	                //TODO aggiornare il record di tipo FileJob , settare lo stato a 'fatto'
 				} catch (InternalServerErrorException e) {
-					log.error(e.getMessage());			
+					log.info("Error in writing file er: "+e.getMessage());
 				}               
             }
+
+
         });
+    }
+
+    private List<String> createFileContent(List<PagamentiBo> pagamenti) {
+
+        List<String> fileContent = new ArrayList<String>();
+        for (PagamentiBo pagamentiBo : pagamenti) {
+            fileContent.add(pagamentiBo.toFileLine());
+        }
+        return fileContent;
+    }
+
+    private int getTotalNumberOfPages(long totalNumerOfRecords, int numOfRecordsPerPage) {
+       return  (int) Math.ceil (totalNumerOfRecords/numOfRecordsPerPage);
+    }
+
+    private Filter getFilterFromMessage(final FileJobMessage message) {
+        Filter fitler = new Filter();
+        try {
+            fitler = new ObjectMapper().readValue(message.getFileJob().getConfig().getBytes(),Filter.class);
+        } catch (IOException e) {
+            log.error("Error in parsing Filter json : "+message.getFileJob().getConfig());
+        }
+        return fitler;
     }
 
     public void startConsumer() {
@@ -78,7 +122,6 @@ public class FileJobPagamentiConsumer {
 
                     try {
                         while (true) {
-//                            Thread.sleep(10000);//solo per testare
                             consumeMessage(components.getFileJobMessageBlockingDeque().take());
                         }
                     } catch (InterruptedException e) {
