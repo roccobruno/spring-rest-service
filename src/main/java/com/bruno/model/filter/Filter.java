@@ -30,6 +30,17 @@ public class Filter implements Serializable {
 	private Integer totalRecords;
 	private String ordinaPer;
 
+
+	public Filter() {}
+
+	public Filter(Integer numeroDiRecord) {
+
+	}
+
+//	public Filter(@Value("${mopWS.numRecordsForPage}") Integer numRecordsForPage){
+//		this.numRecordsForPage = numRecordsForPage;
+//	}
+
 	public String getFilterPaginator() {
 		StringBuilder builder = new StringBuilder(this.cup != null ? "&cup="+this.cup : "")
 										  .append(this.cig != null ? "&cig="+this.cig : "")

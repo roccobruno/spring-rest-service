@@ -1,0 +1,126 @@
+<html>
+<head>
+    <title>Contact Form Tutorial by Bootstrapious.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='resources/css/custom.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-8 col-lg-offset-2">
+
+            <h1>Cerca Pagamenti</h1>
+
+            <p class="lead">Balh bBALALSDLSDALLALNLANLDNLSANLDNLASNDNSLDLsa</p>
+
+
+            <form id="pagamenti-form" method="post"  role="form">
+
+                <div class="messages"></div>
+
+                <div class="controls">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="form_cup">Cup *</label>
+                                <input id="form_cup" type="text" name="CUP" class="form-control" placeholder="Please enter cup *"  required="required" data-error="cup is required.">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="form_cig">Cig *</label>
+                                <input id="form_cig" type="text" name="CIG" class="form-control" placeholder="Please enter cig *"  data-error="Cig is required.">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="form_settore">SETTORE *</label>
+                                <input id="form_settore" type="text" name="SETTORE" class="form-control" placeholder="Please enter SETTORE *"  data-error="SETTORE is required.">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-4">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="form_forma_giuridica">Forma Giuridica *</label>-->
+                                <!--<input id="form_forma_giuridica" type="text" name="forma_giuridica" class="form-control" placeholder="Please enter Forma Giuridica *"  data-error="Forma Giuridica is required.">-->
+                                <!--<div class="help-block with-errors"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-4">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="form_settore">Settore *</label>-->
+                                <!--<input id="form_settore" type="text" name="settore" class="form-control" placeholder="Please enter Settore *"  data-error="Settore is required.">-->
+                                <!--<div class="help-block with-errors"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-4">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="form_categoria">Categoria *</label>-->
+                                <!--<input id="form_categoria" type="text" name="categoria" class="form-control" placeholder="Please enter Categoria *"  data-error="Categoria is required.">-->
+                                <!--<div class="help-block with-errors"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-success btn-send" value="Cerca pagamenti">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <caption>Preview i primi 10 record</caption>
+                            <thead>
+                               <tr>
+                                   <th>#</th>
+                                   <th>Cup</th>
+                                   <th>Cig</th>
+                                   <th>Soggetto</th>
+                                   <th>Settore</th>
+
+
+                               </tr>
+
+
+                            </thead>
+                            <tbody id="table-content">
+
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div><!-- /.8 -->
+
+    </div> <!-- /.row-->
+
+</div> <!-- /.container-->
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="resources/js/validator.js"></script>
+<script src="resources/js/pagamenti.js"></script>
+</body>
+</html>
