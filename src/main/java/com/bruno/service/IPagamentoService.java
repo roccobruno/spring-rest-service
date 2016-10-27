@@ -11,5 +11,7 @@ public interface IPagamentoService {
 	public RisultatiRicerca<PagamentiBo> getPagamento(String id,String baseUrl) throws InternalServerErrorException;
     public List<PagamentiBo> getPagamentoById(String id,String baseUrl) throws InternalServerErrorException;
     public List<PagamentiBo> getPagamentiList(Filter filter,String baseUrl) throws InternalServerErrorException;
+    public List<PagamentiBo> getPagamentiListMock(Filter filter,String baseUrl) throws InternalServerErrorException;
+    public Long countRecords(Filter filter) throws InternalServerErrorException;
     public RisultatiRicerca<PagamentiBo> getPagamenti(Filter filter,String baseUrl) throws InternalServerErrorException;
 }

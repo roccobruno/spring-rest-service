@@ -74,6 +74,7 @@ public class PagamentoServiceImpl implements IPagamentoService {
 		pagamentiBo.setImporto(new BigDecimal("10").add(new BigDecimal(i)));
 		pagamentiBo.setNote("note"+i);
 		pagamentiBo.setTipologiaPagamento("tipo"+i);
+		pagamentiBo.setCodLocProg("codlogpro"+i);
 		return pagamentiBo;
 	}
 
@@ -93,8 +94,23 @@ public class PagamentoServiceImpl implements IPagamentoService {
     	}
 		return pagamentiBo;
     }
-    
-    @Override
+
+	@Override
+	public List<PagamentiBo> getPagamentiListMock(Filter filter, String baseUrl) throws InternalServerErrorException {
+		ArrayList<PagamentiBo> pagamentiBos = new ArrayList<PagamentiBo>();
+		for (int i = 0; i < 10; i++) {
+			pagamentiBos.add(getPagamento(i));
+		}
+		return pagamentiBos;
+	}
+
+	@Override
+	public Long countRecords(Filter filter) throws InternalServerErrorException {
+		return 1000l; //TODO only for testing
+//		return dBDaoService.getCount(filter,"SwPagamenti");
+	}
+
+	@Override
     public RisultatiRicerca<PagamentiBo> getPagamento(String id,String baseUrl) throws InternalServerErrorException {
 
     	Long totalRecord = null;

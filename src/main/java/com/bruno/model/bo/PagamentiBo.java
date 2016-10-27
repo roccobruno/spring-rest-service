@@ -116,7 +116,7 @@ public class PagamentiBo extends BaseBo {
 	        return builder.toString();
 	    }
 	
-	public String getCsvFileHeader() {
+	public static String getCsvFileHeader() {
         StringBuilder builder = new StringBuilder("codLocProg").append(",").append("dataPagamento")
         						.append(",").append("codicePagamento").append(",").append("tipologiaPagamento").append(",").append("importo").append(",")
         						.append("codiceCausale").append(",").append("descrizioneCausale").append(",").append("codiceGestionale").append(",")
