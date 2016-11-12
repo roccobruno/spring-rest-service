@@ -28,7 +28,7 @@
 //import com.bruno.model.bo.FilePagamentiFiltri;
 //import com.bruno.service.filejob.FileJob;
 //import com.bruno.service.filejob.FileJobMessage;
-//import com.bruno.service.filejob.FileJobPagamentiConsumer;
+//import com.bruno.service.filejob.FileJobConsumer;
 //import com.bruno.service.filejob.FileJobProducer;
 //import com.bruno.service.filejob.FileJobService;
 //import com.bruno.utils.FileResourceUtil;
@@ -48,7 +48,7 @@
 //    private FileJobProducer producer;
 //
 //    @Autowired
-//    private FileJobPagamentiConsumer consumer;
+//    private FileJobConsumer consumer;
 //
 //    @Autowired
 //    private FileResourceUtil fileResourceUtil;

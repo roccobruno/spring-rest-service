@@ -3,9 +3,10 @@ package com.bruno.model.bo;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.bruno.model.RecordBO;
 import com.bruno.model.bo.Metadata;
 
-public class PagamentiBo extends BaseBo {
+public class PagamentiBo extends BaseBo implements RecordBO {
 	
 	private Date dataPagamento;
 	private String codicePagamento;

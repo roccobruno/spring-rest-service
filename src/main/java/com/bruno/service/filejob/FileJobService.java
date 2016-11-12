@@ -1,10 +1,13 @@
 package com.bruno.service.filejob;
 
+import com.bruno.service.ServiceType;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.bruno.model.filter.Filter;
 import com.bruno.model.bo.Pagamento;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,19 +24,24 @@ public class FileJobService implements IFileJobService {
 
     }
 
+    @Value("${mopWs-istanza-nome}")
+    private String nameInstance;
+
     @Override
     public void markJobAsDone(String jobId) {
 
     }
 
-    public FileJob creteJob(Filter pagamentiFiltri) {
+    public FileJob createJob(ServiceType type, Filter pagamentiFiltri) {
         //save into db if not already existing
-       return new FileJob(UUID.randomUUID().toString(),Pagamento.class.toString(),pagamentiFiltri.toJson(), "in-progress");
+        String fileName = type+"_"+ pagamentiFiltri.getSoggetto()+ ".csv";
+        return new FileJob(UUID.randomUUID().toString(),type,pagamentiFiltri.toJson(), "in-progress", fileName, nameInstance, new Date());
     }
 
     public FileJob getById(String id) {
         //leggi dal db il record
-        return new FileJob(id,Pagamento.class.toString(),"", "in-progress");
+        return new FileJob(id,ServiceType.PAGAMENTI
+                ,"", "in-progress", "", "", new Date());
 
     }
 }

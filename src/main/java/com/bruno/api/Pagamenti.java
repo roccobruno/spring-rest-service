@@ -1,5 +1,6 @@
 package com.bruno.api;
 
+import com.bruno.service.ServiceType;
 import com.bruno.service.filejob.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -34,7 +35,7 @@ import com.bruno.model.filter.Filter;
 import com.bruno.model.response.RisultatiRicerca;
 import com.bruno.model.response.RisultatoPagamenti;
 import com.bruno.security.AuthenticationService;
-import com.bruno.service.IPagamentoService;
+import com.bruno.service.pagamenti.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
 import com.bruno.utils.IDescRequestParam;
 import com.bruno.utils.IUtilityClass;
@@ -55,7 +56,7 @@ public class Pagamenti implements IDescRequestParam{
     private FileJobProducer producer;
 
     @Autowired
-    private FileJobPagamentiConsumer consumer;
+    private FileJobConsumer consumer;
 
     @Autowired
     private FileResourceUtil fileResourceUtil;
@@ -184,10 +185,9 @@ public class Pagamenti implements IDescRequestParam{
 											  @RequestHeader(value="authorization_id",required = false) String authorization_id,
 											  @RequestBody Filter paramsRicercaPagamenti) {
 
-        FileJob fileJob = fileJobService.creteJob(paramsRicercaPagamenti);
+        FileJob fileJob = fileJobService.createJob(ServiceType.PAGAMENTI, paramsRicercaPagamenti);
         FileJobMessage message = new FileJobMessage(fileJob);
 
-        consumer.startConsumer();
         producer.sendMessage(message);
 
         return fileJob;
@@ -217,6 +217,8 @@ public class Pagamenti implements IDescRequestParam{
             //delete existing file
             fileResourceUtil.deleteFile(fileName);
             FileJobMessage message = new FileJobMessage(jobInProgress);
+            consumer.startConsumer();
+
             producer.sendMessage(message);
         }
         return null;

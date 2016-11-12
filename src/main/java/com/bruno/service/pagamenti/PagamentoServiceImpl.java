@@ -1,14 +1,15 @@
-package com.bruno.service;
+package com.bruno.service.pagamenti;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.bruno.model.bo.Pagamento;
+import com.bruno.model.RecordBO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.bruno.dao.service.IDBDaoService;
 import com.bruno.exception.InternalServerErrorException;
@@ -24,7 +25,10 @@ import com.bruno.model.wrapper.IWrapperFromHoToBo;
 public class PagamentoServiceImpl implements IPagamentoService {
 	
 	private static final Logger log = LoggerFactory.getLogger(PagamentoServiceImpl.class);
-	
+
+	@Value("${mopWs.cartella.files.pagamenti}")
+	private String fileLocation;
+
 	@Autowired
 	IDBDaoService dBDaoService;
 	
@@ -108,6 +112,23 @@ public class PagamentoServiceImpl implements IPagamentoService {
 	public Long countRecords(Filter filter) throws InternalServerErrorException {
 		return 1000l; //TODO only for testing
 //		return dBDaoService.getCount(filter,"SwPagamenti");
+	}
+
+	@Override
+	public List<PagamentiBo> getRecords(Filter filter, String baseUrl) throws InternalServerErrorException {
+		//TODO cambia metodo , usa quello reale che legge dal DB
+
+		return getPagamentiListMock(filter,baseUrl);
+	}
+
+	@Override
+	public String getFilesFolderLocation() {
+		return fileLocation;
+	}
+
+	@Override
+	public String getCsvFileHeader() {
+		return PagamentiBo.getCsvFileHeader();
 	}
 
 	@Override
