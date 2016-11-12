@@ -25,6 +25,10 @@ public class DBServiceContainer implements IDBServiceContainer {
 
     @Override
     public IService getService(ServiceType serviceType) {
+
+        if(!getServicesMap().containsKey(serviceType))
+            throw new IllegalStateException("service type " + serviceType + " not found. Did u forget to add it to the container??");
+
         return getServicesMap().get(serviceType);
     }
 }

@@ -18,7 +18,7 @@ import com.bruno.utils.FileResourceUtil;
 import javax.annotation.PostConstruct;
 
 @Component
-public class FileJobConsumer {
+    public class FileJobConsumer {
 
 	private static final Logger log = LoggerFactory.getLogger(FileJobConsumer.class);
        
@@ -50,11 +50,9 @@ public class FileJobConsumer {
                 String header = null;
 
                     Filter filterFromMessage = Filter.getFilterFromJob(message.getFileJob());
+                    IService service = idbServiceContainer.getService(message.getFileJob().getType());
 
 				try {
-
-
-                    IService service = idbServiceContainer.getService(message.getFileJob().getType());
                     long totalNumberOfRecords = service.countRecords(filterFromMessage);
                     int totalNumberOfPages = getTotalNumberOfPages(totalNumberOfRecords, numeroDiRecord);
 
