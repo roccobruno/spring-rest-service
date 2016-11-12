@@ -12,7 +12,7 @@ import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.filter.Filter;
 import com.bruno.model.response.RisultatiRicerca;
 import com.bruno.model.wrapper.WrapperFromHoToBoImpl;
-import com.bruno.service.IPagamentoService;
+import com.bruno.service.pagamenti.IPagamentoService;
 import com.bruno.utils.IResourceName;
 import com.bruno.utils.IUtilityClass;
 

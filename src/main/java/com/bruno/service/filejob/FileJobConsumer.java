@@ -3,40 +3,30 @@ package com.bruno.service.filejob;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bruno.model.RecordBO;
+import com.bruno.service.IDBServiceContainer;
+import com.bruno.service.IService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.bruno.exception.InternalServerErrorException;
-import com.bruno.model.bo.PagamentiBo;
 import com.bruno.model.filter.Filter;
-import com.bruno.service.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
 
 import javax.annotation.PostConstruct;
 
 @Component
-public class FileJobPagamentiConsumer {
+public class FileJobConsumer {
 
-	private static final Logger log = LoggerFactory.getLogger(FileJobPagamentiConsumer.class);
+	private static final Logger log = LoggerFactory.getLogger(FileJobConsumer.class);
        
-    private boolean init = false;
-
-    @Value("${mopWs.cartella.files.pagamenti}")
-    private String fileLocation;
-
     @Value("${mopWs.numRecordsForPage}")
     private Integer numeroDiRecord;
 
-
-    public Integer getNumeroDiRecord() {
-        return numeroDiRecord;
-    }
-
-    public void setNumeroDiRecord(Integer numeroDiRecord) {
-        this.numeroDiRecord = numeroDiRecord;
-    }
+    @Autowired
+    IDBServiceContainer idbServiceContainer;
 
     @Autowired
     private FileJobMessageComponents components;
@@ -45,8 +35,7 @@ public class FileJobPagamentiConsumer {
     private FileResourceUtil fileResourceUtil;
 
 
-    @Autowired
-    private IPagamentoService pagamentoService;
+
     
 
     private void consumeMessage(final FileJobMessage message) throws InterruptedException {
@@ -57,7 +46,7 @@ public class FileJobPagamentiConsumer {
             public void run() {
                 log.info("receiving message " + message);
                 
-                List<PagamentiBo> pagamenti = null;
+                List<RecordBO> recordBOs = null;
                 String header = null;
 
                     Filter filterFromMessage = Filter.getFilterFromJob(message.getFileJob());
@@ -65,23 +54,27 @@ public class FileJobPagamentiConsumer {
 				try {
 
 
-                    long totalNumberOfRecords = pagamentoService.countRecords(filterFromMessage);
-                    int totalNumberOfPages = getTotalNumberOfPages(totalNumberOfRecords,numeroDiRecord);
+                    IService service = idbServiceContainer.getService(message.getFileJob().getType());
+                    long totalNumberOfRecords = service.countRecords(filterFromMessage);
+                    int totalNumberOfPages = getTotalNumberOfPages(totalNumberOfRecords, numeroDiRecord);
 
                     log.info("Writing totalNumbeOfPages "+totalNumberOfPages);
                     for (int i = 0; i < totalNumberOfPages; i++) {
                         //scrivo una pagina alla volta
                         filterFromMessage.setNumPagina(i);
-                        pagamenti = pagamentoService.getPagamentiListMock(filterFromMessage,"");//TODO cambia metodo , usa quello reale che legge dal DB
-                        List<String> fileContent = createFileContent(pagamenti);
+
+                        recordBOs = service.getRecords(filterFromMessage,"");
+
+                        List<String> fileContent = createFileContent(recordBOs);
+
                         fileResourceUtil.createOAggiornaFile(fileContent,
-                                "PAGAMENTI_"+filterFromMessage.getSoggetto()+ ".csv",
-                                fileLocation,PagamentiBo.getCsvFileHeader());
+                                message.getFileJob().getFileName(),
+                                service.getFilesFolderLocation(), service.getCsvFileHeader());
 
 
                     }
 
-	                //TODO aggiornare il record di tipo FileJob , settare lo stato a 'fatto'
+	                //TODO aggiornare il record di tipo FileJob , settare lo stato a 'DONE'
 				} catch (InternalServerErrorException e) {
 					log.info("Error in writing file er: "+e.getMessage());
 				}               
@@ -91,11 +84,11 @@ public class FileJobPagamentiConsumer {
         });
     }
 
-    private List<String> createFileContent(List<PagamentiBo> pagamenti) {
+    private List<String> createFileContent(List<RecordBO> records) {
 
         List<String> fileContent = new ArrayList<String>();
-        for (PagamentiBo pagamentiBo : pagamenti) {
-            fileContent.add(pagamentiBo.toFileLine());
+        for (RecordBO record : records) {
+            fileContent.add(record.toFileLine());
         }
         return fileContent;
     }
@@ -108,11 +101,9 @@ public class FileJobPagamentiConsumer {
 
     @PostConstruct
     public void startConsumer() {
-        if (!init) {
             components.getExecutor().submit(new Runnable() {
                 @Override
                 public void run() {
-
                     try {
                         while (true) {
                             consumeMessage(components.getFileJobMessageBlockingDeque().take());
@@ -122,7 +113,5 @@ public class FileJobPagamentiConsumer {
                     }
                 }
             });
-            init = true;
-        }
     }
 }

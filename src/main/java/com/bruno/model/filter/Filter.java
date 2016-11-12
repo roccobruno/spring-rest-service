@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import com.bruno.service.filejob.FileJob;
-import com.bruno.service.filejob.FileJobMessage;
-import com.bruno.service.filejob.FileJobPagamentiConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
