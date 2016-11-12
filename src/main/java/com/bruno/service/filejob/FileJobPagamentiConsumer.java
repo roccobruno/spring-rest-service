@@ -13,6 +13,8 @@ import com.bruno.model.filter.Filter;
 import com.bruno.service.IPagamentoService;
 import com.bruno.utils.FileResourceUtil;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class FileJobPagamentiConsumer {
 
@@ -94,6 +96,7 @@ public class FileJobPagamentiConsumer {
 
 
 
+    @PostConstruct
     public void startConsumer() {
         if (!init) {
             components.getExecutor().submit(new Runnable() {

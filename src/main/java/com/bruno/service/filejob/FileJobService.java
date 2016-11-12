@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import com.bruno.model.filter.Filter;
 import com.bruno.model.bo.Pagamento;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class FileJobService implements IFileJobService {
 
     @Override
     public List<FileJob> getJobsInProgress() {
-        return null;
+        return new ArrayList<FileJob>();
     }
 
     @Override

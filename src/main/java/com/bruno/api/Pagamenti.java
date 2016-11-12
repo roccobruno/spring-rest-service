@@ -217,8 +217,6 @@ public class Pagamenti implements IDescRequestParam{
             //delete existing file
             fileResourceUtil.deleteFile(fileName);
             FileJobMessage message = new FileJobMessage(jobInProgress);
-
-            consumer.startConsumer();
             producer.sendMessage(message);
         }
         return null;
