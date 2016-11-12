@@ -119,8 +119,8 @@ public class Pagamenti implements IDescRequestParam{
 												@RequestParam(value = "ordinaPer", required = false) String ordinaPer) throws UnsupportedEncodingException {
     
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
-    	
-    	try {               	
+
+    	try {
         	pagamentiBo = pagamentoService.getPagamenti(utilityClass.checkAndCreateFilter(allRequestParams,"pagamenti"),utilityClass.getBaseUrl(request));
         }catch (ControllerException e) {
             log.error(e.getMessage());
@@ -183,9 +183,9 @@ public class Pagamenti implements IDescRequestParam{
     public @ResponseBody FileJob generateFile(HttpServletResponse response,HttpServletRequest request,
     										  @ApiParam(value = AUTHORIZATIONID)
 											  @RequestHeader(value="authorization_id",required = false) String authorization_id,
-											  @RequestBody Filter paramsRicercaPagamenti) {
+                                              @RequestParam Map<String, String> allRequestParams) throws ControllerException {
 
-        FileJob fileJob = fileJobService.createJob(ServiceType.PAGAMENTI, paramsRicercaPagamenti);
+        FileJob fileJob = fileJobService.createJob(ServiceType.PAGAMENTI, utilityClass.checkAndCreateFilter(allRequestParams,"pagamenti"));
         FileJobMessage message = new FileJobMessage(fileJob);
 
         producer.sendMessage(message);
@@ -194,11 +194,11 @@ public class Pagamenti implements IDescRequestParam{
     }
 
     @ApiIgnore
-    @RequestMapping(value = "/file/pagamenti/{id}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getFile(HttpServletResponse response, @PathVariable("id") String fileId) throws IOException {
+    @RequestMapping(value = "/file/pagamenti/{fileName}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getFile(HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
 
         String pathDir = fileLocation + "/";
-        this.fileResourceUtil.download("PAGAMENTI-" + fileId + ".csv", response, pathDir);
+        this.fileResourceUtil.download(fileName, response, pathDir);
 
         return null;
     }

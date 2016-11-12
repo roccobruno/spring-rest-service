@@ -34,7 +34,7 @@ public class FileJobService implements IFileJobService {
 
     public FileJob createJob(ServiceType type, Filter pagamentiFiltri) {
         //save into db if not already existing
-        String fileName = type+"_"+ pagamentiFiltri.getSoggetto()+ ".csv";
+        String fileName = type+"_"+UUID.randomUUID().toString()+ ".csv";
         return new FileJob(UUID.randomUUID().toString(),type,pagamentiFiltri.toJson(), "in-progress", fileName, nameInstance, new Date());
     }
 
