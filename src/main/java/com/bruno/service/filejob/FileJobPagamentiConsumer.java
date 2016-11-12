@@ -2,7 +2,6 @@ package com.bruno.service.filejob;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ public class FileJobPagamentiConsumer {
 
     @Value("${mopWs.numRecordsForPage}")
     private Integer numeroDiRecord;
-
 
     public Integer getNumeroDiRecord() {
         return numeroDiRecord;
@@ -61,8 +59,6 @@ public class FileJobPagamentiConsumer {
                     Filter filterFromMessage = Filter.getFilterFromJob(message.getFileJob());
 
 				try {
-
-
                     long totalNumberOfRecords = pagamentoService.countRecords(filterFromMessage);
                     int totalNumberOfPages = getTotalNumberOfPages(totalNumberOfRecords,numeroDiRecord);
 
@@ -72,11 +68,7 @@ public class FileJobPagamentiConsumer {
                         filterFromMessage.setNumPagina(i);
                         pagamenti = pagamentoService.getPagamentiListMock(filterFromMessage,"");//TODO cambia metodo , usa quello reale che legge dal DB
                         List<String> fileContent = createFileContent(pagamenti);
-                        fileResourceUtil.createOAggiornaFile(fileContent,
-                                "PAGAMENTI_"+filterFromMessage.getSoggetto()+ ".csv",
-                                fileLocation,PagamentiBo.getCsvFileHeader());
-
-
+                        fileResourceUtil.createOAggiornaFile(fileContent,"PAGAMENTI_"+filterFromMessage.getSoggetto()+ ".csv", fileLocation,PagamentiBo.getCsvFileHeader());
                     }
 
 	                //TODO aggiornare il record di tipo FileJob , settare lo stato a 'fatto'
@@ -84,8 +76,6 @@ public class FileJobPagamentiConsumer {
 					log.info("Error in writing file er: "+e.getMessage());
 				}               
             }
-
-
         });
     }
 

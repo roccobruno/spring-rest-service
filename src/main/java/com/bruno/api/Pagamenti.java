@@ -194,11 +194,11 @@ public class Pagamenti implements IDescRequestParam{
     }
 
     @ApiIgnore
-    @RequestMapping(value = "/file/pagamenti/{id}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getFile(HttpServletResponse response, @PathVariable("id") String fileId) throws IOException {
+    @RequestMapping(value = "/file/{resourceName}/{id}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getFile(HttpServletResponse response,@PathVariable("resourceName") String resourceName, @PathVariable("id") String fileId) throws IOException {
 
-        String pathDir = fileLocation + "/";
-        this.fileResourceUtil.download("PAGAMENTI_" + fileId + ".csv", response, pathDir);
+        String pathDir = fileLocation + "/" + resourceName.toUpperCase();
+        this.fileResourceUtil.download(resourceName.toUpperCase()+"_" + fileId + ".csv", response, pathDir);
 
         return null;
     }
@@ -221,10 +221,6 @@ public class Pagamenti implements IDescRequestParam{
             consumer.startConsumer();
             producer.sendMessage(message);
         }
-
-
-
-
         return null;
     }
 }

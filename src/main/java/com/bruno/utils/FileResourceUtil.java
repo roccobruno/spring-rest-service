@@ -100,7 +100,6 @@ public class FileResourceUtil implements ResourceLoaderAware {
             inputStream = new FileInputStream(toServeUp);
         } catch (FileNotFoundException e) {
 
-            // Also useful, this is a good was to serve down an error message
             String msg = "ERROR: Could not find the file specified. fileName:" + fileLocation + "/" + fileName;
             headers.setContentType(MediaType.TEXT_PLAIN);
             logger.error(msg);

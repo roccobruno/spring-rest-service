@@ -14,8 +14,7 @@ public class FileJobMessageComponents {
     private final BlockingDeque<FileJobMessage> fileJobMessageBlockingDeque;
     private final ExecutorService executor;
 
-    public FileJobMessageComponents(@Value("${mopWs.number.thread}")
-                                    Integer numOfThread) {
+    public FileJobMessageComponents(@Value("${mopWs.number.thread}") Integer numOfThread) {
         this.executor = Executors.newFixedThreadPool(numOfThread);
         this.fileJobMessageBlockingDeque = new LinkedBlockingDeque<FileJobMessage>();
     }
