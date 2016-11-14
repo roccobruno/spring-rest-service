@@ -35,4 +35,30 @@ $(function () {
             return false;
         }
     })
+
+
+        $('#creaFileButton').click( function (e) {
+            if (!e.isDefaultPrevented()) {
+                var url = "/spring-rest-service/api/v1.0/file/pagamenti";
+
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    headers: {
+                            'Content-Type':'application/json'
+                        },
+                    data: $(this).serialize(),
+                    success: function (data)
+                    {
+                          console.log(data);
+                          $('#download-file-div').append(
+                          '<a href="/spring-rest-service/api/v1.0/file/pagamenti/'+data.fileName+'" class="btn btn-large">File Creato. Clicca qui per fare il download</a>'
+                          )
+
+                    }
+                });
+                return false;
+            }
+        })
 });

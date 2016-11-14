@@ -119,9 +119,11 @@ public class Pagamenti implements IDescRequestParam{
 												@RequestParam(value = "ordinaPer", required = false) String ordinaPer) throws UnsupportedEncodingException {
     
     	RisultatiRicerca<PagamentiBo> pagamentiBo = null;
+
     	
     	try {               	
         	pagamentiBo = pagamentoService.getPagamenti(utilityClass.checkAndCreateFilter(allRequestParams,"pagamenti"),request.getRequestURL().toString());
+
         }catch (ControllerException e) {
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
@@ -183,9 +185,9 @@ public class Pagamenti implements IDescRequestParam{
     public @ResponseBody FileJob generateFile(HttpServletResponse response,HttpServletRequest request,
     										  @ApiParam(value = AUTHORIZATIONID)
 											  @RequestHeader(value="authorization_id",required = false) String authorization_id,
-											  @RequestBody Filter paramsRicercaPagamenti) {
+                                              @RequestParam Map<String, String> allRequestParams) throws ControllerException {
 
-        FileJob fileJob = fileJobService.createJob(ServiceType.PAGAMENTI, paramsRicercaPagamenti);
+        FileJob fileJob = fileJobService.createJob(ServiceType.PAGAMENTI, utilityClass.checkAndCreateFilter(allRequestParams,"pagamenti"));
         FileJobMessage message = new FileJobMessage(fileJob);
 
         producer.sendMessage(message);
@@ -194,8 +196,11 @@ public class Pagamenti implements IDescRequestParam{
     }
 
     @ApiIgnore
+
     @RequestMapping(value = "/file/{resourceName}/{id}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getFile(HttpServletResponse response,@PathVariable("resourceName") String resourceName, @PathVariable("id") String fileId) throws IOException {
+
+
 
         String pathDir = fileLocation + "/" + resourceName.toUpperCase();
         this.fileResourceUtil.download(resourceName.toUpperCase()+"_" + fileId + ".csv", response, pathDir);
