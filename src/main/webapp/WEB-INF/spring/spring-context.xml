@@ -69,9 +69,10 @@
 		<property name="sessionFactory" ref="sessionFactoryMopWS" />
 	</bean>
 
-	<task:scheduled-tasks>
+	<!-- <task:scheduled-tasks>
 		<task:scheduled ref="myTask" method="processUnFinishedJobs" cron="${recover-job-run-time}" />
 	</task:scheduled-tasks>
+ -->
 
 	<bean id="myTask" class="com.bruno.service.filejob.FileJobReprocessor"/>
 	

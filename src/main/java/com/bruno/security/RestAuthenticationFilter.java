@@ -10,6 +10,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bruno.utils.IUtilityClass;
 import com.bruno.utils.MessageJson;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,7 +20,10 @@ import com.google.gson.GsonBuilder;
 
 public class RestAuthenticationFilter implements javax.servlet.Filter {
 	
-	private AuthenticationService authenticationService = new AuthenticationServiceImpl();
+    private AuthenticationService authenticationService = new AuthenticationServiceImpl();
+    
+    @Autowired
+    IUtilityClass utilityClass;
 	
     public static final String AUTHENTICATION_HEADER = "authorization_id";
 
@@ -54,7 +60,7 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
     	HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json");	 
-        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
+        utilityClass.setHeaderParameters(httpServletResponse);GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
     	Gson gson = builder.setPrettyPrinting().create();
         response.getWriter().write(gson.toJson(new MessageJson("Non Autorizzato!")));
     }
