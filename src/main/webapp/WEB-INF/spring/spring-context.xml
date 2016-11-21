@@ -58,16 +58,16 @@
 	</bean>
 	
 	<context:property-placeholder location="classpath*:config.properties" />
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:location="classpath:hibernate.properties"
-		p:local-override="false"
-		p:ignore-resource-not-found="false" />
+	<!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"-->
+		<!--p:location="classpath:hibernate.properties"-->
+		<!--p:local-override="false"-->
+		<!--p:ignore-resource-not-found="false" />-->
 
-	<tx:annotation-driven />
+	<!--<tx:annotation-driven />-->
 
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactoryMopWS" />
-	</bean>
+	<!--<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+		<!--<property name="sessionFactory" ref="sessionFactoryMopWS" />-->
+	<!--</bean>-->
 
 	<task:scheduled-tasks>
 		<task:scheduled ref="myTask" method="processUnFinishedJobs" cron="${recover-job-run-time}" />

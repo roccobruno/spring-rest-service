@@ -28,25 +28,26 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
         if (request instanceof HttpServletRequest) {
         	
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            String authCredentials = httpServletRequest.getHeader(AUTHENTICATION_HEADER);            
+            String authCredentials = httpServletRequest.getHeader(AUTHENTICATION_HEADER);
+            ((HttpServletResponse)response).addHeader("Access-Control-Allow-Origin", "*");
 
-            boolean authenticationStatus = authenticationService.authenticate(authCredentials);
+//            boolean authenticationStatus = authenticationService.authenticate(authCredentials);
 
-            if (authenticationStatus) {
-            	boolean authorizationStatus = authenticationService.checkAuthorization(httpServletRequest.getServletPath().substring(10),authCredentials);
-            	
-            	if(authorizationStatus){
+//            if (authenticationStatus) {
+//            	boolean authorizationStatus = authenticationService.checkAuthorization(httpServletRequest.getServletPath().substring(10),authCredentials);
+//
+//            	if(authorizationStatus){
             		filter.doFilter(request, response);
-            	}else{
-            		if (response instanceof HttpServletResponse) {
-            			createErrorMessage(response, HttpServletResponse.SC_FORBIDDEN);
-            			}}
+//            	}else{
+//            		if (response instanceof HttpServletResponse) {
+//            			createErrorMessage(response, HttpServletResponse.SC_FORBIDDEN);
+//            			}}
                 
-            } else {
-                if (response instanceof HttpServletResponse) {
-                	createErrorMessage(response, HttpServletResponse.SC_UNAUTHORIZED);             
-                }
-            }
+//            } else {
+//                if (response instanceof HttpServletResponse) {
+//                	createErrorMessage(response, HttpServletResponse.SC_UNAUTHORIZED);
+//                }
+//            }
         }
     }
     

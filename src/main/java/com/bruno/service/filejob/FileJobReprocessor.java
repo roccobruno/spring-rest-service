@@ -28,6 +28,6 @@ public class FileJobReprocessor {
             producer.sendMessage(message);
         }
 
-        System.out.println("JOBS processati n="+jobsInProgress.size());
+//        System.out.println("JOBS processati n="+jobsInProgress.size());
     }
 }

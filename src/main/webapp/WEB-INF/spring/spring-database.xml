@@ -1,72 +1,72 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+	<!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+	<!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+	<!--http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">-->
 
-	<bean id="mopWSDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="jdbc/mopWSDataSource" />
-	</bean>
-		
-	<bean id="sessionFactoryMopWS" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="mopWSDataSource" />
-		 <property name="mappingResources">
-                <list>                                               
-                        <value>/database_hibernate_model/SwAccessimop.hbm.xml</value>                        		
-						<value>/database_hibernate_model/SwAnagprocaggiudic.hbm.xml</value>
-						<value>/database_hibernate_model/SwAnagraficaciganac.hbm.xml</value>
-						<value>/database_hibernate_model/SwAnagraficacontrattianac.hbm.xml</value>
-						<value>/database_hibernate_model/SwAnagraficasoggetticorrelati.hbm.xml</value>
-						<value>/database_hibernate_model/SwAssociativaclpcig.hbm.xml</value>
-						<value>/database_hibernate_model/SwAssociazionecupciganac.hbm.xml</value>
-						<value>/database_hibernate_model/SwCollaudogaraanac.hbm.xml</value>
-						<value>/database_hibernate_model/SwCups.hbm.xml</value>
-						<value>/database_hibernate_model/SwCupsinfogen.hbm.xml</value>
-						<value>/database_hibernate_model/SwDettaglioesitiinvibatchmop.hbm.xml</value>
-						<value>/database_hibernate_model/SwEconomie.hbm.xml</value>
-						<value>/database_hibernate_model/SwEsitiinviibatchmop.hbm.xml</value>
-						<value>/database_hibernate_model/SwFinanziamenti.hbm.xml</value>
-						<value>/database_hibernate_model/SwFinanziamentianac.hbm.xml</value>
-						<value>/database_hibernate_model/SwGaraappaltoanac.hbm.xml</value>
-						<value>/database_hibernate_model/SwImpegni.hbm.xml</value>
-						<value>/database_hibernate_model/SwIndicatori.hbm.xml</value>
-						<value>/database_hibernate_model/SwIterprocaggiudic.hbm.xml</value>
-						<value>/database_hibernate_model/SwIterprocedurale.hbm.xml</value>
-						<value>/database_hibernate_model/SwIterproceduraleanac.hbm.xml</value>
-						<value>/database_hibernate_model/SwLocalizzazioni.hbm.xml</value>
-						<value>/database_hibernate_model/SwPagamenti.hbm.xml</value>
-						<value>/database_hibernate_model/SwPagamentianac.hbm.xml</value>
-						<value>/database_hibernate_model/SwPagamentisiopemovimenti.hbm.xml</value>
-						<value>/database_hibernate_model/SwPagamentisiopeordini.hbm.xml</value>
-						<value>/database_hibernate_model/SwPianocosti.hbm.xml</value>
-						<value>/database_hibernate_model/SwProceduraaggiudicazioneanac.hbm.xml</value>
-						<value>/database_hibernate_model/SwQuadroeconomico.hbm.xml</value>
-						<value>/database_hibernate_model/SwRevocherinunce.hbm.xml</value>
-						<value>/database_hibernate_model/SwRibassiasta.hbm.xml</value>
-						<value>/database_hibernate_model/SwSal.hbm.xml</value>
-						<value>/database_hibernate_model/SwSalanac.hbm.xml</value>
-						<value>/database_hibernate_model/SwSoggetticorrelatianac.hbm.xml</value>
-						<value>/database_hibernate_model/SwSoggettiinvestimentipubb.hbm.xml</value>
-						<value>/database_hibernate_model/SwSospensioni.hbm.xml</value>
-						<value>/database_hibernate_model/SwSospensionianac.hbm.xml</value>
-						<value>/database_hibernate_model/SwStepfasicig.hbm.xml</value>
-						<value>/database_hibernate_model/SwVarianticontrattoanac.hbm.xml</value>						                                                           
-                </list>
-        </property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.hbm2ddl">${hibernate.hbm2ddl}</prop>   			
-	   			<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-	   			<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
-	   			<prop key="hibernate.auto_close_session">${hibernate.auto_close_session}</prop>
-	   			<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
-	   			<prop key="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</prop>
-	   			<prop key="hibernate.validator.apply_to_ddl">${hibernate.validator.apply_to_ddl}</prop>
-	   			<prop key="hibernate.validator.autoregister_listeners">${hibernate.validator.autoregister_listeners}</prop>
-	   			<prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>	   	
-			</props>
-		</property>
-	</bean>
-	
-</beans>
+	<!--<bean id="mopWSDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
+		<!--<property name="jndiName" value="jdbc/mopWSDataSource" />-->
+	<!--</bean>-->
+		<!-- -->
+	<!--<bean id="sessionFactoryMopWS" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+		<!--<property name="dataSource" ref="mopWSDataSource" />-->
+		 <!--<property name="mappingResources">-->
+                <!--<list>                                               -->
+                        <!--<value>/database_hibernate_model/SwAccessimop.hbm.xml</value>                        		-->
+						<!--<value>/database_hibernate_model/SwAnagprocaggiudic.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwAnagraficaciganac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwAnagraficacontrattianac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwAnagraficasoggetticorrelati.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwAssociativaclpcig.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwAssociazionecupciganac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwCollaudogaraanac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwCups.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwCupsinfogen.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwDettaglioesitiinvibatchmop.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwEconomie.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwEsitiinviibatchmop.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwFinanziamenti.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwFinanziamentianac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwGaraappaltoanac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwImpegni.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwIndicatori.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwIterprocaggiudic.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwIterprocedurale.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwIterproceduraleanac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwLocalizzazioni.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwPagamenti.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwPagamentianac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwPagamentisiopemovimenti.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwPagamentisiopeordini.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwPianocosti.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwProceduraaggiudicazioneanac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwQuadroeconomico.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwRevocherinunce.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwRibassiasta.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwSal.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwSalanac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwSoggetticorrelatianac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwSoggettiinvestimentipubb.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwSospensioni.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwSospensionianac.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwStepfasicig.hbm.xml</value>-->
+						<!--<value>/database_hibernate_model/SwVarianticontrattoanac.hbm.xml</value>						                                                           -->
+                <!--</list>-->
+        <!--</property>-->
+		<!--<property name="hibernateProperties">-->
+			<!--<props>-->
+				<!--<prop key="hibernate.dialect">${hibernate.dialect}</prop>-->
+				<!--<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>-->
+				<!--<prop key="hibernate.hbm2ddl">${hibernate.hbm2ddl}</prop>   			-->
+	   			<!--<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>-->
+	   			<!--<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>-->
+	   			<!--<prop key="hibernate.auto_close_session">${hibernate.auto_close_session}</prop>-->
+	   			<!--<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>-->
+	   			<!--<prop key="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</prop>-->
+	   			<!--<prop key="hibernate.validator.apply_to_ddl">${hibernate.validator.apply_to_ddl}</prop>-->
+	   			<!--<prop key="hibernate.validator.autoregister_listeners">${hibernate.validator.autoregister_listeners}</prop>-->
+	   			<!--<prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>	   	-->
+			<!--</props>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!-- -->
+<!--</beans>-->
