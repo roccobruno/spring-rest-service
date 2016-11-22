@@ -20,7 +20,7 @@ public class GestioneException {
 
     public Object gestisciException(ControllerException e, HttpServletResponse response) {
         response.setStatus(e.getStatusCode());
-        utilityClass.setHeaderParameters(response);GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
+        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
     	Gson gson = builder.setPrettyPrinting().create();               
         return gson.toJson(e.getMessageJson());
     }

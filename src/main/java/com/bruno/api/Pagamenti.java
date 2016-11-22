@@ -128,7 +128,7 @@ public class Pagamenti implements IDescRequestParam{
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
         }
-    	utilityClass.setHeaderParameters(response);GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
+    	GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
     	Gson gson = builder.setPrettyPrinting().create();      	
         return gson.toJson(pagamentiBo);
     }
@@ -159,7 +159,7 @@ public class Pagamenti implements IDescRequestParam{
             log.error(e.getMessage());
             return gestioneException.gestisciException(e, response);
         }
-        utilityClass.setHeaderParameters(response);GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
+        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping();
     	Gson gson = builder.setPrettyPrinting().create();               
         return gson.toJson(pagamentiBo);         
     }
